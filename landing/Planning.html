@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Working Timer — Planning (landing screen)</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens/colors.css">
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:transparent;overflow:hidden}
+body{font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{pointer-events:none}
+.num{font-variant-numeric:tabular-nums}
+.phone{width:390px;height:844px;overflow:hidden;background:#0D1219;color:var(--text-1);display:flex;flex-direction:column;font-size:15px;line-height:1.3}
+.sb{height:50px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font-weight:700;font-size:15px}
+.sb i{width:24px;height:11px;border-radius:3px;background:var(--success);display:block}
+.sc{flex:1;padding:14px 18px 0;display:flex;flex-direction:column}
+.top{display:flex;align-items:center;gap:30px}.top svg{width:22px;height:22px}
+.top b{font-size:27px;font-weight:800;letter-spacing:-.01em}
+.day{font-size:31px;font-weight:800;letter-spacing:-.02em;margin-top:18px}
+.lab{font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin:20px 0 9px}
+.lab:first-of-type{margin-top:14px}
+.seg{display:grid;grid-template-columns:repeat(4,1fr);background:#18202A;border-radius:14px;padding:4px}
+.seg span{height:34px;display:grid;place-items:center;font-size:14px;font-weight:700;color:var(--text-2);border-radius:10px}
+.seg span.on{background:#252F3B;color:var(--text-1);font-weight:800}
+.bar{display:flex;gap:4px;height:7px;margin-top:13px}.bar i{border-radius:4px;background:var(--accent)}.bar i.d{background:#27506A}.bar i.r{background:#1E2832}
+.barl{display:flex;justify-content:space-between;font-size:12.5px;font-weight:600;color:var(--text-2);margin-top:8px}.barl b{color:var(--text-1);font-weight:700}
+.card{background:#161D26;border:1px solid #232D38;border-radius:16px}
+.arr{display:flex;align-items:center;padding:16px 16px 16px 16px;gap:10px}
+.arr .k{font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--text-3);line-height:1.25;flex:1}
+.arr .v{font-size:36px;font-weight:800;letter-spacing:-.01em}
+.arr svg{width:16px;height:16px;color:var(--text-3)}
+.drv{display:grid;grid-template-columns:1fr 1fr 28px;align-items:center;padding:16px 18px}
+.drv .k{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--text-3)}
+.drv .v{font-size:25px;font-weight:800;margin-top:6px}
+.drv svg{width:20px;height:20px;color:var(--accent)}
+.ov{display:flex;justify-content:flex-end;align-items:center;gap:12px;font-size:14.5px;font-weight:600;margin:20px 10px 0 0}
+.ov i{width:17px;height:17px;border:2px solid var(--text-2);border-radius:3px}
+.sites{display:flex;flex-direction:column;gap:9px}
+.site{display:grid;grid-template-columns:78px minmax(0,1fr) 34px;gap:12px;align-items:center;padding:14px 16px;position:relative;transition:none}
+.site.mvd{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in oklch,var(--accent) 22%,transparent)}
+.tp{display:flex;flex-direction:column;align-items:center;gap:6px}
+.tri{width:66px;height:9px;background:#AEB5BF;clip-path:polygon(50% 0,100% 100%,0 100%)}
+.tri.dn{clip-path:polygon(0 0,100% 0,50% 100%)}
+.tri.off{background:#2A3440}
+.tm{width:78px;height:44px;border-radius:10px;background:#12283A;color:var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.tm b{font-size:21px;font-weight:800}.tm small{font-size:10.5px;font-weight:800;margin-top:2px}
+.sn{font-size:16px;font-weight:700}
+.sa,.sd{font-size:13px;font-weight:500;color:var(--text-2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.x{align-self:start;width:33px;height:33px;border-radius:9px;background:#3A1A20;color:var(--danger);display:grid;place-items:center}.x svg{width:15px;height:15px}
+.tag{position:absolute;top:-10px;left:16px;height:20px;padding:0 8px;border-radius:999px;background:var(--accent);color:#06131c;font-size:10.5px;font-weight:800;display:flex;align-items:center}
+</style>
+</head>
+<body>
+<div class="phone dark" id="ph"></div>
+<script>
+const B=new URLSearchParams(location.search).get('order')=='b';
+const X='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+const H={nm:'Harbor Yard',ad:'88 Pierline Rd, Port Calder',d:'3h'},O={nm:'Office',ad:'1450 Meridian Way, Larkspur Hills',d:'5h'};
+const list=B?[[O,'8:00','AM'],[H,'1:20','PM']]:[[H,'8:00','AM'],[O,'11:20','AM']];
+const site=([s,t,ap],i,a)=>`<div class="card site${B&&i==0?' mvd':''}">${B&&i==0?'<span class="tag">Moved up</span>':''}<div class="tp"><i class="tri${i==0?' off':''}"></i><div class="tm num"><b>${t}</b><small>${ap}</small></div><i class="tri dn${i==a.length-1?' off':''}"></i></div><div style="min-width:0"><div class="sn">${s.nm}</div><div class="sa">${s.ad}</div><div class="sd">${s.d} on site</div></div><span class="x">${X}</span></div>`;
+document.getElementById('ph').innerHTML=`<div class="sb"><span class="num">5:54</span><i></i></div><div class="sc">
+<div class="top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg><b>Planning</b></div>
+<div class="day">Monday, Oct 5</div>
+<div class="lab">Day type</div><div class="seg"><span class="on">Work</span><span>PTO</span><span>Holiday</span><span>Day off</span></div>
+<div class="bar"><i style="flex:${B?300:180}"></i><i class="d" style="flex:20"></i><i style="flex:${B?180:300}"></i><i class="r" style="flex:10"></i></div>
+<div class="barl num"><span>8h 20m of 8h 30m · 20m driving</span><b>10m left</b></div>
+<div class="lab">Arrive by</div><div class="card arr"><span class="k">ON-SITE ARRIVAL<br>TIME</span><span class="v num">8:00 AM</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></div>
+<div class="lab">Drive &amp; leave</div><div class="card drv"><div><div class="k">ON THE ROAD</div><div class="v num">${B?'13':'26'} min</div></div><div><div class="k">LEAVE AT</div><div class="v num">${B?'7:35':'7:20'} AM</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 00-14.3-4.6L4 8M4 4v4h4M4 13a8 8 0 0014.3 4.6L20 16M20 20v-4h-4"/></svg></div>
+<div class="ov">Stay here overnight?<i></i></div>
+<div class="lab" style="margin-top:14px">Sites</div><div class="sites">${list.map(site).join('')}</div></div>`;
+</script>
+</body>
+</html>
