@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Working Timer — Report · voice reports</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens/colors.css">
+<script>const Q0=new URLSearchParams(location.search),EMB=Q0.has('embed');if(EMB)document.documentElement.classList.add('embed');</script>
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:#E7ECF2;display:grid;place-items:center;padding:24px}
+a{color:var(--accent)}a:hover{color:var(--accent-press)}
+button{font-family:inherit;cursor:pointer}
+.num{font-variant-numeric:tabular-nums}
+.phone{width:390px;height:844px;border-radius:44px;overflow:hidden;background:var(--bg);color:var(--text-1);display:flex;flex-direction:column;font-size:15px;line-height:1.35;box-shadow:0 24px 60px rgba(14,23,38,.3);position:relative}
+.sb{height:50px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font-weight:700;font-size:15px}
+.sb i{width:24px;height:11px;border-radius:3px;background:var(--success);display:block}
+.sc{flex:1;overflow-y:auto;padding:4px 20px 20px;display:flex;flex-direction:column;gap:14px}.sc::-webkit-scrollbar{width:0}.sc>*{flex:none}
+.hd{display:flex;align-items:center;justify-content:space-between}
+.h1{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.date{font-size:14px;font-weight:700;color:var(--text-2);margin-top:4px}
+.hr{display:flex;gap:8px;align-items:center}
+.probadge{height:28px;padding:0 10px;border-radius:999px;background:var(--pro-soft);color:var(--pro);font-size:11px;font-weight:800;letter-spacing:.06em;display:flex;align-items:center}
+.ib{width:40px;height:40px;border-radius:50%;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;color:var(--text-2)}
+.ib svg{width:19px;height:19px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px}
+.lab{font-size:11.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3)}
+.nav{flex:none;height:84px;background:var(--surface);border-top:1px solid var(--line);display:flex;padding:10px 16px 0}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--text-3);font-size:11px;font-weight:700;text-decoration:none}
+.ni svg{width:24px;height:24px}.ni.on{color:var(--accent)}
+.btn{height:48px;border-radius:12px;border:1px solid transparent;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);color:#06131c;flex:1}
+.btn.ghost{background:var(--surface);color:var(--text-1);border-color:var(--line-strong)}
+.btn svg{width:18px;height:18px}
+.brow{display:flex;gap:10px}
+/* record */
+.rec{padding:16px;display:flex;align-items:center;gap:14px;background:var(--pro-soft);border-color:color-mix(in oklch,var(--pro) 35%,transparent)}
+.rec .t{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--pro)}
+.rec .n{font-size:17px;font-weight:800;margin-top:2px;letter-spacing:-.01em}
+.rec .s{font-size:12.5px;font-weight:600;color:var(--text-2);margin-top:1px}
+.recb{height:44px;padding:0 16px;border-radius:999px;border:none;background:var(--pro);color:#160f2b;font-size:14px;font-weight:800;display:flex;align-items:center;gap:7px;flex:none}
+.recb svg{width:18px;height:18px}
+.lh{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.lh span:last-child{font-size:12.5px;font-weight:700;color:var(--text-3)}
+/* group */
+.grp{padding:4px 14px}
+.gh{display:flex;align-items:center;gap:11px;padding:12px 0 10px}
+.gh .pin{width:34px;height:34px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;flex:none}
+.gh .pin svg{width:17px;height:17px}
+.gh .gn{font-size:15.5px;font-weight:800;letter-spacing:-.01em}
+.gh .ga{font-size:12px;font-weight:600;color:var(--text-2);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gh .gc{margin-left:auto;flex:none;height:24px;padding:0 9px;border-radius:999px;background:var(--surface-1);font-size:11.5px;font-weight:800;color:var(--text-2);display:flex;align-items:center}
+.vr{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 0;border-top:1px solid var(--line)}
+.play{width:36px;height:36px;border-radius:50%;border:none;background:var(--pro-soft);color:var(--pro);display:grid;place-items:center;padding:0}
+.play svg{width:14px;height:14px}
+.vd{font-size:14.5px;font-weight:800}
+.vt{font-size:12.5px;font-weight:600;color:var(--text-2);margin-top:1px}
+.tr{height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);color:var(--text-1);font-size:13px;font-weight:800;display:flex;align-items:center;gap:6px}
+.tr svg{width:15px;height:15px;color:var(--pro)}
+.tr.wait{border-style:dashed;color:var(--text-3);cursor:default}
+.spin{width:12px;height:12px;border-radius:50%;border:2px solid var(--line-strong);border-top-color:var(--pro);animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+/* sheet */
+.scrim{position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:5}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-radius:24px 24px 0 0;padding:8px 20px 30px;z-index:6;max-height:86%;overflow-y:auto}
+.sheet::-webkit-scrollbar{width:0}
+.grab{width:40px;height:5px;border-radius:3px;background:var(--line-strong);margin:0 auto 14px}
+.dh{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.dh .t{font-size:19px;font-weight:800;letter-spacing:-.01em}
+.dh .s{font-size:13px;font-weight:600;color:var(--text-2);margin-top:2px}
+.x{width:32px;height:32px;border-radius:50%;background:var(--surface-1);border:none;color:var(--text-2);display:grid;place-items:center;flex:none;padding:0}.x svg{width:15px;height:15px}
+.plr{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:center;background:var(--surface-1);border-radius:14px;padding:10px 14px 10px 10px;margin:16px 0 18px}
+.plr .play{width:44px;height:44px;background:var(--pro);color:#160f2b}.plr .play svg{width:16px;height:16px}
+.wave{display:flex;align-items:center;gap:2px;height:28px}
+.wave i{flex:1;border-radius:2px;background:var(--line-strong)}.wave i.p{background:var(--pro)}
+.ptm{display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;color:var(--text-3);margin-top:4px}
+.ln{display:grid;grid-template-columns:40px minmax(0,1fr);gap:10px;padding:8px 0}
+.ln .ts{font-size:12px;font-weight:800;color:var(--pro);padding-top:2px}
+.ln p{margin:0;font-size:15px;font-weight:500;line-height:1.5;color:var(--text-1);text-wrap:pretty}
+.tag{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--success-soft);color:var(--success);font-size:12px;font-weight:800;margin-top:12px}
+.tag svg{width:13px;height:13px}
+.vseg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--surface-1);padding:4px;border-radius:12px;margin:14px 0 0}
+.vseg button{height:34px;border:none;border-radius:9px;background:none;color:var(--text-2);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:6px}
+.vseg button.on{background:var(--surface-2);color:var(--text-1)}.vseg .pb{height:18px;padding:0 6px;border-radius:999px;background:var(--pro-soft);color:var(--pro);font-size:9.5px;letter-spacing:.06em;display:flex;align-items:center}
+.ph{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0 4px}
+.ph i{aspect-ratio:1;border-radius:10px;background:repeating-linear-gradient(135deg,var(--surface-1) 0 6px,var(--surface-2) 6px 12px);display:block;position:relative}
+.ph i::after{content:attr(data-l);position:absolute;left:5px;bottom:4px;font-size:9px;font-weight:800;font-style:normal;color:var(--text-3)}
+.ph button{aspect-ratio:1;border-radius:10px;border:1.5px dashed var(--line-strong);background:none;color:var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10.5px;font-weight:800}.ph button svg{width:18px;height:18px}
+.ai{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--pro);margin:16px 0 6px}.ai svg{width:15px;height:15px}
+.rs{padding:10px 0;border-top:1px solid var(--line)}.rs:first-of-type{border-top:0}
+.rs h4{margin:0 0 5px;font-size:11.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3)}
+.rs p,.rs li{font-size:14.5px;font-weight:500;line-height:1.5;margin:0}.rs ul{margin:0;padding-left:18px}
+.pri{display:inline-flex;height:20px;padding:0 8px;border-radius:999px;background:var(--warning-soft);color:var(--warning);font-size:10.5px;font-weight:800;align-items:center;margin-left:6px;vertical-align:1px}
+.fmt{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.fmt button{height:64px;border-radius:12px;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--text-1);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.fmt button b{font-size:16px;font-weight:800}.fmt button small{font-size:11px;font-weight:700;color:var(--text-3)}
+.fmt button.on{border-color:var(--accent);background:var(--accent-soft)}.fmt button.on small{color:var(--accent)}
+.opt{display:flex;align-items:center;justify-content:space-between;height:48px;font-size:14.5px;font-weight:700;border-bottom:1px solid var(--line)}
+.tg{width:44px;height:26px;border-radius:999px;background:var(--surface-2);position:relative;border:none;padding:0}.tg::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left .15s}.tg.on{background:var(--accent)}.tg.on::after{left:21px}
+.int{display:grid;grid-template-columns:38px minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--surface-1);border-radius:14px;padding:12px}
+.int .ic{width:38px;height:38px;border-radius:10px;background:var(--success-soft);color:var(--success);display:grid;place-items:center}.int .ic svg{width:18px;height:18px}
+.int .t{font-size:14.5px;font-weight:800}.int .s{font-size:12px;font-weight:600;color:var(--text-2);margin-top:1px}
+.int .ok{font-size:11px;font-weight:800;color:var(--success);display:flex;align-items:center;gap:5px}.int .ok::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--success)}
+.toast{position:absolute;left:50%;bottom:100px;transform:translateX(-50%);background:var(--text-1);color:var(--bg);font-size:13.5px;font-weight:800;padding:10px 16px;border-radius:999px;white-space:nowrap;z-index:9}
+html.embed,html.embed body{background:transparent!important;padding:0!important;display:block!important;overflow:hidden}
+html.embed .phone{border-radius:0!important;box-shadow:none!important}html.embed *{pointer-events:none!important}html.embed .sc{overflow:hidden!important}
+</style>
+</head>
+<body>
+<div class="phone dark" id="ph"></div>
+<script>
+const I={
+mic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg>',
+play:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15c0 .5.5.8.9.5l11.6-7.5c.4-.2.4-.8 0-1L7.9 4c-.4-.3-.9 0-.9.5z"/></svg>',
+doc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h5"/></svg>',
+pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 00-1-1H5a1 1 0 00-1 1v10a1 1 0 001 1h3"/></svg>',
+share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"/></svg>',
+cam:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>',
+link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></svg>',
+spark:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6L19.5 9.5l-5.7 1.9L12 17l-1.8-5.6L4.5 9.5l5.7-1.9zM19 15l.9 2.6 2.6.9-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9z"/></svg>',
+chk:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>',
+set:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>',
+today:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>',
+week:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5v14M13 5v14M18 5v14"/></svg>',
+log:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h5M8 14h3M14 14l2 2 3-4"/></svg>'};
+const G=[
+{nm:'Harbor Yard',ad:'88 Pierline Rd, Port Calder',items:[
+{d:'Tue, Sep 29',t:'12:02 PM',len:'0:22',wait:1},
+{d:'Tue, Sep 29',t:'11:07 AM',len:'0:48',tx:[['0:00','Arrived at Harbor Yard, gate three. Pump station B is back online after the seal replacement.'],['0:14','Pressure is holding at sixty-two psi. Old gasket is in the bin by the east shed.'],['0:31','Need a second visit Thursday to check the backup line before the weekend.']]},
+{d:'Mon, Sep 28',t:'2:15 PM',len:'1:12',tx:[['0:00','End of visit. Replaced two filter cartridges on line A, logged serials in the binder.'],['0:22','Forklift path by bay four is blocked with pallets — told the yard lead.'],['0:48','No safety issues otherwise. Photos uploaded to the site folder.']]}]},
+{nm:'Office',ad:'1450 Meridian Way, Larkspur Hills',items:[
+{d:'Tue, Sep 29',t:'7:33 AM',len:'0:31',tx:[['0:00','Picked up the replacement seals and the pressure gauge from stores.'],['0:12','Van fuel at three quarters. Heading to Harbor Yard after the morning brief.']]},
+{d:'Mon, Sep 28',t:'8:04 AM',len:'0:56',tx:[['0:00','Morning brief done. Two sites today, both on schedule.'],['0:20','Reminder for myself: order spare gaskets, we are down to the last pack.']]}]},
+{nm:'Cedar Flats Depot',ad:'412 Quarry Ln, Cedar Flats',items:[
+{d:'Thu, Sep 24',t:'10:20 AM',len:'0:39',tx:[['0:00','Quarterly check at the depot. Compressor two is louder than usual, might be the bearing.'],['0:19','Flagged for the maintenance crew. Everything else within range.']]}]},
+{nm:'Millbrook Yard',ad:'27 Fernhill Ave, Millbrook',items:[
+{d:'Wed, Sep 23',t:'12:02 PM',len:'1:05',tx:[['0:00','Walkthrough with the new site manager. Gate code changes next Monday.'],['0:30','Drainage near the loading ramp still pools after rain. Sent photos earlier.']]}]}];
+let open=null,toast='',view='tx',fmt='pdf',inclPh=true,inclAi=true;
+if(EMB&&Q0.has('sheet')){const[a,b]=Q0.get('sheet').split('-').map(Number);open=[a,b];view=Q0.get('view')||'tx'}
+const PH=['Pump B','Seal','Gauge'];
+const AI={sum:'Pump station B restored after seal replacement. System pressure stable at 62 psi.',done:['Replaced main seal on pump station B','Verified pressure — holding at 62 psi','Old gasket disposed in east-shed bin'],fu:'Inspect backup line before the weekend',due:'Thu, Oct 1',parts:'1× pump seal kit, 1× gasket'};
+const ph=document.getElementById('ph');
+const total=G.reduce((a,g)=>a+g.items.length,0);
+function wave(n,p){let h='';for(let i=0;i<n;i++){const v=.25+.75*Math.abs(Math.sin(i*1.7)*Math.cos(i*.55));h+=`<i class="${i<p?'p':''}" style="height:${Math.round(v*100)}%"></i>`}return h}
+const photos=()=>`<div class="lab" style="margin-top:14px">Photos · ${PH.length}</div><div class="ph">${PH.map(l=>`<i data-l="${l}"></i>`).join('')}<button data-addph>${I.cam}Add</button></div>`;
+function sheet(){const g=G[open[0]],it=g.items[open[1]];
+const head=`<div class="scrim" data-close></div><div class="sheet"><div class="grab"></div><div class="dh"><div><div class="t">${view=='exp'?'Send report':g.nm}</div><div class="s num">${view=='exp'?g.nm+' · ':''}${it.d} · ${it.t} · ${it.len}</div></div><button class="x" data-${view=='exp'?'back':'close'} aria-label="Close">${I.x}</button></div>`;
+if(view=='exp')return head+`<div class="lab" style="margin:16px 0 8px">Format</div><div class="fmt">${[['txt','TXT','Plain text'],['csv','CSV','Spreadsheet'],['pdf','PDF','With photos']].map(f=>`<button class="${fmt==f[0]?'on':''}" data-fmt="${f[0]}"><b>${f[1]}</b><small>${f[2]}</small></button>`).join('')}</div>
+<div style="margin-top:8px"><div class="opt"><span>Include photos (${PH.length})</span><button class="tg${inclPh?' on':''}" data-tg="ph" aria-label="Include photos"></button></div><div class="opt"><span style="display:flex;align-items:center;gap:8px">Use refined report <span class="probadge" style="height:20px;font-size:9.5px">PRO</span></span><button class="tg${inclAi?' on':''}" data-tg="ai" aria-label="Use refined report"></button></div></div>
+<div class="lab" style="margin:18px 0 8px">Service ticket</div><div class="int"><span class="ic">${I.link}</span><div style="min-width:0"><div class="t">Attach to ticket #TK-20418</div><div class="s">Company ticket system · API</div></div><span class="ok">Connected</span></div>
+<div class="brow" style="margin-top:18px"><button class="btn ghost" data-share>${I.share}Share ${fmt.toUpperCase()}</button><button class="btn" data-ticket>${I.chk}Send to ticket</button></div></div>`;
+const seg=`<div class="vseg"><button class="${view=='tx'?'on':''}" data-view="tx">Transcript</button><button class="${view=='ai'?'on':''}" data-view="ai">Refined<span class="pb">PRO</span></button></div>`;
+const body=view=='ai'?`<div class="ai">${I.spark}Refined by AI · from 0:48 voice note</div>
+<div class="rs"><h4>Summary</h4><p>${AI.sum}</p></div><div class="rs"><h4>Work done</h4><ul>${AI.done.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="rs"><h4>Follow-up<span class="pri">${AI.due}</span></h4><p>${AI.fu}</p></div><div class="rs"><h4>Parts used</h4><p>${AI.parts}</p></div>`
+:`<div class="plr" style="margin-bottom:12px"><button class="play" aria-label="Play">${I.play}</button><div><div class="wave">${wave(38,13)}</div><div class="ptm num"><span>0:14</span><span>${it.len}</span></div></div></div>${it.tx.map(l=>`<div class="ln"><span class="ts num">${l[0]}</span><p>${l[1]}</p></div>`).join('')}`;
+return head+seg+body+photos()+`<span class="tag">${I.chk}Linked to ${g.nm} in Work log</span>
+<div class="brow" style="margin-top:18px"><button class="btn ghost" data-copy>${I.copy}Copy</button><button class="btn" data-exp>${I.share}Send · Export</button></div></div>`}
+function render(){
+const groups=G.map((g,gi)=>`<div class="card grp"><div class="gh"><span class="pin">${I.pin}</span><div style="min-width:0"><div class="gn">${g.nm}</div><div class="ga">${g.ad}</div></div><span class="gc num">${g.items.length}</span></div>
+${g.items.map((it,ii)=>`<div class="vr"><button class="play" aria-label="Play">${I.play}</button><div><div class="vd num">${it.d}</div><div class="vt num">${it.t} · ${it.len}</div></div>${it.wait?`<span class="tr wait"><i class="spin"></i>Transcribing</span>`:`<button class="tr" data-tx="${gi}-${ii}">${I.doc}Transcript</button>`}</div>`).join('')}</div>`).join('');
+ph.innerHTML=`<div class="sb"><span class="num">12:02</span><i></i></div><div class="sc">
+<div class="hd"><div><div class="h1">Report</div><div class="date num">Voice reports · ${total} in 2 weeks</div></div><div class="hr"><span class="probadge">PRO</span><span class="ib">${I.set}</span></div></div>
+<div class="card rec"><div style="flex:1;min-width:0"><div class="t">On site now</div><div class="n">Harbor Yard</div><div class="s">New report links to this site</div></div><button class="recb" data-rec>${I.mic}Record</button></div>
+<div class="lh"><span class="lab">By site</span><span>Newest first</span></div>${groups}</div>
+<div class="nav"><a class="ni" href="Working Timer - Today States.html">${I.today}<span>Today</span></a><a class="ni" href="Working Timer - Week Timeline.html">${I.week}<span>Week</span></a><span class="ni">${I.log}<span>Work log</span></span><span class="ni on">${I.mic}<span>Report</span></span></div>
+${open?sheet():''}${toast?`<div class="toast">${toast}</div>`:''}`;
+bind()}
+function flash(t){toast=t;render();setTimeout(()=>{toast='';render()},1500)}
+function bind(){
+const q=(s,f)=>ph.querySelectorAll(s).forEach(el=>el.onclick=()=>f(el));
+q('[data-tx]',el=>{open=el.dataset.tx.split('-').map(Number);render()});
+q('[data-close]',()=>{open=null;view='tx';render()});
+q('[data-back]',()=>{view='tx';render()});
+q('[data-view]',el=>{view=el.dataset.view;render()});
+q('[data-exp]',()=>{view='exp';render()});
+q('[data-fmt]',el=>{fmt=el.dataset.fmt;render()});
+q('[data-tg]',el=>{if(el.dataset.tg=='ph')inclPh=!inclPh;else inclAi=!inclAi;render()});
+q('[data-ticket]',()=>{view='tx';flash('Sent to ticket #TK-20418')});
+q('[data-addph]',()=>flash('Opening camera…'));
+q('[data-copy]',()=>flash('Transcript copied'));
+q('[data-share]',()=>flash('Opening share…'));
+q('[data-rec]',()=>flash('Recording · Harbor Yard'));
+}
+render();
+</script>
+</body>
+</html>
