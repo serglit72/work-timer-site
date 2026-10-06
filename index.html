@@ -71,7 +71,7 @@ section.s{padding:128px 0}
 .step p{font-size:15.5px;color:rgba(242,245,248,.62);margin-top:4px;display:none}
 .step.on p{display:block}
 .step{position:relative;overflow:hidden}.step .bar{position:absolute;left:20px;right:20px;bottom:0;height:2px;background:#28333F;display:none}.step.on .bar{display:block}.step .bar i{display:block;height:100%;width:0;background:#29B8FF}.step.on .bar i{animation:fill var(--dur,4.5s) linear forwards}.steps.paused .step.on .bar i{animation-play-state:paused}@keyframes fill{to{width:100%}}
-figure{margin:0;display:flex;flex-direction:column;gap:14px;align-items:center}figcaption{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,245,248,.55)}.vis figure:nth-child(2){margin-top:64px}.vis .dev:nth-child(2){margin-top:0}.vcol{flex-direction:column;align-items:center;gap:24px}.vcol .sw{margin-top:0}
+figure{margin:0;display:flex;flex-direction:column;gap:14px;align-items:center}figcaption{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,245,248,.55)}.vis figure:nth-of-type(2){margin-top:64px}.sw.pairsw{display:none;margin:0 !important}.vis .dev:nth-child(2){margin-top:0}.vcol{flex-direction:column;align-items:center;gap:24px}.vcol .sw{margin-top:0}
 /* feature rows */
 .feat{display:grid;grid-template-columns:auto minmax(0,1fr);gap:88px;align-items:center}
 .feat.rev{grid-template-columns:minmax(0,1fr) auto}
@@ -109,10 +109,18 @@ footer nav{display:flex;gap:22px}footer a{color:rgba(242,245,248,.6)}
 .wrap{padding:0 20px}.links{display:none}.top .cta{margin-left:auto}
 section.s{padding:88px 0}
 .stage{height:560px}.stage .dev.c{--s:.64}
-.vis .dev{--s:.5}.vis .dev:nth-child(2){display:none}
+.vis .dev{--s:.5}
 .flow .dev{--s:.62}
-.step{grid-template-columns:62px minmax(0,1fr);padding:14px}.flow{grid-template-columns:minmax(0,1fr)}.flow .dev{justify-self:center;order:-1}.vis figure:nth-child(2){display:none}
+.step{grid-template-columns:62px minmax(0,1fr);padding:14px}.flow{grid-template-columns:minmax(0,1fr)}.flow .dev{justify-self:center;order:-1}
+.vis.pair{flex-direction:column;align-items:center;gap:20px}.vis.pair .pairsw{display:inline-flex}
+.vis.pair figure:nth-of-type(2){margin-top:0}.vis.pair figcaption{display:none}
+.vis.pair[data-show="0"] figure:nth-of-type(2),.vis.pair[data-show="1"] figure:nth-of-type(1){display:none}
 }
+
+/* Every phone the same size: one scale for all screenshots. */
+:root{--dev-s:.7}.stage{height:800px}
+@media (max-width:640px){:root{--dev-s:.7}.stage{height:660px}}
+.dev,.stage .dev.c,.stage .dev.l,.stage .dev.r,.vis .dev,.flow .dev{--s:var(--dev-s)!important}
 </style>
 </head>
 <body>
@@ -204,7 +212,7 @@ section.s{padding:88px 0}
 <div class="feat">
 <div class="vis">
 <figure><figcaption>Review</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Work log" src="Working Timer - Work Log.html?embed"></iframe></div></div></figure>
-<figure><div class="sw" data-sw="wl" style="margin:0"><button class="on" data-i="0">Edit</button><button data-i="1">Send</button></div><div class="dev" data-panes="wl"><div class="scr">
+<figure data-label="Edit &amp; send"><div class="sw" data-sw="wl" style="margin:0"><button class="on" data-i="0">Edit</button><button data-i="1">Send</button></div><div class="dev" data-panes="wl"><div class="scr">
 <iframe loading="lazy" title="Edit day" src="Working Timer - Work Log.html?embed&amp;sheet=edit"></iframe>
 <iframe class="hide" loading="lazy" title="Send work log" src="Working Timer - Work Log.html?embed&amp;sheet=exp"></iframe>
 </div></div></figure>
@@ -242,7 +250,7 @@ section.s{padding:88px 0}
 <div class="feat">
 <div class="vis">
 <figure><figcaption>Voice reports</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Voice reports" src="Working Timer - Report.html?embed"></iframe></div></div></figure>
-<figure><div class="sw" data-sw="rep" style="margin:0"><button class="on" data-i="0">Transcript</button><button data-i="1">Refined</button><button data-i="2">Export</button></div><div class="dev" data-panes="rep"><div class="scr">
+<figure data-label="Open a report"><div class="sw" data-sw="rep" style="margin:0"><button class="on" data-i="0">Transcript</button><button data-i="1">Refined</button><button data-i="2">Export</button></div><div class="dev" data-panes="rep"><div class="scr">
 <iframe loading="lazy" title="Transcript" src="Working Timer - Report.html?embed&amp;sheet=0-1"></iframe>
 <iframe class="hide" loading="lazy" title="Refined report" src="Working Timer - Report.html?embed&amp;sheet=0-1&amp;view=ai"></iframe>
 <iframe class="hide" loading="lazy" title="Export" src="Working Timer - Report.html?embed&amp;sheet=0-1&amp;view=exp"></iframe>
@@ -305,6 +313,21 @@ const flowEl=document.querySelector('.flow');
 flowEl.onmouseenter=()=>{clearTimeout(tm);left-=Date.now()-t0;dayG.classList.add('paused')};
 flowEl.onmouseleave=()=>{dayG.classList.remove('paused');arm(Math.max(300,left))};
 arm();
+
+// Phones show one screen of a pair at a time, picked with a switch built
+// from the pair's captions (hidden on wider screens, where both show).
+document.querySelectorAll('.vis:not(.vcol)').forEach(v=>{
+  const figs=[...v.children].filter(c=>c.tagName==='FIGURE');
+  if(figs.length!==2)return;
+  v.classList.add('pair');v.dataset.show='0';
+  const sw=document.createElement('div');sw.className='sw pairsw';
+  figs.forEach((f,i)=>{const b=document.createElement('button');b.type='button';
+    b.textContent=(f.dataset.label||f.querySelector('figcaption')?.textContent||('Screen '+(i+1))).trim();
+    if(i===0)b.classList.add('on');
+    b.onclick=()=>{v.dataset.show=String(i);sw.querySelectorAll('button').forEach((x,j)=>x.classList.toggle('on',j===i));};
+    sw.appendChild(b);});
+  v.prepend(sw);
+});
 </script>
 </body>
 </html>
