@@ -1,5 +1,5 @@
 /* ============================================================
-   COLOR TOKENS — Working Timer
+   COLOR TOKENS — Jobday
    Single source of truth, mirrors flutter_handoff/lib/theme/wt_colors.dart
    (WtColors.light / WtColors.dark) 1:1. Do not fork these values —
    update Dart + CSS together if the palette changes.

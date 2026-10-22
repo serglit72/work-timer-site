@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Working Timer — Week Timeline</title>
+<title>Jobday — Week Timeline</title>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../tokens/colors.css">
 <style>
@@ -188,7 +188,7 @@ if(d.today)t+=`<i class="nowl" style="left:${pct(1070)}%"></i>`;
 
 return `<div class="grow ${d.st}${d.today?' today':''}${i==sel&&mode?' on':''}"><button class="lb" data-edit="${i}" aria-label="Edit ${d.full}">${d.w}<b class="num">${d.n}</b>${otOf(d)?`<span class="ot-tag num">OT +${du(otOf(d))}</span>`:''}</button><div class="trk" data-open="${i}">${t}</div></div>`}).join('');
 ph.innerHTML=`<div class="sb"><span class="num">5:50</span><i></i></div><div class="sc">${head}<div class="card gantt">${axis}${rows}</div><div class="hint">Tap a bar for details · tap a date to edit · <span style="color:var(--danger)">red outline = overtime &gt;8h</span></div></div>
-<div class="nav"><a class="ni" href="Working Timer - Today States.html" style="text-decoration:none">${I.today}<span>Today</span></a><div class="ni on">${I.week}<span>Week</span></div><div class="ni">${I.log}<span>Work log</span></div><div class="ni">${I.mic}<span>Report</span></div></div>
+<div class="nav"><a class="ni" href="today-states.html" style="text-decoration:none">${I.today}<span>Today</span></a><div class="ni on">${I.week}<span>Week</span></div><div class="ni">${I.log}<span>Work log</span></div><div class="ni">${I.mic}<span>Report</span></div></div>
 <div class="scrim" data-close></div><div class="sheet" id="sh"></div>`;
 if(mode=='edit'&&!draft)draft=structuredClone(WEEKS[wk].days[sel]);if(mode){document.getElementById('sh').innerHTML=mode=='edit'?editSheet(draft):detailSheet(D[sel]);requestAnimationFrame(()=>ph.classList.add('sheet-open'))}
 bind();

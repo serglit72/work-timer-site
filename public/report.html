@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Working Timer — Report · voice reports</title>
+<title>Jobday — Report</title>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens/colors.css">
 <script>const Q0=new URLSearchParams(location.search),EMB=Q0.has('embed');if(EMB)document.documentElement.classList.add('embed');</script>
@@ -50,7 +50,7 @@ button{font-family:inherit;cursor:pointer}
 .gh .gn{font-size:15.5px;font-weight:800;letter-spacing:-.01em}
 .gh .ga{font-size:12px;font-weight:600;color:var(--text-2);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .gh .gc{margin-left:auto;flex:none;height:24px;padding:0 9px;border-radius:999px;background:var(--surface-1);font-size:11.5px;font-weight:800;color:var(--text-2);display:flex;align-items:center}
-.vr{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 0;border-top:1px solid var(--line)}
+.vr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 0;border-top:1px solid var(--line)}
 .play{width:36px;height:36px;border-radius:50%;border:none;background:var(--pro-soft);color:var(--pro);display:grid;place-items:center;padding:0}
 .play svg{width:14px;height:14px}
 .vd{font-size:14.5px;font-weight:800}
@@ -148,23 +148,19 @@ const photos=()=>`<div class="lab" style="margin-top:14px">Photos · ${PH.length
 function sheet(){const g=G[open[0]],it=g.items[open[1]];
 const head=`<div class="scrim" data-close></div><div class="sheet"><div class="grab"></div><div class="dh"><div><div class="t">${view=='exp'?'Send report':g.nm}</div><div class="s num">${view=='exp'?g.nm+' · ':''}${it.d} · ${it.t} · ${it.len}</div></div><button class="x" data-${view=='exp'?'back':'close'} aria-label="Close">${I.x}</button></div>`;
 if(view=='exp')return head+`<div class="lab" style="margin:16px 0 8px">Format</div><div class="fmt">${[['txt','TXT','Plain text'],['csv','CSV','Spreadsheet'],['pdf','PDF','With photos']].map(f=>`<button class="${fmt==f[0]?'on':''}" data-fmt="${f[0]}"><b>${f[1]}</b><small>${f[2]}</small></button>`).join('')}</div>
-<div style="margin-top:8px"><div class="opt"><span>Include photos (${PH.length})</span><button class="tg${inclPh?' on':''}" data-tg="ph" aria-label="Include photos"></button></div><div class="opt"><span style="display:flex;align-items:center;gap:8px">Use refined report <span class="probadge" style="height:20px;font-size:9.5px">PRO</span></span><button class="tg${inclAi?' on':''}" data-tg="ai" aria-label="Use refined report"></button></div></div>
-<div class="lab" style="margin:18px 0 8px">Service ticket</div><div class="int"><span class="ic">${I.link}</span><div style="min-width:0"><div class="t">Attach to ticket #TK-20418</div><div class="s">Company ticket system · API</div></div><span class="ok">Connected</span></div>
-<div class="brow" style="margin-top:18px"><button class="btn ghost" data-share>${I.share}Share ${fmt.toUpperCase()}</button><button class="btn" data-ticket>${I.chk}Send to ticket</button></div></div>`;
-const seg=`<div class="vseg"><button class="${view=='tx'?'on':''}" data-view="tx">Transcript</button><button class="${view=='ai'?'on':''}" data-view="ai">Refined<span class="pb">PRO</span></button></div>`;
-const body=view=='ai'?`<div class="ai">${I.spark}Refined by AI · from 0:48 voice note</div>
-<div class="rs"><h4>Summary</h4><p>${AI.sum}</p></div><div class="rs"><h4>Work done</h4><ul>${AI.done.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="rs"><h4>Follow-up<span class="pri">${AI.due}</span></h4><p>${AI.fu}</p></div><div class="rs"><h4>Parts used</h4><p>${AI.parts}</p></div>`
-:`<div class="plr" style="margin-bottom:12px"><button class="play" aria-label="Play">${I.play}</button><div><div class="wave">${wave(38,13)}</div><div class="ptm num"><span>0:14</span><span>${it.len}</span></div></div></div>${it.tx.map(l=>`<div class="ln"><span class="ts num">${l[0]}</span><p>${l[1]}</p></div>`).join('')}`;
-return head+seg+body+photos()+`<span class="tag">${I.chk}Linked to ${g.nm} in Work log</span>
+<div style="margin-top:8px"><div class="opt"><span>Include photos (${PH.length})</span><button class="tg${inclPh?' on':''}" data-tg="ph" aria-label="Include photos"></button></div></div>
+<div class="brow" style="margin-top:18px"><button class="btn" data-share>${I.share}Share ${fmt.toUpperCase()}</button></div></div>`;
+const body=`${it.tx.map(l=>`<div class="ln"><span class="ts num">${l[0]}</span><p>${l[1]}</p></div>`).join('')}`;
+return head+body+photos()+`<span class="tag">${I.chk}Linked to ${g.nm} in Work log</span>
 <div class="brow" style="margin-top:18px"><button class="btn ghost" data-copy>${I.copy}Copy</button><button class="btn" data-exp>${I.share}Send · Export</button></div></div>`}
 function render(){
 const groups=G.map((g,gi)=>`<div class="card grp"><div class="gh"><span class="pin">${I.pin}</span><div style="min-width:0"><div class="gn">${g.nm}</div><div class="ga">${g.ad}</div></div><span class="gc num">${g.items.length}</span></div>
-${g.items.map((it,ii)=>`<div class="vr"><button class="play" aria-label="Play">${I.play}</button><div><div class="vd num">${it.d}</div><div class="vt num">${it.t} · ${it.len}</div></div>${it.wait?`<span class="tr wait"><i class="spin"></i>Transcribing</span>`:`<button class="tr" data-tx="${gi}-${ii}">${I.doc}Transcript</button>`}</div>`).join('')}</div>`).join('');
+${g.items.map((it,ii)=>`<div class="vr"><div><div class="vd num">${it.d}</div><div class="vt num">${it.t} · ${it.len}</div></div>${it.wait?`<span class="tr wait"><i class="spin"></i>Transcribing</span>`:`<button class="tr" data-tx="${gi}-${ii}">${I.doc}Transcript</button>`}</div>`).join('')}</div>`).join('');
 ph.innerHTML=`<div class="sb"><span class="num">12:02</span><i></i></div><div class="sc">
 <div class="hd"><div><div class="h1">Report</div><div class="date num">Voice reports · ${total} in 2 weeks</div></div><div class="hr"><span class="probadge">PRO</span><span class="ib">${I.set}</span></div></div>
 <div class="card rec"><div style="flex:1;min-width:0"><div class="t">On site now</div><div class="n">Harbor Yard</div><div class="s">New report links to this site</div></div><button class="recb" data-rec>${I.mic}Record</button></div>
 <div class="lh"><span class="lab">By site</span><span>Newest first</span></div>${groups}</div>
-<div class="nav"><a class="ni" href="Working Timer - Today States.html">${I.today}<span>Today</span></a><a class="ni" href="Working Timer - Week Timeline.html">${I.week}<span>Week</span></a><span class="ni">${I.log}<span>Work log</span></span><span class="ni on">${I.mic}<span>Report</span></span></div>
+<div class="nav"><a class="ni" href="landing/today-states.html">${I.today}<span>Today</span></a><a class="ni" href="landing/week-timeline.html">${I.week}<span>Week</span></a><span class="ni">${I.log}<span>Work log</span></span><span class="ni on">${I.mic}<span>Report</span></span></div>
 ${open?sheet():''}${toast?`<div class="toast">${toast}</div>`:''}`;
 bind()}
 function flash(t){toast=t;render();setTimeout(()=>{toast='';render()},1500)}
@@ -177,7 +173,6 @@ q('[data-view]',el=>{view=el.dataset.view;render()});
 q('[data-exp]',()=>{view='exp';render()});
 q('[data-fmt]',el=>{fmt=el.dataset.fmt;render()});
 q('[data-tg]',el=>{if(el.dataset.tg=='ph')inclPh=!inclPh;else inclAi=!inclAi;render()});
-q('[data-ticket]',()=>{view='tx';flash('Sent to ticket #TK-20418')});
 q('[data-addph]',()=>flash('Opening camera…'));
 q('[data-copy]',()=>flash('Transcript copied'));
 q('[data-share]',()=>flash('Opening share…'));

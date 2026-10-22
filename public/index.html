@@ -3,7 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jobday — your workday, tracked from the driveway</title>
+<title>Jobday: Work Planner &amp; Hours</title>
+<meta name="description" content="Jobday plans your workday from your jobs, logs your hours, mileage and when you were on site, and reminds you about breaks. For hourly and field workers.">
+<link rel="canonical" href="https://jobday.app/">
+<meta name="theme-color" content="#0B1016">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jobday">
+<meta property="og:title" content="Jobday: Work Planner &amp; Hours">
+<meta property="og:description" content="Your workday, planned from your jobs. Hours, mileage and a record of when you were on site. Break reminders are free.">
+<meta property="og:url" content="https://jobday.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jobday: Work Planner &amp; Hours">
+<meta name="twitter:description" content="Your workday, planned from your jobs. Hours, mileage and a record of when you were on site. Break reminders are free.">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens/colors.css">
 <style>
@@ -121,55 +132,74 @@ section.s{padding:88px 0}
 :root{--dev-s:.7}.stage{height:800px}
 @media (max-width:640px){:root{--dev-s:.7}.stage{height:660px}}
 .dev,.stage .dev.c,.stage .dev.l,.stage .dev.r,.vis .dev,.flow .dev{--s:var(--dev-s)!important}
+
+/* coming-soon section: static illustration, not a screenshot */
+.tag-pro{font-size:11px;font-weight:800;letter-spacing:.06em;color:#A98BF0;background:#231C39;padding:3px 8px;border-radius:999px;vertical-align:3px}
+.soon{display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:999px;background:#2C2310;color:#F4A626;border:1px solid #4A3A14;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.gviz{width:100%;max-width:560px;display:grid;grid-template-columns:minmax(0,1.2fr) 36px minmax(0,1fr);gap:12px;align-items:center;padding:22px 22px 14px;border-radius:24px;background:var(--surface);border:1px solid var(--line);color:var(--text-1);font-size:13px;line-height:1.3}
+.gcap{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:10px}
+.gsheet,.gplan{min-width:0}
+.gr{display:grid;grid-template-columns:34px 44px 62px minmax(0,1fr);gap:8px;padding:8px 8px;border-bottom:1px solid var(--line);font-weight:600;color:var(--text-2)}
+.gr span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gr.gh{font-size:11px;font-weight:800;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;background:var(--surface-1);border-radius:8px 8px 0 0}
+.gr.hit{background:var(--accent-soft);color:var(--text-1);border-radius:6px;box-shadow:0 0 0 1.5px var(--accent) inset}
+.garrow{display:grid;place-items:center;color:var(--accent)}.garrow svg{width:26px;height:26px}
+.gst{display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:var(--surface-1);border:1px solid var(--line)}
+.gst.hit{background:var(--accent-soft);border-color:var(--accent)}
+.gst b{font-size:12.5px;font-weight:800;color:var(--accent)}
+.gst strong{display:block;font-size:14px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.gst small{display:block;color:var(--text-2);font-weight:600;font-size:11.5px}
+.gdr{padding:5px 0 5px 28px;font-size:11.5px;font-weight:700;color:var(--text-3)}
+.gnote{grid-column:1/-1;text-align:center;font-size:12px;font-weight:600;color:var(--text-3);padding-top:6px}
+@media (max-width:720px){.gviz{grid-template-columns:minmax(0,1fr);padding:18px 16px 12px}.garrow{transform:rotate(90deg);height:28px}.gr{grid-template-columns:30px 40px 58px minmax(0,1fr);gap:6px}}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap">
 <a class="logo" href="#"><i></i>Jobday</a>
-<nav class="links"><a href="#day">Your day</a><a href="#week">Week</a><a href="#plan">Planning</a><a href="#worklog">Work log</a><a href="#reports">Reports</a><a href="#off">Days off</a></nav>
+<nav class="links"><a href="#day">Your day</a><a href="#week">Week</a><a href="#plan">Planning</a><a href="#worklog">Work log</a><a href="#notes">Notes</a><a href="#reports">Reports</a><a href="#google">Google jobs</a></nav>
 <a class="cta" href="#get">Get the app</a>
 </div></header>
 
 <section class="hero"><div class="wrap">
 <div>
-<div class="eb">For field crews who work on the road</div>
-<h1 style="margin-top:20px">Your workday,<br>tracked from the driveway.</h1>
-<p class="lead">Working Timer tells you when to leave, logs every site and break on its own, and closes the day with one tap — so your hours are right before anyone asks.</p>
+<div class="eb">For hourly and field workers</div>
+<h1 style="margin-top:20px">Your workday,<br>planned from your jobs.</h1>
+<p class="lead">Jobday lays out your day from the sites you work, logs your hours and mileage, and keeps a record of when you were on site. Break reminders are free.</p>
 <div class="hbtn"><a class="cta" href="#get"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8s-1.9-.8-3.1-.8C6.8 7.3 5.3 8.2 4.5 9.6c-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.4.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-3.9zM14.1 5.5c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.6 2.7-1.3z"></path></svg>App Store</a><a class="cta gh" href="#get"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 3.5v17c0 .4.4.6.7.4l14.6-8.5c.3-.2.3-.6 0-.8L4.7 3.1c-.3-.2-.7 0-.7.4z"></path></svg>Google Play</a></div>
 </div>
 <div class="stage">
-<div class="dev l"><div class="scr"><iframe loading="lazy" title="Before shift" src="landing/Working Timer - Today States.html?embed&amp;st=before"></iframe></div></div>
-<div class="dev c"><div class="scr"><iframe title="On shift" src="landing/Working Timer - Today States.html?embed&amp;st=during"></iframe></div></div>
-<div class="dev r"><div class="scr"><iframe loading="lazy" title="Week" src="landing/Working Timer - Week Timeline.html?embed&amp;wk=0"></iframe></div></div>
+<div class="dev l"><div class="scr"><iframe loading="lazy" title="Before shift" src="landing/today-states.html?embed&amp;st=before"></iframe></div></div>
+<div class="dev c"><div class="scr"><iframe title="On shift" src="landing/today-states.html?embed&amp;st=during"></iframe></div></div>
+<div class="dev r"><div class="scr"><iframe loading="lazy" title="Week" src="landing/week-timeline.html?embed&amp;wk=0"></iframe></div></div>
 </div>
 </div></section>
 
 <div class="strip"><div class="wrap">
-<div><b>Leave-by time</b><span>with live traffic, every morning</span></div>
-<div><b>Auto-logged sites</b><span>arrivals, departures and drives</span></div>
-<div><b>Breaks that count</b><span>1st Break, Lunch, 2nd Break — paid or unpaid</span></div>
-<div><b>40h at a glance</b><span>overtime flagged before it happens</span></div>
+<div><b>A plan for the day</b><span>your sites in order, drive time, when to leave</span></div>
+<div><b>Arrivals and departures</b><span>logged with location on, or marked by hand</span></div>
+<div><b>Hours and mileage</b><span>per day, editable, GPS original kept</span></div>
+<div><b>Breaks, free</b><span>reminders for rest and meal breaks</span></div>
 </div></div>
 
 <section class="s" id="day"><div class="wrap">
-<div class="head"><div class="eb">A day with Working Timer</div><h2>One screen that changes with your day.</h2><p>Today knows where you are in the shift. It shows only the next thing you need — and steps out of the way the rest of the time.</p></div>
+<div class="head"><div class="eb">A day with Jobday</div><h2>One screen that changes with your day.</h2><p>Today knows where you are in the shift. It shows the next thing you need and steps aside the rest of the time.</p></div>
 <div class="flow">
 <div class="steps" data-sw="day">
-<button class="step on" data-i="0"><span class="t num">6:40 AM</span><span><h3>Morning check</h3><p>“Is today’s plan still on?” See every site, current traffic and an adjusted leave time. Start the day with one tap.</p></span></button>
-<button class="step" data-i="1"><span class="t num">6:53 AM</span><span><h3>Before shift</h3><p>A countdown to departure, drive time to the first site and a straight jump into Maps.</p></span></button>
-<button class="step" data-i="2"><span class="t num">7:32 AM</span><span><h3>Arrived on site</h3><p>Arrival is detected for you. A banner offers the site report — one prompt at a time, snooze for 10 minutes if you’re busy.</p></span></button>
-<button class="step" data-i="3"><span class="t num">12:02 PM</span><span><h3>On shift</h3><p>When to leave this site, how far along you are, and the next break with its exact window.</p></span></button>
-<button class="step" data-i="4"><span class="t num">4:02 PM</span><span><h3>After shift</h3><p>Hours worked, drive and breaks in one card. Review the log and fix anything before it goes into your report.</p></span></button>
-<button class="step" data-i="5"><span class="t num">7:30 PM</span><span><h3>Day confirmed</h3><p>Paid hours, the week toward 40h, and tomorrow’s plan — still editable until midnight.</p></span></button>
+<button class="step on" data-i="0"><span class="t num">6:40 AM</span><span><h3>Morning check</h3><p>Is today’s plan still on? See your sites, the drive with current traffic and an adjusted leave time. Then start your day.</p></span></button>
+<button class="step" data-i="1"><span class="t num">6:53 AM</span><span><h3>Before shift</h3><p>A countdown to departure, drive time to the first site and a jump into Google Maps.</p></span></button>
+<button class="step" data-i="2"><span class="t num">7:32 AM</span><span><h3>Arrived on site</h3><p>With location on, Jobday notices you arrived and offers a quick voice report. Snooze it for 10 minutes if you’re busy.</p></span></button>
+<button class="step" data-i="3"><span class="t num">12:02 PM</span><span><h3>On shift</h3><p>When to leave this site, how far along you are, and the next break with its window. Stepping out for lunch or an errand? Log it so the day still adds up.</p></span></button>
+<button class="step" data-i="4"><span class="t num">4:02 PM</span><span><h3>After shift</h3><p>Hours worked, drive time and breaks in one card. Review the day and fix anything before you confirm it.</p></span></button>
+<button class="step" data-i="5"><span class="t num">7:30 PM</span><span><h3>Day confirmed</h3><p>Paid hours for the day and the week so far, with tomorrow’s plan ready to adjust.</p></span></button>
 </div>
 <div class="dev" style="--s:.78" data-panes="day">
 <div class="scr">
-<iframe title="Morning check" src="landing/Working Timer - Today States.html?embed&amp;st=morning"></iframe>
-<iframe class="hide" loading="lazy" title="Before shift" src="landing/Working Timer - Today States.html?embed&amp;st=before"></iframe>
-<iframe class="hide" loading="lazy" title="Arrived" src="landing/Working Timer - Today States.html?embed&amp;st=arrived"></iframe>
-<iframe class="hide" loading="lazy" title="On shift" src="landing/Working Timer - Today States.html?embed&amp;st=during"></iframe>
-<iframe class="hide" loading="lazy" title="After shift" src="landing/Working Timer - Today States.html?embed&amp;st=after"></iframe>
-<iframe class="hide" loading="lazy" title="Day confirmed" src="landing/Working Timer - Today States.html?embed&amp;st=confirmed"></iframe>
+<iframe title="Morning check" src="landing/today-states.html?embed&amp;st=morning"></iframe>
+<iframe class="hide" loading="lazy" title="Before shift" src="landing/today-states.html?embed&amp;st=before"></iframe>
+<iframe class="hide" loading="lazy" title="Arrived" src="landing/today-states.html?embed&amp;st=arrived"></iframe>
+<iframe class="hide" loading="lazy" title="On shift" src="landing/today-states.html?embed&amp;st=during"></iframe>
+<iframe class="hide" loading="lazy" title="After shift" src="landing/today-states.html?embed&amp;st=after"></iframe>
+<iframe class="hide" loading="lazy" title="Day confirmed" src="landing/today-states.html?embed&amp;st=confirmed"></iframe>
 </div></div>
 </div>
 </div></section>
@@ -177,13 +207,13 @@ section.s{padding:88px 0}
 <section class="s" id="week" style="background:#0E141B;border-top:1px solid #1C252F;border-bottom:1px solid #1C252F"><div class="wrap">
 <div class="feat">
 <div class="vis">
-<figure><figcaption>Timeline</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Week timeline" src="landing/Working Timer - Week Timeline.html?embed&amp;wk=0"></iframe></div></div></figure>
-<figure><figcaption>Agenda</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Day details" src="landing/Working Timer - Week Timeline.html?embed&amp;wk=0&amp;sel=3"></iframe></div></div></figure>
+<figure><figcaption>Timeline</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Week timeline" src="landing/week-timeline.html?embed&amp;wk=0"></iframe></div></div></figure>
+<figure><figcaption>Agenda</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Day details" src="landing/week-timeline.html?embed&amp;wk=0&amp;sel=3"></iframe></div></div></figure>
 </div>
 <div>
 <div class="head" style="margin:0"><div class="eb">Week</div><h2>See the whole week on one clock.</h2><p>Every day laid out from 6 AM to 6 PM. Tap a bar for the route, tap a date to change it.</p></div>
 <div class="pts">
-<div class="pt"><i style="color:#F26B75"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2M9 2h6"></path></svg></i><div><h3>Overtime before it happens</h3><p>Anything past 8 hours gets a red outline and an “OT” tag — so you can move a stop, not argue a timesheet.</p></div></div>
+<div class="pt"><i style="color:#F26B75"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2M9 2h6"></path></svg></i><div><h3>Overtime flagged early</h3><p>A day running past your shift gets a red outline and an “OT” tag, so you can move a stop instead of finding out later.</p></div></div>
 <div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></i><div><h3>Six sites in a day still fit</h3><p>Busy days shrink gracefully: name and address, then name, then just the stop number.</p></div></div>
 </div>
 <div class="key"><span><i style="background:#2BC489"></i>Logged</span><span><i style="background:#29B8FF"></i>Planned</span><span><i style="background:#A98BF0"></i>PTO</span><span><i style="background:#F26B75"></i>Holiday</span><span><i style="border:1.5px dashed #F4A626"></i>No plan yet</span></div>
@@ -194,15 +224,15 @@ section.s{padding:88px 0}
 <section class="s" id="plan"><div class="wrap">
 <div class="feat rev">
 <div class="vis">
-<figure><figcaption>Before</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Planning before reorder" src="landing/Planning.html"></iframe></div></div></figure>
-<figure><figcaption>After reorder</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Planning after reorder" src="landing/Planning.html?order=b"></iframe></div></div></figure>
+<figure><figcaption>Before</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Planning before reorder" src="landing/planning.html"></iframe></div></div></figure>
+<figure><figcaption>After reorder</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Planning after reorder" src="landing/planning.html?order=b"></iframe></div></div></figure>
 </div>
 <div>
-<div class="head" style="margin:0"><div class="eb">Planning</div><h2>Plans change. Reorder in a tap.</h2><p>Swap the order of sites with the arrows next to each arrival time. Working Timer rebuilds the day around the new route — arrival times, drive time and when to leave home.</p></div>
+<div class="head" style="margin:0"><div class="eb">Planning</div><h2>Plans change. Reorder in a tap.</h2><p>Swap the order of sites with the arrows next to each arrival time. Jobday rebuilds the day around the new route: arrival times, drive time and when to leave home.</p></div>
 <div class="pts">
-<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v16M4 8l4-4 4 4M16 20V4M12 16l4 4 4-4"></path></svg></i><div><h3>Move sites up or down</h3><p>Office moves to 8:00 AM, Harbor Yard shifts to 1:20 PM. Time on site stays, everything else follows.</p></div></div>
-<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 00-14.3-4.6L4 8M4 4v4h4M4 13a8 8 0 0014.3 4.6L20 16M20 20v-4h-4"></path></svg></i><div><h3>Leave time recalculated</h3><p>The first drive changes, so does your departure: 26 min and 7:20 AM becomes 13 min and 7:35 AM.</p></div></div>
-<div class="pt"><i style="color:#2BC489"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12h16"></path><path d="M4 7h10M4 17h6"></path></svg></i><div><h3>The whole shift on one bar</h3><p>Site time, driving and what’s left of your 8h 30m — visible while you plan.</p></div></div>
+<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v16M4 8l4-4 4 4M16 20V4M12 16l4 4 4-4"></path></svg></i><div><h3>Move sites up or down</h3><p>In this example the office moves to 8:00 AM and the next site shifts to 1:20 PM. Time on site stays, everything else follows.</p></div></div>
+<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 00-14.3-4.6L4 8M4 4v4h4M4 13a8 8 0 0014.3 4.6L20 16M20 20v-4h-4"></path></svg></i><div><h3>Leave time recalculated</h3><p>When the first drive changes, so does your departure: 26 min and 7:20 AM becomes 13 min and 7:35 AM.</p></div></div>
+<div class="pt"><i style="color:#2BC489"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12h16"></path><path d="M4 7h10M4 17h6"></path></svg></i><div><h3>The whole shift on one bar</h3><p>Site time, driving and what’s left of your shift, visible while you plan.</p></div></div>
 </div>
 </div>
 </div>
@@ -211,62 +241,57 @@ section.s{padding:88px 0}
 <section class="s" id="worklog" style="background:#0E141B;border-top:1px solid #1C252F;border-bottom:1px solid #1C252F"><div class="wrap">
 <div class="feat">
 <div class="vis">
-<figure><figcaption>Review</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Work log" src="Working Timer - Work Log.html?embed"></iframe></div></div></figure>
-<figure data-label="Edit &amp; send"><div class="sw" data-sw="wl" style="margin:0"><button class="on" data-i="0">Edit</button><button data-i="1">Send</button></div><div class="dev" data-panes="wl"><div class="scr">
-<iframe loading="lazy" title="Edit day" src="Working Timer - Work Log.html?embed&amp;sheet=edit"></iframe>
-<iframe class="hide" loading="lazy" title="Send work log" src="Working Timer - Work Log.html?embed&amp;sheet=exp"></iframe>
+<figure><figcaption>Review</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Work log" src="work-log.html?embed"></iframe></div></div></figure>
+<figure data-label="Edit &amp; export"><div class="sw" data-sw="wl" style="margin:0"><button class="on" data-i="0">Edit</button><button data-i="1">Export</button></div><div class="dev" data-panes="wl"><div class="scr">
+<iframe loading="lazy" title="Edit day" src="work-log.html?embed&amp;sheet=edit"></iframe>
+<iframe class="hide" loading="lazy" title="Export work log" src="work-log.html?embed&amp;sheet=exp"></iframe>
 </div></div></figure>
 </div>
 <div>
-<div class="head" style="margin:0"><div class="eb">Work log</div><h2>Review. Fix. Send. Done.</h2><p>Every day the app logged, in one list. Check it, correct what’s off, and send the week where it needs to go — without retyping a single hour.</p></div>
+<div class="head" style="margin:0"><div class="eb">Work log</div><h2>Review. Fix. Export.</h2><p>Every day the app logged, in one list. Check it, correct what’s off, and export the week without retyping a single hour.</p></div>
 <div class="pts">
 <div class="pt"><i style="color:#2BC489"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></i><div><h3>Review at a glance</h3><p>Paid hours per day and for the week, overtime flagged, and days that still need a look marked in orange.</p></div></div>
 <div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"></path></svg></i><div><h3>Edit with a paper trail</h3><p>Adjust in and out times per site. The original GPS time stays on record and the entry is marked as edited.</p></div></div>
-<div class="pt"><i style="color:#F4A626"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"></path><path d="M9 12h7M9 16h7M12 9v10"></path></svg></i><div><h3>CSV, ready for Excel</h3><p>Date, site, address, in, out, breaks, drive and hours — one row per entry, opens cleanly in a spreadsheet.</p></div></div>
-<div class="pt"><i style="color:#A98BF0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"></path></svg></i><div><h3>Straight to your timesheets app***</h3><p>Submit the week for approval in one tap, when your timesheet system offers an API.</p></div></div>
+<div class="pt"><i style="color:#F4A626"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l2-6a2 2 0 012-1.4h8A2 2 0 0118 10l2 6M4 16v3h3v-1.5h10V19h3v-3M4 16h16"></path><circle cx="8" cy="13.5" r=".8" fill="currentColor"></circle><circle cx="16" cy="13.5" r=".8" fill="currentColor"></circle></svg></i><div><h3>Mileage between your sites</h3><p>Each day shows the miles driven between your sites, estimated from the route. The same figure goes into the export.</p></div></div>
+<div class="pt"><i style="color:#A98BF0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"></path><path d="M9 12h7M9 16h7M12 9v10"></path></svg></i><div><h3>CSV, ready for Excel <span class="tag-pro">PRO</span></h3><p>One row per site visit: date, site, in, out, breaks, drive miles and hours. Opens cleanly in a spreadsheet. Export is part of Pro.</p></div></div>
 </div>
-<p style="margin-top:32px;font-size:13px;line-height:1.6;color:rgba(242,245,248,.45)">*** Timesheets integration via API, if available and permitted by your company.</p>
 </div>
 </div>
 </div></section>
 
-<section class="s" id="reports"><div class="wrap">
+<section class="s" id="notes"><div class="wrap">
 <div class="feat rev">
 <div class="vis">
-<div class="dev" style="--s:.7"><div class="scr"><iframe loading="lazy" title="Arrival prompt" src="landing/Working Timer - Today States.html?embed&amp;st=arrived"></iframe></div></div>
+<div class="dev" style="--s:.7"><div class="scr"><iframe loading="lazy" title="Arrival prompt" src="landing/today-states.html?embed&amp;st=arrived"></iframe></div></div>
 </div>
 <div>
-<div class="head" style="margin:0"><div class="eb">Site reports</div><h2>The report finds you when you arrive.</h2><p>No hunting for forms. Pull up to a site and Working Timer asks once — then remembers where you left off.</p></div>
+<div class="head" style="margin:0"><div class="eb">Site notes</div><h2>A note, while you’re still on site.</h2><p>When you arrive, Jobday asks once if you want to record a voice report. Talk for about 30 seconds, or type it, and it’s linked to the site in your Work log.</p></div>
 <div class="pts">
-<div class="pt"><i style="color:#F4A626"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"></path><path d="M9 12h7M9 16h5"></path></svg></i><div><h3>PWSL report, one tap away</h3><p>Start now or snooze for 10 minutes. Its status stays on the site row: pending, snoozed, sent.</p></div></div>
-<div class="pt"><i style="color:#A98BF0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0014 0M12 18v3"></path></svg></i><div><h3>Say it instead of typing it</h3><p>A 30-second voice report, linked to the site in your Work log.</p></div></div>
-<div class="pt"><i style="color:#2BC489"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h10M4 17h6"></path></svg></i><div><h3>One prompt at a time</h3><p>Prompts wait their turn, so two pop-ups never land on top of each other.</p></div></div>
+<div class="pt"><i style="color:#A98BF0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0014 0M12 18v3"></path></svg></i><div><h3>Say it instead of typing it</h3><p>Your voice is turned into text by your phone’s speech recognition. No forms to hunt for, and nothing to retype later.</p></div></div>
+<div class="pt"><i style="color:#F4A626"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l2.5 2M9 2h6M12 21a8 8 0 100-16 8 8 0 000 16z"></path></svg></i><div><h3>Busy? Snooze it</h3><p>Snooze the prompt for 10 minutes, or skip it. Nothing blocks your day.</p></div></div>
+<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></i><div><h3>Site photos</h3><p>Take a photo of the part, the gauge or the gate code. Photos stay with the site and the day.</p></div></div>
 </div>
 </div>
 </div>
 </div></section>
 
-<section class="s" id="voice" style="background:#0E141B;border-top:1px solid #1C252F;border-bottom:1px solid #1C252F"><div class="wrap">
+<section class="s" id="reports" style="background:#0E141B;border-top:1px solid #1C252F;border-bottom:1px solid #1C252F"><div class="wrap">
 <div class="feat">
 <div class="vis">
-<figure><figcaption>Voice reports</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Voice reports" src="Working Timer - Report.html?embed"></iframe></div></div></figure>
-<figure data-label="Open a report"><div class="sw" data-sw="rep" style="margin:0"><button class="on" data-i="0">Transcript</button><button data-i="1">Refined</button><button data-i="2">Export</button></div><div class="dev" data-panes="rep"><div class="scr">
-<iframe loading="lazy" title="Transcript" src="Working Timer - Report.html?embed&amp;sheet=0-1"></iframe>
-<iframe class="hide" loading="lazy" title="Refined report" src="Working Timer - Report.html?embed&amp;sheet=0-1&amp;view=ai"></iframe>
-<iframe class="hide" loading="lazy" title="Export" src="Working Timer - Report.html?embed&amp;sheet=0-1&amp;view=exp"></iframe>
+<figure><figcaption>Report tab</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Report tab" src="report.html?embed"></iframe></div></div></figure>
+<figure data-label="Open &amp; send"><div class="sw" data-sw="rep" style="margin:0"><button class="on" data-i="0">Transcript</button><button data-i="1">Send</button></div><div class="dev" data-panes="rep"><div class="scr">
+<iframe loading="lazy" title="Transcript" src="report.html?embed&amp;sheet=0-1"></iframe>
+<iframe class="hide" loading="lazy" title="Send report" src="report.html?embed&amp;sheet=0-1&amp;view=exp"></iframe>
 </div></div></figure>
 </div>
 <div>
-<div class="head" style="margin:0"><div class="eb">Report · Voice log</div><h2>Every voice note, filed by site.</h2><p>The Report tab keeps your voice reports grouped by site, newest first, each stamped with the date and time it was recorded.</p></div>
+<div class="head" style="margin:0"><div class="eb">Report tab</div><h2>Every note, filed by site.</h2><p>The Report tab keeps your reports grouped by site, newest first, each stamped with the date and time it was made.</p></div>
 <div class="pts">
-<div class="pt"><i style="color:#A98BF0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"></path><path d="M9 12h7M9 16h5"></path></svg></i><div><h3>Transcript next to every recording</h3><p>Read it with timestamps, copy it into a ticket or share it — no replaying audio to find one detail.</p></div></div>
-<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></i><div><h3>Record for the site you’re on</h3><p>Start a new report from the Report tab — it links to the current site in your Work log.</p></div></div>
-<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></i><div><h3>Photos in the report</h3><p>Snap the part, the gauge, the gate code — photos travel with the report and land in the PDF.</p></div></div>
-<div class="pt"><i style="color:#A98BF0"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6L19.5 9.5l-5.7 1.9L12 17l-1.8-5.6L4.5 9.5l5.7-1.9zM19 15l.9 2.6 2.6.9-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9z"></path></svg></i><div><h3>Refined report <span style="font-size:11px;font-weight:800;letter-spacing:.06em;color:#A98BF0;background:#231C39;padding:3px 8px;border-radius:999px;vertical-align:3px">PRO</span>**</h3><p>AI turns a rambling voice note into a clean report: summary, work done, follow-ups with dates, parts used.</p></div></div>
+<div class="pt"><i style="color:#A98BF0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"></path><path d="M9 12h7M9 16h5"></path></svg></i><div><h3>Read it, copy it, share it</h3><p>Open any report to see the transcript. Copy it into a message or a ticket.</p></div></div>
+<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></i><div><h3>Record for the site you’re on</h3><p>Start a new report from the Report tab. It links to the current site in your Work log.</p></div></div>
+<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></i><div><h3>Photos in the report</h3><p>Attach photos to a report. They go into the PDF.</p></div></div>
 <div class="pt"><i style="color:#2BC489"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"></path></svg></i><div><h3>Send as TXT, CSV or PDF</h3><p>Plain text for a message, CSV for a spreadsheet, PDF with photos for the client.</p></div></div>
-<div class="pt"><i style="color:#F4A626"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"></path></svg></i><div><h3>Straight into your ticket system***</h3><p>Attach the report to a service ticket via API — no copy-paste between apps.</p></div></div>
 </div>
-<p style="margin-top:32px;font-size:13px;line-height:1.6;color:rgba(242,245,248,.45)">** AI-enabled feature, available with Pro.<br>*** Service ticket tracking integration via API, if available and permitted by your company.</p>
 </div>
 </div>
 </div></section>
@@ -276,24 +301,61 @@ section.s{padding:88px 0}
 <div class="vis vcol">
 <div class="sw" data-sw="off"><button class="on" data-i="0" data-k="off">Day off</button><button data-i="1" data-k="pto">PTO</button><button data-i="2" data-k="holiday">Holiday</button></div>
 <div class="dev" style="--s:.7" data-panes="off"><div class="scr">
-<iframe loading="lazy" title="Day off" src="landing/Working Timer - Today States.html?embed&amp;st=off&amp;off=off"></iframe>
-<iframe class="hide" loading="lazy" title="PTO" src="landing/Working Timer - Today States.html?embed&amp;st=off&amp;off=pto"></iframe>
-<iframe class="hide" loading="lazy" title="Holiday" src="landing/Working Timer - Today States.html?embed&amp;st=off&amp;off=holiday"></iframe>
+<iframe loading="lazy" title="Day off" src="landing/today-states.html?embed&amp;st=off&amp;off=off"></iframe>
+<iframe class="hide" loading="lazy" title="PTO" src="landing/today-states.html?embed&amp;st=off&amp;off=pto"></iframe>
+<iframe class="hide" loading="lazy" title="Holiday" src="landing/today-states.html?embed&amp;st=off&amp;off=holiday"></iframe>
 </div></div>
 </div>
 <div>
-<div class="head" style="margin:0"><div class="eb">Days off</div><h2>Off means off.</h2><p>No commute alerts, no prompts. Just this week’s paid hours and your next shift, ready to adjust.</p></div>
+<div class="head" style="margin:0"><div class="eb">Days off</div><h2>Off means off.</h2><p>On a day off, Today shows what matters: this week’s paid hours and your next shift, ready to adjust. PTO and holidays show up in your week too.</p></div>
+</div>
+</div>
+</div></section>
+
+<section class="s soonsec" id="google" style="background:#0E141B;border-top:1px solid #1C252F;border-bottom:1px solid #1C252F"><div class="wrap">
+<div class="feat rev">
+<div class="vis">
+<div class="gviz dark" role="img" aria-label="Illustration: a row in a spreadsheet becomes a stop in the day plan">
+<div class="gsheet">
+<div class="gcap">Your sheet</div>
+<div class="gr gh"><span>Day</span><span>Start</span><span>Order</span><span>Site</span></div>
+<div class="gr hit"><span>Tue</span><span class="num">7:30</span><span class="num">SO-1041</span><span>Office</span></div>
+<div class="gr"><span>Tue</span><span class="num">10:00</span><span class="num">SO-1042</span><span>Harbor Yard</span></div>
+<div class="gr"><span>Tue</span><span class="num">1:20</span><span class="num">SO-1043</span><span>Cedar Flats Depot</span></div>
+<div class="gr"><span>Wed</span><span class="num">8:00</span><span class="num">SO-1044</span><span>Millbrook Yard</span></div>
+</div>
+<div class="garrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"></path></svg></div>
+<div class="gplan">
+<div class="gcap">Your day plan</div>
+<div class="gst hit"><b class="num">7:30 AM</b><div><strong>Office</strong><small>Order SO-1041</small></div></div>
+<div class="gdr">Drive 25 min</div>
+<div class="gst"><b class="num">10:00 AM</b><div><strong>Harbor Yard</strong><small>Order SO-1042</small></div></div>
+<div class="gdr">Drive 18 min</div>
+<div class="gst"><b class="num">1:20 PM</b><div><strong>Cedar Flats Depot</strong><small>Order SO-1043</small></div></div>
+</div>
+<div class="gnote">Illustration of the idea, not an app screenshot.</div>
+</div>
+</div>
+<div>
+<div class="soon">Coming soon</div>
+<div class="head" style="margin:18px 0 0"><h2>Jobs from Google Sheets &amp; Calendar.</h2><p>If your jobs already live in a Google Sheet or a Calendar, Jobday is being built to turn them into your day plan. One row or event becomes one stop, with its time, order number, address and notes. Not available yet: this comes after the first release.</p></div>
+<div class="pts">
+<div class="pt"><i style="color:#2BC489"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4zM4 10h16M10 5v14"></path></svg></i><div><h3>No retyping</h3><p>Keep working the way you do today. Your sheet or calendar stays the place where jobs are written down.</p></div></div>
+<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 00-14.3-4.6L4 8M4 4v4h4M4 13a8 8 0 0014.3 4.6L20 16M20 20v-4h-4"></path></svg></i><div><h3>Changes get flagged</h3><p>When a job you already planned changes at the source, Jobday points it out instead of silently rewriting your day.</p></div></div>
+</div>
+<div class="hbtn" style="justify-content:flex-start;margin-top:34px"><a class="cta gh" href="https://jobday.pro">For teams <span aria-hidden="true">→</span></a></div>
+<p style="margin-top:16px;font-size:13px;line-height:1.6;color:rgba(242,245,248,.45)">Running a small crew? Team features will live at jobday.pro. Plans may change before release.</p>
 </div>
 </div>
 </div></section>
 
 <section class="end" id="get"><div class="wrap">
-<h2>Stop rebuilding your timesheet on Friday.</h2>
-<p>Free to start. Pro adds site reports and voice logs for the whole crew.</p>
+<h2>Know your day before it starts. Keep the record after.</h2>
+<p>Free to start, with break reminders included. Pro is an optional subscription.</p>
 <div class="hbtn"><a class="cta" href="#">Download for iPhone</a><a class="cta gh" href="#">Download for Android</a></div>
 </div></section>
 
-<footer><div class="wrap"><span>© 2026 Jobday</span><nav><a href="/privacy">Privacy</a><a href="#">Terms</a><a href="/support">Support</a></nav></div></footer>
+<footer><div class="wrap"><span>© 2026 Jobday · <a href="mailto:support@jobday.app">support@jobday.app</a></span><nav><a href="/privacy">Privacy</a><a href="#">Terms</a><a href="/support">Support</a><a href="https://jobday.pro">For teams</a></nav></div></footer>
 
 <script>
 document.querySelectorAll('[data-sw]').forEach(g=>{

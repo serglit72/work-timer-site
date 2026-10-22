@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Working Timer — Work log</title>
+<title>Jobday — Work log</title>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens/colors.css">
 <script>const Q0=new URLSearchParams(location.search),EMB=Q0.has('embed');if(EMB)document.documentElement.classList.add('embed');</script>
@@ -132,7 +132,7 @@ const D=[
 {w:'Fri',n:25,full:'Friday, Sep 25',st:'rv',e:[{nm:'Harbor Yard',i:480,o:900}],lunch:30},
 {w:'Sat',n:26,st:'off'},{w:'Sun',n:27,st:'off'}];
 const work=d=>d.e?d.e.reduce((a,x)=>a+x.o-x.i,0)-d.lunch:0;
-let sh=null,sel=-1,per='wk',dest='ts',toast='';
+let sh=null,sel=-1,per='wk',dest='csv',toast='';
 if(EMB){sh=Q0.get('sheet');if(sh=='edit')sel=2}
 const ph=document.getElementById('ph');
 const ST={ok:['ok',I.chk+'Confirmed'],ed:['ed',I.edit+'Edited'],rv:['rv','! Review'],ot:['ot','OT']};
@@ -156,7 +156,6 @@ return `<div class="grab"></div><div class="shh"><div><div class="t">Send work l
 <div class="lab" style="margin:16px 0 0">Preview · CSV</div><div class="tbl num"><div class="r"><span>Date</span><span>Site</span><span>In</span><span>Out</span><span>Hrs</span></div>
 ${flat.slice(0,4).map(x=>`<div class="r"><span>${x.d}</span><span>${x.nm}</span><span>${hmT(x.i).replace(' ','')}</span><span>${hmT(x.o).replace(' ','')}</span><span>${(Math.round((x.o-x.i)/6)/10).toFixed(1)}</span></div>`).join('')}<div class="more">+ ${flat.length-4} more rows · address, breaks, drive, edited flag</div></div>
 <div class="lab" style="margin:18px 0 8px">Send to</div>
-<button class="dest${dest=='ts'?' on':''}" data-dest="ts"><span class="ic" style="background:var(--success-soft);color:var(--success)">${I.link}</span><div style="min-width:0"><div class="t">Timesheets app<span class="okd">API</span></div><div class="s">Submit week for approval</div></div><i class="rad"></i></button>
 <button class="dest${dest=='csv'?' on':''}" data-dest="csv"><span class="ic" style="background:var(--accent-soft);color:var(--accent)">${I.file}</span><div style="min-width:0"><div class="t">CSV for Excel</div><div class="s">Download or share the file</div></div><i class="rad"></i></button>
 <button class="btn" data-go style="width:100%;margin-top:10px">${dest=='ts'?I.send+'Submit '+du(D.reduce((a,d)=>a+work(d),0)):I.file+'Export CSV'}</button>`}
 function render(){
@@ -168,8 +167,8 @@ ph.innerHTML=`<div class="sb"><span class="num">6:12</span><i></i></div><div cla
 <div class="chips"><span class="chip">${I.chk}<b class="num">3</b> confirmed</span><span class="chip">Edited <b class="num">1</b></span>${rv?`<span class="chip w">${rv} to review</span>`:''}</div></div>
 <div class="lh"><span class="lab">Days</span><span>Tap a day to edit</span></div>
 <div class="card days">${rows()}</div></div>
-<div class="bar"><button class="btn ghost" data-exp="csv">${I.file}CSV</button><button class="btn" data-exp="ts" style="flex:1.6">${I.send}Send to Timesheets</button></div>
-<div class="nav"><a class="ni" href="Working Timer - Today States.html">${I.today}<span>Today</span></a><a class="ni" href="Working Timer - Week Timeline.html">${I.week}<span>Week</span></a><span class="ni on">${I.log}<span>Work log</span></span><a class="ni" href="Working Timer - Report.html">${I.mic}<span>Report</span></a></div>
+<div class="bar"><button class="btn" data-exp="csv" style="flex:1">${I.file}Export CSV</button></div>
+<div class="nav"><a class="ni" href="landing/today-states.html">${I.today}<span>Today</span></a><a class="ni" href="landing/week-timeline.html">${I.week}<span>Week</span></a><span class="ni on">${I.log}<span>Work log</span></span><a class="ni" href="report.html">${I.mic}<span>Report</span></a></div>
 ${sh?`<div class="scrim" data-close></div><div class="sheet">${sh=='edit'?editSheet():expSheet()}</div>`:''}${toast?`<div class="toast">${toast}</div>`:''}`;
 bind()}
 function flash(t){toast=t;render();setTimeout(()=>{toast='';render()},1500)}
