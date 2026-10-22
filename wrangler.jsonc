@@ -1,11 +1,24 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "work-timer-site",
+  "main": "src/index.js",
   "compatibility_date": "2026-10-01",
   "observability": {
     "enabled": true
   },
+  // Only ./public is uploaded as static assets; config, lockfile, .git, .wrangler never are.
   "assets": {
-    "directory": "."
-  }
+    "directory": "./public",
+    "binding": "ASSETS",
+    // Worker runs first so it can redirect www.jobday.app / scheduler.aiconspro.com by host.
+    "run_worker_first": true
+  },
+  // Explicit: with routes set, wrangler would turn workers.dev off anyway.
+  "workers_dev": false,
+  "routes": [
+    { "pattern": "jobday.app", "custom_domain": true },
+    { "pattern": "www.jobday.app", "custom_domain": true },
+    // Existing zone route (already on this Worker) — kept so the old URL 301s to jobday.app.
+    { "pattern": "scheduler.aiconspro.com/*", "zone_name": "aiconspro.com" }
+  ]
 }
