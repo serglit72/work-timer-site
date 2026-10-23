@@ -4,19 +4,149 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — Jobday</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="description" content="How the Jobday app handles your data: location, hours, photos, voice notes, analytics and purchases.">
 <style>
 body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:#0B1016;color:#F2F5F8;font-size:17px;line-height:1.55}
 main{max-width:720px;margin:0 auto;padding:48px 16px}
 a{color:#0AB0FF}
 .home{font-weight:800;text-decoration:none;color:#F2F5F8}
-h1{font-size:32px;margin:32px 0 16px}
+h1{font-size:32px;margin:32px 0 8px}
+h2{font-size:22px;margin:40px 0 8px}
+h3{font-size:18px;margin:24px 0 4px}
+.meta{color:#9AA7B5;margin:0 0 24px}
+.sum{background:#141C26;border:1px solid #243140;border-radius:12px;padding:4px 20px;margin:24px 0}
+ul{padding-left:22px}
+li{margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:15px;margin:12px 0}
+th,td{text-align:left;vertical-align:top;border-bottom:1px solid #243140;padding:8px 8px 8px 0}
+th{color:#9AA7B5;font-weight:600}
+footer{margin-top:48px;color:#9AA7B5;font-size:15px}
 </style>
 </head>
 <body>
 <main>
 <a class="home" href="/">Jobday</a>
 <h1>Privacy Policy</h1>
-<p>Policy text coming soon.</p>
+<p class="meta">Effective date: October 22, 2026</p>
+
+<div class="sum">
+<p><strong>In short.</strong> Jobday plans your workday and keeps your hours, mileage, notes and on-site times. Most of that stays on your phone. We do not sell your data, we do not show ads, and we do not track you across other companies' apps or websites. Location is used only to recognise when you arrive at and leave the sites you add, and to work out drive times. You do not need an account: this version of Jobday has no sign-up.</p>
+</div>
+
+<h2>1. Who we are</h2>
+<p>Jobday is published by AICONS LLC ("we", "us"). This policy covers the Jobday mobile app for Android and iPhone and the website at jobday.app. If you have a question about your data, write to <a href="mailto:support@jobday.app">support@jobday.app</a>.</p>
+
+<h2>2. What stays on your device</h2>
+<p>Jobday is built to work mainly on your phone. These items are stored in the app's storage on your device and are not uploaded to our servers:</p>
+<ul>
+<li>your sites, home address, plans, tasks, lunch and break settings, and notes;</li>
+<li>your Work log: arrival and departure times, hours, mileage and any edits you make;</li>
+<li>site photos, with the time and, if available, the location where each was saved;</li>
+<li>voice report text and the photos attached to reports;</li>
+<li>the places your phone reported staying at (iOS only; see "Location" below);</li>
+<li>your app settings and your reminder schedule.</li>
+</ul>
+<p>Your phone's operating system may include app data in its own device backup (for example iCloud or Android backup) depending on your phone settings. That backup is governed by Apple or Google, not by us.</p>
+
+<h2>3. What we collect and why</h2>
+<table>
+<tr><th>Data</th><th>Why</th><th>Where it goes</th></tr>
+<tr><td>Subscription status</td><td>To unlock Pro features</td><td>Provided to the app by the Apple App Store or Google Play; the app does not see your payment details</td></tr>
+<tr><td>Addresses and coordinates of places you search for, your sites, your home, and sometimes your current position</td><td>Address search, finding coordinates for an address, and drive times between your sites</td><td>Sent to our Maps gateway on Cloudflare, which asks Google Maps Platform (see section 5)</td></tr>
+<tr><td>App usage events and device information (only if the analytics switch is on)</td><td>To understand which features are used and to fix problems</td><td>Google Analytics for Firebase (see section 6)</td></tr>
+<tr><td>Attestation tokens</td><td>To check that requests come from a genuine copy of the app</td><td>Firebase App Check, which uses Google Play Integrity (Android) or Apple App Attest / DeviceCheck (iOS)</td></tr>
+</table>
+<p>We do not ask for your name, phone number, contacts, or payment card details. The app has no accounts and no advertising: it contains no ad software and does not use or request the advertising identifier.</p>
+
+<h2>4. Location</h2>
+<h3>What the app does with it</h3>
+<ul>
+<li><strong>Arrival and departure.</strong> When you add a site (or your home) the app asks the operating system to watch a small circle around it (a "geofence"). When your phone crosses that circle, the system tells the app, and the app saves the time as an arrival or departure for that site. This is how Jobday can record when you were on site, including when the app is closed. The system watches the boundary itself; Jobday does not run continuous GPS tracking.</li>
+<li><strong>iOS visits.</strong> On iPhone, if you allow location "Always", iOS also reports places where your phone stayed and when it arrived and left, whenever that happens, including outside your shift hours. Jobday saves the latest 40 such reports on your device and compares them with your sites to record real arrival and departure times more accurately. These reports can include places that are not your sites. They are not uploaded to our servers.</li>
+<li><strong>One-time position.</strong> When you tap to use your current location (for example to set a home address, to save a photo's location, or to start a drive-time estimate from where you are), the app reads a single position fix.</li>
+</ul>
+<h3>What is stored and what is sent</h3>
+<ul>
+<li>Arrival and departure records store the date, the site, the event and the time. They are kept on your device.</li>
+<li>Coordinates of your sites and, when used, your current position are sent over HTTPS to our Maps gateway to get an address or a drive time (section 5). We do not store them against your name or account.</li>
+<li>Your location is not sent to Firebase Analytics and is not used for advertising.</li>
+</ul>
+<h3>Foreground and background</h3>
+<p>Detecting arrival and departure while the app is closed needs location permission that allows background access ("Always" on iOS, "Allow all the time" on Android). Before the system asks for it, Jobday shows its own explanation: it uses your location, even when the app is closed or not in use, to record when you arrive at and leave your job sites and home, so that arrival times reach your Work log and departure reminders reach you. The location stays on your phone for this purpose and is never sold or used for ads. The explanation has a "Not now" choice, and the system permission is requested only if you tap "Continue". With "Always" on iPhone, visits and arrivals are recorded even outside shift hours. If you choose "While using the app" only, Jobday works, but arrivals and departures you were not looking at the app for may need to be confirmed by you.</p>
+<h3>How to turn it off</h3>
+<ul>
+<li>In Jobday, use "Pause location tracking for today" in Settings. While paused, the app sets no geofences, takes no position fixes and records no visits for that day. It lifts itself the next morning.</li>
+<li>In your phone settings, change or remove Jobday's location permission at any time. Jobday keeps working with the plan and manual edits in the Work log.</li>
+</ul>
+
+<h2>5. Maps, addresses and drive times</h2>
+<p>The app does not contain a Google Maps key. When you search for an address, look up coordinates, or need a drive time, the app sends the request to a gateway we run on Cloudflare Workers. The request can include the text you typed, an address, or coordinates of a site, your home or your current position, plus a departure time. The gateway adds our Google key and forwards the request to Google Maps Platform (Places, Geocoding and Routes). Google's answer is returned to the app.</p>
+<ul>
+<li>To save cost, the gateway keeps answers in a cache for a limited time (drive times for about 5 minutes; place and address lookups for up to 30 days). The cache is keyed by place, address or coordinates rounded to about 10 metres. It is not linked to your account.</li>
+<li>The gateway checks an App Check token to confirm the request comes from the app. It does not build a profile of you and does not keep a history of your requests for you.</li>
+<li>Cloudflare and Google process these requests under their own privacy policies.</li>
+</ul>
+
+<h2>6. Analytics and diagnostics</h2>
+<p>The app can use Google Analytics for Firebase. In Settings, under Privacy, the switch "Share anonymous usage analytics" controls it. It is on by default, and collection stays off in the app's configuration until the app applies your choice at launch. If you turn the switch off, Firebase Analytics collection is disabled.</p>
+<p>While it is on, the app records events such as screens opened, onboarding progress, shifts started and finished (with shift length, break counts and a shift identifier), break reminders shown or snoozed, whether you entered an hourly rate (only a yes/no flag, never the rate or currency), exports opened, and whether a step sensor was available during breaks (not the number of steps). It also records technical details such as device model, operating system version, app version, language and an app-instance identifier generated by Firebase. The app does not set a user ID, because it has no accounts. Google Analytics does not use the advertising identifier in this app.</p>
+<p>Analytics events do not include your location, the names or addresses of your sites, your notes, photos or voice text. We use them to improve the app. Google processes them as our service provider. Retention is set in our Google Analytics configuration. Some weekly-summary events carry aggregate break-compliance counts, scores or goal values calculated on your phone. Events do not carry your hourly rate, currency, earnings or Work log entries.</p>
+
+<h2>7. Microphone and speech</h2>
+<p>If you use voice reports, you can dictate text. The app asks for microphone access, and, on iPhone, speech recognition access. Speech is converted to text by your phone's built-in speech recognition (Apple Speech on iOS, Google speech services on Android). Depending on your device and settings, the operating system may send the audio to Apple or Google to do this, under their policies. Jobday does not record or save audio files and does not send audio to our servers. Only the resulting text is saved, on your device.</p>
+
+<h2>8. Photos and camera</h2>
+<p>Site photos are taken with the camera or chosen from your photo library. They are copied into the app's private storage on your device with the date, the site and, when available, where the phone was when the photo was saved. They are not uploaded by Jobday. They leave your device only if you share them yourself.</p>
+
+<h2>9. Motion and steps</h2>
+<p>On Android, if you allow "Physical activity", the app reads the phone's step counter during break windows to show how many steps you took. The count is kept on your device, and is not sent to analytics.</p>
+
+<h2>10. Notifications</h2>
+<p>Break, lunch, arrival and planning reminders are local notifications created on your phone. Jobday does not send push notifications from a server.</p>
+
+<h2>11. Subscriptions and purchases</h2>
+<p>Pro is a subscription sold through the Apple App Store or Google Play. Prices are shown by the store in your local currency, and any free trial is offered and managed by the store only. Apple or Google handles payment and keeps the payment details; the app and we never see your card number. The app receives the purchase status from the store to unlock Pro. You manage or cancel the subscription in your App Store or Google Play account settings.</p>
+
+<h2>12. Sharing and exports</h2>
+<p>Jobday shares your Work log or reports only when you choose to. When you tap export or send, the app prepares a file (such as CSV or PDF) and opens your phone's mail or share sheet. What happens next depends on the app you choose and who you send it to.</p>
+
+<h2>13. Third parties that process data</h2>
+<ul>
+<li><strong>Google (Firebase Analytics and App Check; Google Maps Platform; Google Play).</strong> <a href="https://policies.google.com/privacy">policies.google.com/privacy</a></li>
+<li><strong>Cloudflare</strong> (our Maps gateway and this website). <a href="https://www.cloudflare.com/privacypolicy/">cloudflare.com/privacypolicy</a></li>
+<li><strong>Apple</strong> (App Store, App Attest, speech recognition on iOS). <a href="https://www.apple.com/legal/privacy/">apple.com/legal/privacy</a></li>
+</ul>
+<p>We do not sell personal information and we do not share it for cross-context advertising. We may disclose information if the law requires it.</p>
+
+<h2>14. Retention and deletion</h2>
+<ul>
+<li><strong>Data on your device</strong> stays until you delete it in the app or uninstall Jobday. Uninstalling removes the app's local data (device backups kept by Apple or Google are separate).</li>
+<li><strong>Accounts.</strong> This version of Jobday has no accounts, so we hold no account data about you. If accounts are offered in a future version, you will be able to delete your account inside the app. To ask us to delete any other data we may hold about you, email <a href="mailto:support@jobday.app">support@jobday.app</a>; we aim to do this within 30 days.</li>
+<li><strong>Analytics data</strong> is kept by Google Analytics for the retention period we have configured and then deleted automatically.</li>
+<li><strong>Cached map answers</strong> expire on their own as described in section 5.</li>
+</ul>
+
+<h2>15. Children</h2>
+<p>Jobday is a tool for working adults. It is not directed to children under 13, and we do not knowingly collect personal information from them. If you believe a child has given us personal information, contact us and we will delete it.</p>
+
+<h2>16. Your choices and rights</h2>
+<p>Jobday needs no account. You can turn analytics off in Settings under Privacy, and you can change location, microphone, camera, photo, notification and activity permissions in your phone settings at any time.</p>
+<p><strong>California and other US states.</strong> Depending on where you live, you may have the right to ask what personal information we hold about you, to ask us to correct or delete it, and not to be treated worse for exercising these rights. We do not sell personal information and do not share it for cross-context behavioural advertising. To make a request, email <a href="mailto:support@jobday.app">support@jobday.app</a>. We may need to confirm that the request comes from you. This section is a plain summary and does not replace your rights under applicable law.</p>
+
+<h2>17. Security</h2>
+<p>Requests between the app and our services use HTTPS. We rely on the security of your device and of the services listed above. No system is perfectly secure, so we cannot guarantee absolute security.</p>
+
+<h2>18. Changes to this policy</h2>
+<p>If we change what we collect (for example when we add accounts, schedule import from other services, or team features for employers), we will update this policy and the effective date before the change takes effect, and tell you in the app where the change is significant.</p>
+
+<h2>19. Contact</h2>
+<p>AICONS LLC<br>Email: <a href="mailto:support@jobday.app">support@jobday.app</a></p>
+
+<footer>
+<a href="/">Home</a> · <a href="/support">Support</a>
+</footer>
 </main>
 </body>
 </html>
