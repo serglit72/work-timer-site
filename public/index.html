@@ -273,6 +273,9 @@ footer a:hover{color:var(--text-1)}
 .faq p{margin:0 0 .9rem;color:var(--text-2);font-size:16px;line-height:1.55}
 html{scroll-behavior:smooth}
 section[id]{scroll-margin-top:4.5rem}
+.ex-label{margin:0 0 .7rem;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-2)}
+.ex-label span{margin-left:.6rem;color:var(--text-3);font-weight:700;letter-spacing:.02em;text-transform:none;font-size:13px}
+.col .pv{margin:.1rem 0 .5rem;color:var(--text-2);font-size:15.5px}.col .pv b{color:var(--text-1)}
 </style>
 </head>
 <body class="dark">
@@ -334,14 +337,11 @@ section[id]{scroll-margin-top:4.5rem}
 </div>
 <ul class="feats">
 <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><h3>Google Maps in one tap</h3><p>Open the route to your next site in Google Maps right from the app.</p></li>
-<li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l2-6a2 2 0 012-1.4h8A2 2 0 0118 10l2 6M4 16v3h3v-1.5h10V19h3v-3M4 16h16"/></svg></span><h3>Drive time, traffic and miles</h3><p>Estimated time on the road between sites, with current traffic, plus the miles for every day.</p></li>
-<li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg></span><h3>When to leave, worked out for you</h3><p>Jobday counts back from your arrival time and tells you when to head out, so you are not late.</p></li>
+<li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l2-6a2 2 0 012-1.4h8A2 2 0 0118 10l2 6M4 16v3h3v-1.5h10V19h3v-3M4 16h16"/></svg></span><h3>Drive time, traffic and miles</h3><p>Estimated time on the road between sites, with current traffic, the miles for every day, and when to head out so you are not late.</p></li>
 <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9a2.8 2.8 0 00-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg></span><h3>Change the day on the go</h3><p>Add a job or move one in the middle of the shift. The times re-lay out around it.</p></li>
 <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7a3 3 0 006 0V3M9 3v18M17 3c-2 2-2 6 0 8v10"/></svg></span><h3>Breaks, not just lunch</h3><p>Reminders for rest breaks and meal breaks, timed to your shift. Free.</p></li>
-<li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l2.5 2M9 2h6M12 21a8 8 0 100-16 8 8 0 000 16z"/><path d="M4 4l3 2"/></svg></span><h3>See overtime coming <span class="pro">PRO</span></h3><p>Time on the road to the first site and back home is counted, so you see overtime before you hit it.</p></li>
 <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 00-3 3v5a3 3 0 006 0V6a3 3 0 00-3-3z"/><path d="M6 11a6 6 0 0012 0M12 17v4M9 21h6"/></svg></span><h3>Say it, don't type it</h3><p>Talk through what you did at the site and Jobday saves it as a voice report, with your site photos.</p></li>
 <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M8 8l4-4 4 4M5 13v6h14v-6"/></svg></span><h3>Export your hours <span class="pro">PRO</span></h3><p>Send a week, two weeks or any dates as a CSV for Excel: times in and out, breaks, drive minutes, miles and GPS times.</p></li>
-<li class="more"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h5"/></svg></span><h3>Need full written reports?</h3><p>Voice Smart Report turns what you say on a visit into a finished PDF report. <a href="https://reports.aiconspro.com/">Try Voice Smart Report</a></p></li>
 </ul>
 </section>
 
@@ -386,13 +386,14 @@ section[id]{scroll-margin-top:4.5rem}
 <li><span class="al">For independent contractors</span><h3>Focus on the Job. Not the Paperwork.</h3><p>Manage your appointments, document your work time, and keep mileage records together. Spend less time reconstructing your week and more time doing the work that matters.</p><b>More work. Less paperwork.</b></li>
 <li><span class="al">For small business owners</span><h3>Stay Organized While Running Your Business.</h3><p>When you're both running the business and working in the field, every hour counts. Keep your own schedule, site visits, hours, and travel records organized without adding unnecessary complexity.</p><b>Run your day with more clarity.</b></li>
 </ul>
+<p class="ex-label">Example scenarios by trade <span>Illustrations, not customer reviews</span></p>
 <ul class="trades">
 <li><img src="img/hvac-truck.webp" srcset="img/hvac-truck-640.webp 640w, img/hvac-truck.webp 1024w" sizes="(min-width:960px) 20rem, 90vw" width="1024" height="576" alt="" loading="lazy"><span class="tt">HVAC technicians</span><p>I know exactly when to leave, so I'm never late to the next call.</p></li>
 <li><img src="img/electrician.webp" srcset="img/electrician-640.webp 640w, img/electrician.webp 1024w" sizes="(min-width:960px) 20rem, 90vw" width="1024" height="576" alt="" loading="lazy"><span class="tt">Electricians</span><p>A job moves or a new call comes in, I change the day and see the new times right away.</p></li>
 <li><img src="img/cleaner.webp" srcset="img/cleaner-640.webp 640w, img/cleaner.webp 1024w" sizes="(min-width:960px) 20rem, 90vw" width="1024" height="576" alt="" loading="lazy"><span class="tt">Cleaners</span><p>One tap and Google Maps is already routing me to the next home.</p></li>
 <li><img src="img/plumber.webp" srcset="img/plumber-640.webp 640w, img/plumber.webp 1024w" sizes="(min-width:960px) 20rem, 90vw" width="1024" height="576" alt="" loading="lazy"><span class="tt">Plumbers</span><p>Hands full under the sink, so I just talk. It's saved as my voice report.</p></li>
 <li><img src="img/appliance.webp" srcset="img/appliance-640.webp 640w, img/appliance.webp 1024w" sizes="(min-width:960px) 20rem, 90vw" width="1024" height="576" alt="" loading="lazy"><span class="tt">Appliance repair</span><p>It reminds me to take every break, not only lunch.</p></li>
-<li><img src="img/handyman.webp" srcset="img/handyman-640.webp 640w, img/handyman.webp 1024w" sizes="(min-width:960px) 20rem, 90vw" width="1024" height="576" alt="" loading="lazy"><span class="tt">Handyman</span><p>My drive to the first job and back home is counted, so I see overtime coming.</p></li>
+<li><img src="img/handyman.webp" srcset="img/handyman-640.webp 640w, img/handyman.webp 1024w" sizes="(min-width:960px) 20rem, 90vw" width="1024" height="576" alt="" loading="lazy"><span class="tt">Handyman</span><p>I choose how drive time counts, and I see my estimated hours as the day unfolds.</p></li>
 </ul>
 <p class="trades-note">Made by seasoned pros from the field, for HVAC technicians, electricians, plumbers, installers, maintenance professionals, independent contractors, and other field service specialists.</p>
 </section>
@@ -422,7 +423,7 @@ section[id]{scroll-margin-top:4.5rem}
 </div>
 <div class="compare">
 <div class="col"><h3>Jobday Free <span class="num">$0</span></h3><ul><li>Plan jobs and site visits</li><li>Track work hours, with overtime and PTO</li><li>Break reminders</li><li>Daily work records, history for this week and last</li></ul><a class="btn btn-ghost colbtn" href="#get">Get Jobday Free</a></div>
-<div class="col col-main"><h3>Jobday Pro <span class="num">30 days free</span></h3><p class="pp">Then <b>$4.99/month</b> or <b>$34.99/year</b>. Save about 42% with annual billing compared with 12 monthly payments.</p><ul><li>Full work history and CSV export</li><li>Drive time counted in your hours</li><li>Unlimited job photos and voice notes</li><li>Everything in Free</li></ul><a class="btn btn-primary colbtn" href="#get">Try Jobday Pro</a></div>
+<div class="col col-main"><h3>Jobday Pro</h3><p class="pv"><b>Keep the Full Picture of Every Workday.</b> Full history, exportable records, and more ways to document your jobs.</p><p class="pp"><b>30 days free</b>, then <b>$4.99/month</b> or <b>$34.99/year</b>. Save about 42% with annual billing compared with 12 monthly payments.</p><ul><li>Full work history and CSV export</li><li>Choose how drive time counts in your records</li><li>Unlimited job photos and voice notes</li><li>Everything in Free</li></ul><a class="btn btn-primary colbtn" href="#get">Try Jobday Pro</a></div>
 </div>
 <p class="fine">Subscription automatically renews unless canceled. Manage or cancel through your App Store or Google Play subscription settings. Trial eligibility and final terms are shown before purchase.</p>
 </section>
@@ -451,7 +452,7 @@ section[id]{scroll-margin-top:4.5rem}
 </section>
 </main>
 
-<footer><div class="wrap"><span>Photos are AI-generated illustrations. </span><span>© 2026 AICONS LLC · Jobday · <a href="mailto:support@jobday.app">support@jobday.app</a></span><nav aria-label="Legal"><a href="/privacy">Privacy</a><a href="/support">Support</a><a href="https://jobday.pro">For teams</a></nav></div></footer>
+<footer><div class="wrap"><span>Photos are AI-generated illustrations. Also from AICONS: <a href="https://reports.aiconspro.com/">Voice Smart Report</a></span><span>© 2026 AICONS LLC · Jobday · <a href="mailto:support@jobday.app">support@jobday.app</a></span><nav aria-label="Legal"><a href="/privacy">Privacy</a><a href="/support">Support</a></nav></div></footer>
 
 </body>
 </html>
