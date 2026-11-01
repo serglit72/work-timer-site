@@ -251,6 +251,7 @@ footer a:hover{color:var(--text-1)}
 .phone.h2-phone{--s:.8;margin:0;justify-self:center}
 @media (min-width:860px){.h2-grid{grid-template-columns:1.15fr auto;gap:3rem;padding-block:3rem;justify-items:stretch}.h2-phone{justify-self:end}}
 .aud{list-style:none;margin:0 0 1.5rem;padding:0;display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr))}
+.aud-top{margin-top:1.5rem}
 .aud li{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.25rem;display:grid;gap:.6rem;align-content:start;min-width:0}
 .aud .al{color:var(--accent);font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
 .aud p{margin:0;color:var(--text-2);font-size:16px;line-height:1.55}.aud b{color:var(--text-1)}
@@ -286,7 +287,7 @@ section[id]{scroll-margin-top:4.5rem}
 <body class="dark">
 <header class="top"><div class="wrap">
 <a class="brand" href="/"><img src="img/app-icon.png" width="32" height="32" alt="">Jobday</a>
-<nav class="topnav" aria-label="Page"><a href="#how">How it works</a><a href="#features">Features</a><a href="#who">Who it's for</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+<nav class="topnav" aria-label="Page"><a href="#who">Who it's for</a><a href="#how">How it works</a><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
 <a class="btn btn-primary" href="#get">Get Jobday Free</a>
 </div></header>
 
@@ -309,6 +310,19 @@ section[id]{scroll-margin-top:4.5rem}
 </section>
 
 <main class="wrap">
+<section class="band" id="who" aria-labelledby="who-h">
+<div class="sec-head">
+<div class="eyebrow">Who it's for</div>
+<h2 id="who-h">Built for People Who Work in the Field.</h2>
+<p>Whether you work for a company, work for yourself, or run your own service business, Jobday keeps your workday organized.</p>
+</div>
+<ul class="aud aud-top">
+<li><span class="al">Employees</span><p><b>Keep your own record</b> of hours, job visits, and mileage.</p></li>
+<li><span class="al">Independent contractors</span><p><b>Less time tracking paperwork.</b> More time getting work done.</p></li>
+<li><span class="al">Small business owners</span><p><b>Manage your own jobs,</b> schedule, and work records in one place.</p></li>
+</ul>
+</section>
+
 <section class="band" aria-labelledby="pains-h">
 <div class="sec-head">
 <div class="eyebrow">The problem</div>
@@ -380,17 +394,15 @@ section[id]{scroll-margin-top:4.5rem}
 </div>
 </section>
 
-<section class="band" id="who" aria-labelledby="who-h">
+<section class="band" id="trades" aria-labelledby="trades-h">
 <div class="sec-head">
-<div class="eyebrow">Who it's for</div>
+<div class="eyebrow">In the field</div>
+<h2 id="trades-h">Different Trades. Same Need for a Clear Day.</h2>
+<p>From the van to the job site, here is how people in different trades might use Jobday.</p>
+</div>
 <h2 id="who-h">Built for the People Who Keep Work Moving.</h2>
 <p>Whether you work for a company, work for yourself, or run a small service business, your day deserves a better way to stay organized.</p>
 </div>
-<ul class="aud">
-<li><span class="al">For employees</span><h3>Keep Your Own Work Records.</h3><p>Your schedule can change. Your job sites can change. Your personal work history shouldn't depend on memory. Use Jobday to keep track of your hours, job visits, and travel.</p><b>Your workday, recorded your way.</b></li>
-<li><span class="al">For independent contractors</span><h3>Focus on the Job. Not the Paperwork.</h3><p>Manage your appointments, document your work time, and keep mileage records together. Spend less time reconstructing your week and more time doing the work that matters.</p><b>More work. Less paperwork.</b></li>
-<li><span class="al">For small business owners</span><h3>Stay Organized While Running Your Business.</h3><p>When you're both running the business and working in the field, every hour counts. Keep your own schedule, site visits, hours, and travel records organized without adding unnecessary complexity.</p><b>Run your day with more clarity.</b></li>
-</ul>
 <p class="ex-label">Example scenarios by trade <span>Illustrations, not customer reviews</span></p>
 <ul class="trades">
 <li><img src="img/hvac-truck.webp" srcset="img/hvac-truck-640.webp 640w, img/hvac-truck.webp 1024w" sizes="(min-width:960px) 20rem, 90vw" width="1024" height="576" alt="" loading="lazy"><span class="tt">HVAC technicians</span><p>I know exactly when to leave, so I'm never late to the next call.</p></li>
