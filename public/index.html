@@ -228,41 +228,84 @@ footer a:hover{color:var(--text-1)}
 @media (min-width:960px){.feats{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .feats .more{border-style:dashed;background:transparent}
 .feats .more a{color:var(--accent);font-weight:800}
+
+/* v24: new hero (copy left, real Today screen right), audiences, privacy, FAQ */
+.topnav{display:none;gap:1.4rem;font-size:14px;font-weight:700}
+.topnav a{text-decoration:none;color:var(--text-2)}.topnav a:hover{color:var(--text-1)}
+@media (min-width:980px){.topnav{display:flex}}
+.hero2{border-bottom:1px solid var(--line);background:radial-gradient(70% 90% at 85% 40%,rgba(41,184,255,.10),transparent 70%)}
+.h2-grid{display:grid;gap:2rem;padding-block:2.5rem 2rem;align-items:center;justify-items:start}
+.h2-copy{display:grid;gap:.9rem;max-width:36rem}
+.h2-eyebrow{margin:0;color:var(--accent);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.hero2 h1{font-size:clamp(2.3rem,5.4vw,3.9rem);font-weight:800;line-height:1.03;letter-spacing:-.035em;text-wrap:balance;max-width:14ch}
+.hero2 h1 em{font-style:normal;color:var(--accent)}
+.h2-sub{margin:0;color:var(--text-1);font-size:clamp(1.05rem,1.8vw,1.25rem);line-height:1.45}
+.h2-sub2{margin:0;color:var(--text-2);font-size:17px}
+.h2-note{margin:0;color:var(--text-3);font-size:14px;font-weight:600}
+.h2-link{color:var(--text-2);font-weight:700;text-decoration:none;font-size:15px}.h2-link:hover{color:var(--text-1)}
+.phone.h2-phone{--s:.8;margin:0;justify-self:center}
+@media (min-width:860px){.h2-grid{grid-template-columns:1.15fr auto;gap:3rem;padding-block:3rem;justify-items:stretch}.h2-phone{justify-self:end}}
+.aud{list-style:none;margin:0 0 1.5rem;padding:0;display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr))}
+.aud li{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.25rem;display:grid;gap:.6rem;align-content:start;min-width:0}
+.aud .al{color:var(--accent);font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.aud p{margin:0;color:var(--text-2);font-size:16px;line-height:1.55}.aud b{color:var(--text-1)}
+.trades{list-style:none;margin:0;padding:0;display:grid;gap:.8rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr))}
+.trades li{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/10;min-width:0;background:var(--surface-1)}
+.trades img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.trades li::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,12,17,.92) 0%,rgba(8,12,17,.5) 42%,rgba(8,12,17,0) 72%)}
+.trades .tt{position:absolute;z-index:1;left:.8rem;top:.7rem;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:rgba(11,16,22,.7);border:1px solid rgba(242,245,248,.25);border-radius:999px;padding:.2rem .6rem}
+.trades p{position:absolute;z-index:1;left:.8rem;right:.8rem;bottom:.7rem;margin:0;font-size:1rem;font-weight:800;line-height:1.25;color:#fff;text-wrap:balance;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.trades p::before{content:"\201C";color:var(--accent)}.trades p::after{content:"\201D";color:var(--accent)}
+.trades-note{margin:1.25rem 0 0;color:var(--text-3);font-size:15px;max-width:44rem}
+.priv{list-style:none;margin:0;padding:0;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr))}
+.priv li{position:relative;padding:.9rem 1rem .9rem 2.7rem;background:var(--surface);border:1px solid var(--line);border-radius:14px;color:var(--text-1);font-weight:600;font-size:16px}
+.priv li::before{content:"";position:absolute;left:1rem;top:1.05rem;width:1.15rem;height:1.15rem;border-radius:50%;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 6.2 5 8.6l4.5-5' stroke='%2306131c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/70% no-repeat}
+.priv-note{margin:1rem 0 0;color:var(--text-2);font-size:15px}.priv-note a{color:var(--accent);font-weight:800}
+.col .pp{margin:.1rem 0 .6rem;color:var(--text-2);font-size:15.5px}.col .pp b{color:var(--text-1)}
+.colbtn{margin-top:1rem;width:100%}
+.fine{margin:1rem 0 0;color:var(--text-3);font-size:13.5px;max-width:46rem}
+.faq{display:grid;gap:.6rem;max-width:46rem}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:.2rem 1rem}
+.faq summary{cursor:pointer;font-weight:800;font-size:16.5px;padding:.8rem 0;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--accent);font-weight:800}
+.faq details[open] summary::after{content:"\2212"}
+.faq p{margin:0 0 .9rem;color:var(--text-2);font-size:16px;line-height:1.55}
+html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:4.5rem}
 </style>
 </head>
 <body class="dark">
 <header class="top"><div class="wrap">
 <a class="brand" href="/"><img src="img/app-icon.png" width="32" height="32" alt="">Jobday</a>
-<a class="btn btn-primary" href="#get">Get the app</a>
+<nav class="topnav" aria-label="Page"><a href="#how">How it works</a><a href="#features">Features</a><a href="#who">Who it's for</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+<a class="btn btn-primary" href="#get">Get Jobday Free</a>
 </div></header>
 
-<section class="hero" aria-label="Jobday">
-<div class="slides">
-<figure class="slide is-active" style="--pos:30%;--shift:30%"><img src="img/hvac-truck.webp" srcset="img/hvac-truck-640.webp 640w, img/hvac-truck.webp 1024w" sizes="100vw" width="1024" height="576" alt="HVAC technician in a navy uniform checking his phone beside a service van and an air conditioner unit on a sunny day"><figcaption class="say">I know exactly when to leave, so I'm never late to the next call.</figcaption></figure>
-<figure class="slide" style="--pos:45%"><img src="img/electrician.webp" srcset="img/electrician-640.webp 640w, img/electrician.webp 1024w" sizes="100vw" width="1024" height="576" alt="Electrician in a safety vest checking her phone beside her open work van" loading="lazy"><figcaption class="say">A job moves or a new call comes in, I change the day and see the new times right away.</figcaption></figure>
-<figure class="slide" style="--pos:55%"><img src="img/cleaner.webp" srcset="img/cleaner-640.webp 640w, img/cleaner.webp 1024w" sizes="100vw" width="1024" height="576" alt="Cleaner unloading a caddy of supplies from her car while checking her phone" loading="lazy"><figcaption class="say">One tap and Google Maps is already routing me to the next home.</figcaption></figure>
-<figure class="slide" style="--pos:50%"><img src="img/plumber.webp" srcset="img/plumber-640.webp 640w, img/plumber.webp 1024w" sizes="100vw" width="1024" height="576" alt="Plumber kneeling under a kitchen sink with a wrench, phone on the cabinet floor" loading="lazy"><figcaption class="say">Hands full under the sink, so I just talk. It's saved as my voice report.</figcaption></figure>
-<figure class="slide" style="--pos:40%"><img src="img/appliance.webp" srcset="img/appliance-640.webp 640w, img/appliance.webp 1024w" sizes="100vw" width="1024" height="576" alt="Appliance repair technician crouching beside an open washing machine, checking his phone" loading="lazy"><figcaption class="say">It reminds me to take every break, not only lunch.</figcaption></figure>
-<figure class="slide" style="--pos:35%"><img src="img/handyman.webp" srcset="img/handyman-640.webp 640w, img/handyman.webp 1024w" sizes="100vw" width="1024" height="576" alt="Handyman in a denim work shirt and tool belt checking his phone at a customer's front door" loading="lazy"><figcaption class="say">It counts my drive to the first job and home, so overtime never surprises me.</figcaption></figure>
-</div>
-<div class="wrap hero-ui">
-<h1>Your workday, <em>planned from your jobs.</em></h1>
+<section class="hero2" aria-label="Jobday">
+<div class="wrap h2-grid">
+<div class="h2-copy">
+<p class="h2-eyebrow">Built for professionals on the move</p>
+<h1>Your Workday. <em>Your Hours. Your Miles.</em></h1>
+<p class="h2-sub">Plan your jobs, track work hours and mileage, and keep your daily records in one simple app.</p>
+<p class="h2-sub2">Jobday helps field professionals stay organized from the first job to the last.</p>
 <div class="ctas" id="get">
-<!-- TODO: real store URLs once the listings are public. -->
 <a class="btn btn-primary" href="#"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8s-1.9-.8-3.1-.8C6.8 7.3 5.3 8.2 4.5 9.6c-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.4.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-3.9zM14.1 5.5c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.6 2.7-1.3z"/></svg>App Store</a>
 <a class="btn btn-ghost" href="#"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg>Google Play</a>
 </div>
-<div class="who"><span class="who-for">By seasoned pros, for</span>
-<div class="who-chips" role="tablist" aria-label="Trades"><button type="button" data-s="0" class="is-on">HVAC techs</button><button type="button" data-s="1">Electricians</button><button type="button" data-s="2">Cleaners</button><button type="button" data-s="3">Plumbers</button><button type="button" data-s="4">Appliance repair</button><button type="button" data-s="5">Handyman</button><span class="chip-static">Hourly workers on the road</span></div></div>
+<p class="h2-note">Free to start · No account required</p>
+<a class="h2-link" href="#how">See how it works &darr;</a>
+</div>
+<div class="phone h2-phone"><div class="scr"><iframe title="Jobday Today screen with the day's hours and miles" src="landing/today-states.html?embed&amp;st=after"></iframe></div></div>
 </div>
 </section>
 
 <main class="wrap">
 <section class="band" aria-labelledby="pains-h">
 <div class="sec-head">
-<div class="eyebrow">From the road to the app</div>
-<h2 id="pains-h">Four rough moments, handled.</h2>
-<p>Jobday lays out your day from the sites you work, logs your hours and mileage, and keeps a record of when you were on site. Break reminders are free.</p>
+<div class="eyebrow">The problem</div>
+<h2 id="pains-h">Your Workday Is Busy Enough. Tracking It Shouldn't Be.</h2>
+<p>Different job sites. Changing schedules. Hours to remember. Miles to record. When you're busy getting work done, the details are easy to forget. Jobday helps you keep those details organized as your day unfolds.</p>
 </div>
 <ul class="pains">
 <li><div class="ph"><img src="img/pain-arrival.webp" srcset="img/pain-arrival-640.webp 640w, img/pain-arrival.webp 1024w" sizes="(min-width:720px) 33rem, 100vw" width="1024" height="576" alt="" loading="lazy"><span class="scene">Friday, 4:50 PM · in the truck</span><p class="say">It logged my arrival at 7:30. I didn't have to remember.</p></div>
@@ -284,7 +327,7 @@ footer a:hover{color:var(--text-1)}
 </ul>
 </section>
 
-<section class="band" aria-labelledby="feat-h">
+<section class="band" id="features" aria-labelledby="feat-h">
 <div class="sec-head">
 <div class="eyebrow">Also in the app</div>
 <h2 id="feat-h">Made for a day that keeps changing.</h2>
@@ -302,10 +345,10 @@ footer a:hover{color:var(--text-1)}
 </ul>
 </section>
 
-<section class="band" aria-labelledby="how-h">
+<section class="band" id="how" aria-labelledby="how-h">
 <div class="sec-head">
 <div class="eyebrow">How it works</div>
-<h2 id="how-h">Plan it. Work it. Check it.</h2>
+<h2 id="how-h">One App. Your Entire Workday.</h2>
 </div>
 <ol class="steps">
 <li><h3>Add your sites</h3><p>Jobday lays out the day in order, with drive time and when to leave home.</p>
@@ -332,44 +375,83 @@ footer a:hover{color:var(--text-1)}
 </div>
 </section>
 
-<section class="band" aria-labelledby="price-h">
+<section class="band" id="who" aria-labelledby="who-h">
 <div class="sec-head">
-<div class="eyebrow">Price</div>
-<h2 id="price-h">Free to use. Pro when you want the full record.</h2>
+<div class="eyebrow">Who it's for</div>
+<h2 id="who-h">Built for the People Who Keep Work Moving.</h2>
+<p>Whether you work for a company, work for yourself, or run a small service business, your day deserves a better way to stay organized.</p>
+</div>
+<ul class="aud">
+<li><span class="al">For employees</span><h3>Keep Your Own Work Records.</h3><p>Your schedule can change. Your job sites can change. Your personal work history shouldn't depend on memory. Use Jobday to keep track of your hours, job visits, and travel.</p><b>Your workday, recorded your way.</b></li>
+<li><span class="al">For independent contractors</span><h3>Focus on the Job. Not the Paperwork.</h3><p>Manage your appointments, document your work time, and keep mileage records together. Spend less time reconstructing your week and more time doing the work that matters.</p><b>More work. Less paperwork.</b></li>
+<li><span class="al">For small business owners</span><h3>Stay Organized While Running Your Business.</h3><p>When you're both running the business and working in the field, every hour counts. Keep your own schedule, site visits, hours, and travel records organized without adding unnecessary complexity.</p><b>Run your day with more clarity.</b></li>
+</ul>
+<ul class="trades">
+<li><img src="img/hvac-truck.webp" srcset="img/hvac-truck-640.webp 640w, img/hvac-truck.webp 1024w" sizes="(min-width:960px) 20rem, 90vw" width="1024" height="576" alt="" loading="lazy"><span class="tt">HVAC technicians</span><p>I know exactly when to leave, so I'm never late to the next call.</p></li>
+<li><img src="img/electrician.webp" srcset="img/electrician-640.webp 640w, img/electrician.webp 1024w" sizes="(min-width:960px) 20rem, 90vw" width="1024" height="576" alt="" loading="lazy"><span class="tt">Electricians</span><p>A job moves or a new call comes in, I change the day and see the new times right away.</p></li>
+<li><img src="img/cleaner.webp" srcset="img/cleaner-640.webp 640w, img/cleaner.webp 1024w" sizes="(min-width:960px) 20rem, 90vw" width="1024" height="576" alt="" loading="lazy"><span class="tt">Cleaners</span><p>One tap and Google Maps is already routing me to the next home.</p></li>
+<li><img src="img/plumber.webp" srcset="img/plumber-640.webp 640w, img/plumber.webp 1024w" sizes="(min-width:960px) 20rem, 90vw" width="1024" height="576" alt="" loading="lazy"><span class="tt">Plumbers</span><p>Hands full under the sink, so I just talk. It's saved as my voice report.</p></li>
+<li><img src="img/appliance.webp" srcset="img/appliance-640.webp 640w, img/appliance.webp 1024w" sizes="(min-width:960px) 20rem, 90vw" width="1024" height="576" alt="" loading="lazy"><span class="tt">Appliance repair</span><p>It reminds me to take every break, not only lunch.</p></li>
+<li><img src="img/handyman.webp" srcset="img/handyman-640.webp 640w, img/handyman.webp 1024w" sizes="(min-width:960px) 20rem, 90vw" width="1024" height="576" alt="" loading="lazy"><span class="tt">Handyman</span><p>My drive to the first job and back home is counted, so I see overtime coming.</p></li>
+</ul>
+<p class="trades-note">Made by seasoned pros from the field, for HVAC technicians, electricians, plumbers, installers, maintenance professionals, independent contractors, and other field service specialists.</p>
+</section>
+
+<section class="band" id="privacy" aria-labelledby="priv-h">
+<div class="sec-head">
+<div class="eyebrow">Privacy</div>
+<h2 id="priv-h">Your Workday. Your Data.</h2>
+<p>Your work history is personal. Jobday is designed to help you keep control of it.</p>
+</div>
+<ul class="priv">
+<li>No account required to get started.</li>
+<li>No ads.</li>
+<li>Your work records are stored primarily on your device.</li>
+<li>Location-based features help identify job visits without requiring a continuous GPS route log.</li>
+<li>You control your phone's location permissions.</li>
+<li>We don't sell your personal data.</li>
+</ul>
+<p class="priv-note">Map and drive-time requests use outside services, and usage analytics can be turned off in Settings. <a href="/privacy">Learn about privacy</a></p>
+</section>
+
+<section class="band" id="pricing" aria-labelledby="price-h">
+<div class="sec-head">
+<div class="eyebrow">Pricing</div>
+<h2 id="price-h">Start Free. Upgrade When You Need More.</h2>
+<p>Get started with the essential tools for planning and tracking your workday. Unlock expanded history and recordkeeping features with Pro.</p>
 </div>
 <div class="compare">
-<div class="col"><h3>Free</h3><ul><li>Day plan, arrivals and timeline</li><li>Hours with overtime, PTO</li><li>Break reminders</li><li>History for this week and last</li></ul></div>
-<div class="col col-main"><h3>Pro <span class="num">$4.99/mo or $34.99/yr</span></h3><ul><li>First 30 days free</li><li>Full history and CSV export</li><li>Paid drive time</li><li>Unlimited photos and voice notes</li></ul></div>
-<div class="col col-soon"><h3>Team <span>Coming soon</span></h3><ul><li>For small crews and their dispatcher</li><li>Work orders from Google Calendar and Sheets</li><li>One view of your crew's days</li></ul></div>
+<div class="col"><h3>Jobday Free <span class="num">$0</span></h3><ul><li>Plan jobs and site visits</li><li>Track work hours, with overtime and PTO</li><li>Break reminders</li><li>Daily work records, history for this week and last</li></ul><a class="btn btn-ghost colbtn" href="#get">Get Jobday Free</a></div>
+<div class="col col-main"><h3>Jobday Pro <span class="num">30 days free</span></h3><p class="pp">Then <b>$4.99/month</b> or <b>$34.99/year</b>. Save about 42% with annual billing compared with 12 monthly payments.</p><ul><li>Full work history and CSV export</li><li>Drive time counted in your hours</li><li>Unlimited job photos and voice notes</li><li>Everything in Free</li></ul><a class="btn btn-primary colbtn" href="#get">Try Jobday Pro</a></div>
+</div>
+<p class="fine">Subscription automatically renews unless canceled. Manage or cancel through your App Store or Google Play subscription settings. Trial eligibility and final terms are shown before purchase.</p>
+</section>
+
+<section class="band" id="faq" aria-labelledby="faq-h">
+<div class="sec-head"><div class="eyebrow">FAQ</div><h2 id="faq-h">Frequently Asked Questions</h2></div>
+<div class="faq">
+<details><summary>Who is Jobday for?</summary><p>Jobday is designed for people who work at different locations, including employees, independent contractors, and owner-operators of small service businesses.</p></details>
+<details><summary>Do I need an account?</summary><p>No. You can get started without creating an account.</p></details>
+<details><summary>Does Jobday track my location all day?</summary><p>Jobday uses location-based features to help identify visits to job sites. It is not designed as a continuous route-history tracker. Location accuracy and background behavior depend on your device and permissions.</p></details>
+<details><summary>Can I review or correct my work records?</summary><p>Yes. Jobday lets you review and adjust supported entries so your records reflect your actual working day.</p></details>
+<details><summary>Can I use Jobday to track mileage?</summary><p>Yes. Jobday includes mileage and travel-time tracking for work-related trips.</p></details>
+<details><summary>Does Jobday replace my employer's timesheet system?</summary><p>Not necessarily. Jobday is a personal workday recordkeeping tool. Your employer may require its own timekeeping system, and applicable policies determine how working time and mileage are treated.</p></details>
+<details><summary>Can I track my employees with Jobday?</summary><p>Jobday currently focuses on individual workday management. Team management features are not included in the current individual offering.</p></details>
+<details><summary>Is Jobday free?</summary><p>Yes. Jobday offers a free version and an optional Pro subscription with additional features.</p></details>
+<details><summary>Can I cancel Pro?</summary><p>Yes. Subscriptions can be managed or canceled through the store where you purchased them. Cancellation generally takes effect at the end of the applicable billing period.</p></details>
 </div>
 </section>
 
 <section class="band final" aria-labelledby="final-h">
-<h2 id="final-h">Know your day before it starts. Keep the record after.</h2>
-<p>Free to start, on iPhone and Android.</p>
-<div class="ctas"><a class="btn btn-primary" href="#">App Store</a><a class="btn btn-ghost" href="#">Google Play</a></div>
+<h2 id="final-h">Make Every Workday Easier to Manage.</h2>
+<p>Your jobs, hours, miles, and work records, all in one place. Built for real work. Designed for real workdays.</p>
+<div class="ctas"><a class="btn btn-primary" href="#"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8s-1.9-.8-3.1-.8C6.8 7.3 5.3 8.2 4.5 9.6c-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.4.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-3.9zM14.1 5.5c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.6 2.7-1.3z"/></svg>App Store</a>
+<a class="btn btn-ghost" href="#"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg>Google Play</a>
+</div>
 </section>
 </main>
 
 <footer><div class="wrap"><span>Photos are AI-generated illustrations. </span><span>© 2026 AICONS LLC · Jobday · <a href="mailto:support@jobday.app">support@jobday.app</a></span><nav aria-label="Legal"><a href="/privacy">Privacy</a><a href="/support">Support</a><a href="https://jobday.pro">For teams</a></nav></div></footer>
 
-<script>
-(()=>{
-const hero=document.querySelector('.hero'),slides=[...hero.querySelectorAll('.slide')],dots=[...hero.querySelectorAll('.dot')],chips=[...hero.querySelectorAll('.who-chips button')];
-const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;let i=0,t=null,hover=false;
-function show(n){i=(n+slides.length)%slides.length;
-slides.forEach((s,k)=>s.classList.toggle('is-active',k===i));
-chips.forEach(c=>{const on=+c.dataset.s===i;c.classList.toggle('is-on',on);if(on){const box=c.parentElement;box.scrollTo({left:c.offsetLeft-(box.clientWidth-c.offsetWidth)/2,behavior:'smooth'})}});
-dots.forEach((d,k)=>{d.setAttribute('aria-selected',k===i);d.classList.remove('is-active');if(k===i){void d.offsetWidth;d.classList.add('is-active')}});
-next()}
-function next(){clearTimeout(t);if(!reduce&&!hover&&!document.hidden)t=setTimeout(()=>show(i+1),6000)}
-dots.forEach((d,k)=>d.addEventListener('click',()=>show(k)));
-chips.forEach(c=>c.addEventListener('click',()=>show(+c.dataset.s)));
-hero.addEventListener('mouseenter',()=>{hover=true;hero.classList.add('paused');clearTimeout(t)});
-hero.addEventListener('mouseleave',()=>{hover=false;hero.classList.remove('paused');show(i)});
-document.addEventListener('visibilitychange',next);
-next();
-})();
-</script>
 </body>
 </html>
