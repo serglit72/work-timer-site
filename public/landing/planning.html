@@ -56,7 +56,7 @@ body{font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialias
 <script>
 const B=new URLSearchParams(location.search).get('order')=='b';
 const X='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
-const H={nm:'Harbor Yard',ad:'88 Pierline Rd, Port Calder',d:'3h'},O={nm:'Office',ad:'1450 Meridian Way, Larkspur Hills',d:'5h'};
+const H={nm:'Harbor Yard',ad:'88 Pierline Rd, Port Calder',d:'3h'},O={nm:'Office',ad:'Pine Ridge, Larkspur Hills',d:'5h'};
 const list=B?[[O,'8:00','AM'],[H,'1:20','PM']]:[[H,'8:00','AM'],[O,'11:20','AM']];
 const site=([s,t,ap],i,a)=>`<div class="card site${B&&i==0?' mvd':''}">${B&&i==0?'<span class="tag">Moved up</span>':''}<div class="tp"><i class="tri${i==0?' off':''}"></i><div class="tm num"><b>${t}</b><small>${ap}</small></div><i class="tri dn${i==a.length-1?' off':''}"></i></div><div style="min-width:0"><div class="sn">${s.nm}</div><div class="sa">${s.ad}</div><div class="sd">${s.d} on site</div></div><span class="x">${X}</span></div>`;
 document.getElementById('ph').innerHTML=`<div class="sb"><span class="num">5:54</span><i></i></div><div class="sc">

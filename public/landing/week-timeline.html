@@ -144,14 +144,14 @@ const m=s=>typeof s=='number'?s:(([h,mm])=>h*60+mm)(s.split(':').map(Number));
 const hm=x=>{let h=Math.floor(x/60),mm=x%60,ap=h>=12?'PM':'AM';h=h%12||12;return `${h}:${String(mm).padStart(2,'0')}<span class="ap">${ap}</span>`};
 const hmT=x=>{let h=Math.floor(x/60),mm=x%60,ap=h>=12?'PM':'AM';h=h%12||12;return `${h}:${String(mm).padStart(2,'0')} ${ap}`};
 const du=x=>{const h=Math.floor(x/60),mm=x%60;return h&&mm?`${h}h ${mm}m`:h?`${h}h`:`${mm}m`};
-const OF='1450 Meridian Way, Larkspur Hills',NV='88 Pierline Rd, Port Calder';
+const OF='Pine Ridge, Larkspur Hills',NV='88 Pierline Rd, Port Calder';
 const off=(w,n,f)=>({w,n,full:f,st:'off'}),open=(w,n,f)=>({w,n,full:f,st:'open',shift:'8:00'});
 const WEEKS=[
 {rng:'Sep 28 – Oct 4',days:[
 {w:'Mon',n:28,full:'Monday, Sep 28',st:'logged',today:1,leave:'7:35',stops:[{nm:'Work shift',ad:'Logged by GPS',s:'8:00',e:'16:30'}]},
 {w:'Tue',n:29,full:'Tuesday, Sep 29',st:'planned',leave:'7:05',stops:[{nm:'Office',ad:OF,s:'7:30',e:'10:00'},{nm:'Harbor Yard',ad:NV,s:'11:05',e:'15:05'}]},
 {w:'Wed',n:30,full:'Wednesday, Sep 30',st:'planned',leave:'6:40',stops:[{nm:'Harbor Yard',ad:NV,s:'8:00',e:'10:00'},{nm:'Office',ad:OF,s:'11:05',e:'15:05'}]},
-{w:'Thu',n:1,full:'Thursday, Oct 1',st:'planned',leave:'6:30',stops:[{nm:'Office',ad:OF,s:'7:00',e:'8:15'},{nm:'Harbor Yard',ad:NV,s:'8:40',e:'9:50'},{nm:'Cedar Flats Depot',ad:'412 Quarry Ln, Cedar Flats',s:'10:15',e:'11:30'},{nm:'Millbrook Yard',ad:'27 Fernhill Ave, Millbrook',s:'11:55',e:'13:00'},{nm:'Ashford Plant',ad:'9 Kestrel Ct, Ashford',s:'13:25',e:'14:40'},{nm:'Office',ad:OF,s:'15:05',e:'17:30'}]},{w:'Fri',n:2,full:'Friday, Oct 2',st:'pto',hrs:8},off('Sat',3,'Saturday, Oct 3'),off('Sun',4,'Sunday, Oct 4')]},
+{w:'Thu',n:1,full:'Thursday, Oct 1',st:'planned',leave:'6:30',stops:[{nm:'Office',ad:OF,s:'7:00',e:'8:15'},{nm:'Harbor Yard',ad:NV,s:'8:40',e:'9:50'},{nm:'Cedar Flats Depot',ad:'Cedar Court, Cedar Flats',s:'10:15',e:'11:30'},{nm:'Millbrook Yard',ad:'27 Fernhill Ave, Millbrook',s:'11:55',e:'13:00'},{nm:'Ashford Plant',ad:'9 Kestrel Ct, Ashford',s:'13:25',e:'14:40'},{nm:'Office',ad:OF,s:'15:05',e:'17:30'}]},{w:'Fri',n:2,full:'Friday, Oct 2',st:'pto',hrs:8},off('Sat',3,'Saturday, Oct 3'),off('Sun',4,'Sunday, Oct 4')]},
 {rng:'Oct 5 – Oct 11',days:[
 {w:'Mon',n:5,full:'Monday, Oct 5',st:'planned',leave:'7:05',stops:[{nm:'Office',ad:OF,s:'7:30',e:'16:00'}]},
 {w:'Tue',n:6,full:'Tuesday, Oct 6',st:'planned',leave:'6:40',stops:[{nm:'Harbor Yard',ad:NV,s:'8:00',e:'12:00'},{nm:'Office',ad:OF,s:'13:05',e:'16:30'}]},

@@ -244,12 +244,13 @@ sun:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.
 today:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>',
 week:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5v14M13 5v14M18 5v14"/></svg>',
 log:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h5M8 14h3M14 14l2 2 3-4"/></svg>',
+planner:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/></svg>',
 mic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg>'};
 const hmT=x=>{x=((x%1440)+1440)%1440;let h=Math.floor(x/60),mm=x%60,ap=h>=12?'PM':'AM';h=h%12||12;return `${h}:${String(mm).padStart(2,'0')} ${ap}`};
 const hm=x=>{const[a,b]=hmT(x).split(' ');return `${a}<span class="ap">${b}</span>`};
 const hs=x=>hmT(x).replace(' AM','').replace(' PM','');
 const du=x=>{const h=Math.floor(x/60),mm=x%60;return h&&mm?`${h}h ${mm}m`:h?`${h}h`:`${mm}m`};
-const OF='1450 Meridian Way, Larkspur Hills',NV='88 Pierline Rd, Port Calder',EG='412 Quarry Ln, Cedar Flats';
+const OF='Pine Ridge, Larkspur Hills',NV='88 Pierline Rd, Port Calder',EG='Cedar Court, Cedar Flats';
 const SITES={'Office':OF,'Harbor Yard':NV,'Cedar Flats Depot':EG};
 const DRIVE={home:{'Office':25,'Harbor Yard':80,'Cedar Flats Depot':35},'Office':{'Harbor Yard':65,'Cedar Flats Depot':30,home:25},'Harbor Yard':{'Office':65,'Cedar Flats Depot':45,home:50},'Cedar Flats Depot':{'Office':30,'Harbor Yard':45,home:35}};
 const dr=(a,b)=>(DRIVE[a]&&DRIVE[a][b])||30;
@@ -281,7 +282,7 @@ setInterval(()=>{if(bn||sheet||Date.now()<gapUntil||!Q.length)return;const i=Q.f
 function closeBn(){bn=null;gapUntil=Date.now()+1800}
 let S=(EMB&&Q0.get('st'))||localStorage.getItem('wt-today-st')||'before',openTL=false,editT=false,draft=null,savedAt=false,sheet=null,toast='';
 if(!STATES.find(s=>s.k==S))S='before';
-if(S=='morning')sheet='morning';
+/* morning plan-check sheet removed (owner, 2026-10-30) */
 
 function rows(d){
 const R=[];let prev='home',t=d.leave;
@@ -337,9 +338,8 @@ return `<div class="card hero site"><div class="eb"><span style="font-size:14px"
 ${nb?`<div class="nxt num">${nb.k=='Lunch'?I.meal:I.cof}<span><b>${nb.lb}</b> · ${hs(nb.s)}–${hmT(nb.s+nb.d)} · ${nb.paid?'paid':'unpaid'}</span><span class="nxtl">${nb.s<=now?'now':'in '+du(nb.s-now)}</span></div>`:''}</div>`;}
 if(st=='after'){
 const T=totals(d);
-return `<div class="card hero"><div class="eb" style="color:var(--success)"><span>Shift complete</span><span class="num">home ${hmT(T.end)}</span></div><div class="big num">${du(T.w)}</div><div class="sub">Worked today · 2 sites. Check the log before it goes into your report.</div>
-<div class="chips"><span class="chip">Drive <b class="num">${du(T.dv)}</b></span><span class="chip">Breaks <b class="num">${du(T.br)}</b></span></div>
-<div class="brow"><button class="btn" data-review>${I.chk}Review & confirm day</button></div></div>`;}
+return `<div class="card hero"><div class="eb" style="color:var(--success)"><span>Shift complete</span><span class="num">home ${hmT(T.end)}</span></div><div class="big num">${du(T.w)}</div><div class="sub">Worked today · 2 sites. Saved to Planner, where you can fix any time.</div>
+<div class="chips"><span class="chip">Drive <b class="num">${du(T.dv)}</b></span><span class="chip">Breaks <b class="num">${du(T.br)}</b></span></div></div>`;}
 return '';
 }
 
@@ -347,7 +347,7 @@ function confirmedCard(){
 const T=totals(TODAY);
 const paidDrive=rows(TODAY).filter(r=>r.k=='drive'&&r.to!='home'&&r.t>TODAY.leave).reduce((x,r)=>x+r.d,0);
 const paid=T.w+paidDrive,mon=510,wk=mon+paid,proj=wk+360+480,cap=2400;
-return `<div class="card ok"><div class="top"><span class="okic">${I.chk}</span><div><div class="t">Day confirmed</div><div class="s">Tue, Sep 29 · saved to Work log</div></div><a class="okl" href="#" onclick="return false">Log ›</a></div>
+return `<div class="card ok"><div class="top"><span class="okic">${I.chk}</span><div><div class="t">Day confirmed</div><div class="s">Tue, Sep 29 · saved to Planner</div></div><a class="okl" href="#" onclick="return false">Planner ›</a></div>
 <div class="okg"><div><div class="hl">Paid today</div><div class="okv num">${du(paid)}</div><div class="oks num">${du(T.w)} on site + ${du(paidDrive)} paid drive</div></div>
 <div><div class="hl">Week so far</div><div class="okv num">${du(wk)}</div><div class="oks num">of 40h · ${du(cap-wk)} to overtime</div></div></div>
 <div class="okbar"><i style="width:${wk/cap*100}%"></i><i class="pj" style="width:${(proj-wk)/cap*100}%"></i></div>
@@ -377,31 +377,13 @@ ${stops}<div class="addr"><span class="l">Add site</span>${add}</div>
 <div class="brow" style="margin-top:6px"><button class="btn ghost" data-tcancel>Cancel</button><button class="btn" data-tsave>${I.chk}Save</button></div></div></div>`;
 }
 
-function morningSheet(){
-const d=TODAY,R=rows(d),first=d.sites[0];
-const list=[`<div class="st num"><span class="tt">${hmT(d.leave)}</span><span class="nm">Leave home</span><span class="du">${du(first.s-d.leave)} drive</span></div>`].concat(d.sites.map(s=>`<div class="st num"><span class="tt">${hmT(s.s)}</span><span class="nm">${s.nm}</span><span class="du">${du(s.e-s.s)}</span></div>`),[`<div class="st num"><span class="tt">${hmT(R.at(-1).t)}</span><span class="nm">Home</span><span></span></div>`]).join('');
-return `<div class="grab"></div><div class="eb">${I.sun}Good morning · 6:40 AM</div><h3>Is today's plan still on?</h3><p class="sub">Tuesday, Sep 29 · 2 sites. Confirm and I'll track the day automatically.</p>
-<div class="pl">${list}</div>
-<div class="trf num">${I.car}Traffic now: 27 min to Office (+2). Leave by 7:03 AM.</div>
-<div class="col"><button class="btn" data-start>${I.chk}Yes, start my day</button><button class="btn ghost" data-editplan>${I.edit}Change today's plan</button><a class="txtb" href="#" data-gooff style="text-align:center;text-decoration:none;line-height:40px">Not working today</a></div>`;
-}
-function reviewSheet(){
-const d=TODAY,R=rows(d),T=totals(d);
-const it=[['Left home',hmT(d.leave)+' · auto-detected']];
-d.sites.forEach(s=>{it.push([s.nm,`${hmT(s.s)} – ${hmT(s.e)} · ${du(s.e-s.s)}`]);s.brk.forEach(b=>it.push([`${b.lb} · ${b.paid?'paid':'unpaid'}`,`${hmT(b.s)} – ${hmT(b.s+b.d)}`,b.k=='Lunch'?'Lunch ended by timer — check':'']))});
-it.push(['Arrived home',hmT(R.at(-1).t)]);
-return `<div class="grab"></div><div class="eb" style="color:var(--success)">${I.chk}Review day</div><h3 class="num">${du(T.w)} worked</h3><p class="sub num">Drive ${du(T.dv)} · breaks ${du(T.br)}. Tap Edit on anything that's off.</p>
-${it.map(x=>`<div class="rv"><span class="c${x[2]?' w':''}">${x[2]?'!':I.chk}</span><div><div class="t">${x[0]}</div><div class="s num${x[2]?' w':''}">${x[2]||x[1]}</div></div><button class="e">Edit</button></div>`).join('')}
-<div class="brow" style="margin-top:18px"><button class="btn ghost" data-close>Later</button><button class="btn" data-confirm>${I.chk}Confirm day</button></div>`;
-}
-
 const NOTES={
-morning:{q:'Утром, до выезда: подтвердить план одним тапом.',good:['Окно появляется само при первом открытии после 5:00 AM или по push за 30 мин до выезда','План дня, пробки прямо сейчас и скорректированное время выезда','Три исхода: начать день, поправить план, «не работаю» (→ экран Day off)']},
+morning:{q:'Утром, до выезда: когда выходить.',good:['Время выезда, пробки и кнопка Google Maps']},
 before:{q:'До смены: главный вопрос — когда выходить.',good:['Герой-карточка: время выезда + обратный отсчёт, трафик, кнопка Google Maps','Весь план дня таймлайном: выезд → дорога → сайты с перерывами → дом','Перерывы и ланч — отдельные строки (Paid/Unpaid), а не зачёркнутый текст']},
 during:{q:'Во время смены: сколько осталось и что дальше.',good:['Карточка текущего сайта: время ухода, остаток, прогресс','Ближайший перерыв с кнопкой «Start now»','Красная линия «сейчас» между событиями; пройденная часть — сплошной синий рельс','Google Maps — у ближайшего переезда']},
-after:{q:'После смены: проверить и подтвердить лог.',good:['Итог: отработано, дорога, перерывы','«Review & confirm day» — список событий, спорные помечены ⚠','После подтверждения день уходит в Work log']},
+after:{q:'После смены: итог дня.',good:['Итог: отработано, дорога, перерывы','День сохраняется в Planner, правка там']},
 off:{q:'Нерабочий день: неделя и следующая смена.',good:['Карточка дня по типу: Day off — штриховка, PTO — --pro, Holiday — --danger','Недельная сводка — только здесь (правило проекта)','Next shift открывается в редактор по тапу или кнопке «Edit shift»']},
-arrived:{q:'Прибытие на сайт: PWSL, затем голосовой отчёт — по очереди.',good:['Очередь приглашений: одно окно за раз, второе — через ~2 сек после закрытия первого; внизу баннера «Voice report next»','Snooze 10 min ставит приглашение в конец очереди, не перекрывая другое','Голосовой отчёт — фиолетовый (--pro), PWSL — оранжевый chip, чтобы не путать','Voice report связывается с сайтом в Work log; вызов также из таба Report','Баннер сверху появляется сам в момент прибытия (гео-детект) — без новых кнопок на экране','«Snooze 10 min» — баннер вернётся (в демо через ~6 сек); × — просто скрыть','Статус отчёта живёт в строке сайта на таймлайне: pending → тап открывает модуль, sent — зелёный','Та же точка входа, что и в Report-табе: модуль PWSL открывается поверх Today']},
+arrived:{q:'Прибытие на сайт: PWSL, затем голосовой отчёт — по очереди.',good:['Очередь приглашений: одно окно за раз, второе — через ~2 сек после закрытия первого; внизу баннера «Voice report next»','Snooze 10 min ставит приглашение в конец очереди, не перекрывая другое','Голосовой отчёт — фиолетовый (--pro), PWSL — оранжевый chip, чтобы не путать','Voice report связывается с сайтом в Planner; вызов также из таба Report','Баннер сверху появляется сам в момент прибытия (гео-детект) — без новых кнопок на экране','«Snooze 10 min» — баннер вернётся (в демо через ~6 сек); × — просто скрыть','Статус отчёта живёт в строке сайта на таймлайне: pending → тап открывает модуль, sent — зелёный','Та же точка входа, что и в Report-табе: модуль PWSL открывается поверх Today']},
 confirmed:{q:'Вечером: день закрыт, фокус на завтра.',good:['Day confirmed: оплачиваемые часы за день, неделя до 40h с прогнозом овертайма, проверка перерывов','PWSL reports Mon–Sun: Sent / Ready / Missed / upcoming / PTO / Off; «Send» для готового отчёта','«Tomorrow» разворачивается в редактор прямо на Today: время прибытия, длительность, сайты, авто-время выезда','Проверка нехватки времени на дорогу между сайтами','Редактирование до 12:00 AM, затем план фиксируется до утреннего подтверждения']}};
 const BAD=[
 ['Перерывы зачёркнуты','Читаются как отменённые; цвет линий (жёлтый/зелёный) без подписи.'],
@@ -425,7 +407,7 @@ ${ready?`<div class="rpf"><span>${ready.w} report ready · not sent yet</span><b
 function offScreen(){
 const v=OFFV[OFFK],w={logged:1650,paid:480},tot=w.logged+w.paid;
 return `<div class="card hero off ${OFFK}"><div class="eb"><span>${v.eb}</span></div><div class="big" style="font-size:28px;letter-spacing:-.02em">${v.big}</div><div class="sub">${v.s}</div><div class="brow"><button class="btn ghost" style="flex:none;padding:0 16px;height:40px;font-size:13.5px">${I[v.ic]}${v.act}</button></div></div>
-<div class="card" style="padding:16px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><span class="lab">This week · Sep 28 – Oct 4</span><a href="week-timeline.html" style="font-size:13px;font-weight:800;text-decoration:none">Week ›</a></div>
+<div class="card" style="padding:16px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><span class="lab">This week · Sep 28 – Oct 4</span><a href="week-timeline.html" style="font-size:13px;font-weight:800;text-decoration:none">Planner ›</a></div>
 <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><div class="num" style="font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1;white-space:nowrap">${du(tot)}<small style="font-size:14px;color:var(--text-3);font-weight:700;margin-left:6px;letter-spacing:0">total</small></div><a href="week-timeline.html" style="font-size:13.5px;font-weight:800;color:var(--warning);text-decoration:none">3 days to plan</a></div>
 <div class="segbar"><span style="flex:${w.logged};background:var(--success)"></span><span style="flex:${w.paid};background:var(--pro)"></span></div>
 <div class="legend"><span><i class="ld" style="background:var(--success)"></i>Logged <b class="num">${du(w.logged)}</b></span><span><i class="ld" style="background:var(--pro)"></i>Paid off <b class="num">${du(w.paid)}</b></span></div></div>
@@ -433,7 +415,7 @@ ${tomorrowCard(0,'next')}`;
 }
 function banner(now){const s=TODAY.sites.find(x=>x.nm==bn.nm)||TODAY.sites[0],pw=bn.t=='pw';
 const more=Q.filter(x=>x.nm==bn.nm).length;
-return `<div class="bnr${pw?'':' vrb'}"><div class="bnh"><span class="bic">${pw?I.doc:I.mic}</span><div style="flex:1;min-width:0"><div class="bt0">${bn.re?'Reminder':'Arrived'} · ${s.nm} · ${hmT(s.s)}</div><div class="bt1">${pw?'Start PWSL report for this site?':'Record a voice report?'}</div><div class="bt2">${pw?'Takes about a minute. You can finish it later.':'Talk it through — about 30 sec. Linked to this site in Work log.'}</div></div><button class="bx" data-bx aria-label="Dismiss">${I.x}</button></div>
+return `<div class="bnr${pw?'':' vrb'}"><div class="bnh"><span class="bic">${pw?I.doc:I.mic}</span><div style="flex:1;min-width:0"><div class="bt0">${bn.re?'Reminder':'Arrived'} · ${s.nm} · ${hmT(s.s)}</div><div class="bt1">${pw?'Start PWSL report for this site?':'Record a voice report?'}</div><div class="bt2">${pw?'Takes about a minute. You can finish it later.':'Talk it through — about 30 sec. Linked to this site in Planner.'}</div></div><button class="bx" data-bx aria-label="Dismiss">${I.x}</button></div>
 <div class="brow"><button class="btn ghost" data-bsnz>${I.bell}Snooze 10 min</button><button class="btn" data-bstart>${pw?'Start report':I.mic+'Record'}</button></div>${more?`<div class="bq">${more==1?(Q.find(x=>x.nm==bn.nm).t=='vr'?'Voice report':'PWSL report'):more+' more'} next · one prompt at a time</div>`:'<div class="bgrab"></div>'}</div>`}
 function renderPanel(){
 const n=NOTES[S];
@@ -448,8 +430,8 @@ const st=STATES.find(s=>s.k==S),now=st.t;
 document.getElementById('pick').innerHTML=STATES.map(s=>`<button class="${s.k==S?'on':''}" data-st="${s.k}">${s.l}<i class="num">${hmT(s.t)}</i></button>`).join('');
 document.getElementById('pick2').innerHTML=S=='off'?[['off','Day off'],['pto','PTO'],['holiday','Holiday']].map(([k,l])=>`<button class="${k==OFFK?'on':''}" data-ok="${k}">${l}</button>`).join(''):'';
 const offD=OFFV[OFFK];
-const dot={arrived:'var(--success)',off:{off:'var(--text-3)',pto:'var(--pro)',holiday:'var(--danger)'}[OFFK],morning:'var(--accent)',before:'var(--accent)',during:'var(--success)',after:'var(--warning)',confirmed:'var(--success)'}[S];
-const stat={arrived:'On shift · site 1 of 2',off:offD.eb.split(' · ')[0],morning:'Planned · 2 sites',before:'Planned · 2 sites',during:'On shift · site 2 of 2',after:'Needs review',confirmed:'Confirmed'}[S];
+const dot={arrived:'var(--success)',off:{off:'var(--text-3)',pto:'var(--pro)',holiday:'var(--danger)'}[OFFK],morning:'var(--accent)',before:'var(--accent)',during:'var(--success)',after:'var(--success)',confirmed:'var(--success)'}[S];
+const stat={arrived:'On shift · site 1 of 2',off:offD.eb.split(' · ')[0],morning:'Planned · 2 sites',before:'Planned · 2 sites',during:'On shift · site 2 of 2',after:'Shift complete',confirmed:'Confirmed'}[S];
 let body='';
 if(S=='off')body=offScreen();
 else if(S=='confirmed')body=confirmedCard()+reportsCard()+tomorrowCard(now);
@@ -458,11 +440,11 @@ const ph=document.getElementById('ph');
 ph.innerHTML=`<div class="sb"><span class="num">${hs(now)}</span><i></i></div><div class="sc">
 <div class="hd"><div><div class="h1">Today</div><div class="date"><i class="ld" style="background:${dot}"></i>${S=='off'?offD.date:'Tue, Sep 29'} · ${stat}</div></div><div class="hr"><span class="probadge">PRO</span><span class="ib">${I.set}</span></div></div>
 ${body}</div>
-<div class="nav"><span class="ni on">${I.today}<span>Today</span></span><a class="ni" href="week-timeline.html">${I.week}<span>Week</span></a><span class="ni" data-nwl style="cursor:pointer">${I.log}<span>Work log</span></span><span class="ni" data-nvr style="cursor:pointer">${I.mic}<span>Report</span></span></div>
-${bn?banner(now):''}${sheet?`<div class="scrim" data-close></div><div class="sheet">${sheet=='morning'?morningSheet():reviewSheet()}</div>`:''}${toast?`<div class="toast">${toast}</div>`:''}`;
+<div class="nav"><span class="ni on">${I.today}<span>Today</span></span><a class="ni" href="planner-month.html">${I.planner}<span>Planner</span></a><span class="ni" data-nvr style="cursor:pointer">${I.mic}<span>Report</span></span></div>
+${bn?banner(now):''}${toast?`<div class="toast">${toast}</div>`:''}`;
 renderPanel();bind();
 }
-function go(k){savedAt=false;REP={};VRP=structuredClone(VRPS[k]||{});bn=null;gapUntil=0;const t0=Date.now()+500;Q=k=='arrived'?[{t:'vr',nm:'Office',due:t0}]:[];S=k;if(!EMB)localStorage.setItem('wt-today-st',k);sheet=k=='morning'?'morning':null;editT=false;openTL=false;render()}
+function go(k){savedAt=false;REP={};VRP=structuredClone(VRPS[k]||{});bn=null;gapUntil=0;const t0=Date.now()+500;Q=k=='arrived'?[{t:'vr',nm:'Office',due:t0}]:[];S=k;if(!EMB)localStorage.setItem('wt-today-st',k);sheet=null;editT=false;openTL=false;render()}
 function flash(t){toast=t;render();setTimeout(()=>{toast='';render()},1600)}
 function bind(){
 const q=(s,f)=>document.querySelectorAll(s).forEach(el=>el.onclick=e=>f(el,e));
@@ -476,12 +458,11 @@ q('[data-send]',()=>{const d=RPT.find(x=>x.st=='ready');if(d){d.st='sent';d.at='
 const mark=(t,nm,v)=>{(t=='pw'?REP:VRP)[nm]=v};
 q('[data-bstart]',()=>{const b=bn;mark(b.t,b.nm,'sent');closeBn();flash(b.t=='pw'?'Opening PWSL report…':'Opening Voice report…')});
 q('[data-pw]',el=>{const nm=el.dataset.pw;if(REP[nm]=='sent')return;REP[nm]='sent';Q=Q.filter(x=>!(x.t=='pw'&&x.nm==nm));if(bn&&bn.t=='pw'&&bn.nm==nm)closeBn();flash('Opening PWSL report…')});
-q('[data-vr]',el=>{const nm=el.dataset.vr;if(VRP[nm]=='sent'){flash('Work log · voice report linked to '+nm);return}VRP[nm]='sent';Q=Q.filter(x=>!(x.t=='vr'&&x.nm==nm));if(bn&&bn.t=='vr'&&bn.nm==nm)closeBn();flash('Opening Voice report…')});
+q('[data-vr]',el=>{const nm=el.dataset.vr;if(VRP[nm]=='sent'){flash('Planner · voice report linked to '+nm);return}VRP[nm]='sent';Q=Q.filter(x=>!(x.t=='vr'&&x.nm==nm));if(bn&&bn.t=='vr'&&bn.nm==nm)closeBn();flash('Opening Voice report…')});
 q('[data-bx]',()=>{closeBn();render()});
 q('[data-bsnz]',()=>{const b=bn;mark(b.t,b.nm,'snoozed');b.re=true;b.due=Date.now()+6000;Q.push(b);closeBn();flash('Reminder in 10 min')});
-q('[data-nwl]',()=>flash('Work log · voice reports linked per site'));
+
 q('[data-nvr]',()=>flash('Opening Voice report…'));
-q('[data-review]',()=>{sheet='review';render()});
 q('[data-confirm]',()=>{go('confirmed');flash('Day confirmed')});
 q('[data-tl]',()=>{openTL=!openTL;render()});
 q('[data-tt]',el=>{const k=el.dataset.tt;if(editT!=k){draft=structuredClone(k=='tmr'?TMR:PL[k]);editT=k;savedAt=false;render()}});

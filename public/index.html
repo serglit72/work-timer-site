@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Jobday: Work Planner &amp; Hours</title>
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="description" content="Jobday plans your workday from your jobs, logs your hours, mileage and when you were on site, and reminds you about breaks. For hourly and field workers.">
+<meta name="description" content="For field techs and hourly workers who drive between job sites. Jobday plans your day from your sites, logs arrivals, hours and mileage, and reminds you about breaks.">
 <link rel="canonical" href="https://jobday.app/">
 <meta name="theme-color" content="#0B1016">
 <meta property="og:type" content="website">
@@ -15,383 +15,359 @@
 <meta property="og:description" content="Your workday, planned from your jobs. Hours, mileage and a record of when you were on site. Break reminders are free.">
 <meta property="og:url" content="https://jobday.app/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jobday: Work Planner &amp; Hours">
-<meta name="twitter:description" content="Your workday, planned from your jobs. Hours, mileage and a record of when you were on site. Break reminders are free.">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hvac-truck.webp" imagesrcset="img/hvac-truck-640.webp 640w, img/hvac-truck.webp 1024w" imagesizes="100vw" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens/colors.css">
 <style>
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:#0B1016;color:#F2F5F8;font-size:17px;line-height:1.55}
-a{color:#29B8FF;text-decoration:none}a:hover{color:#7FD3FF}
+/* Layout follows reports.aiconspro.com (Voice Smart Report): full-bleed photo hero with
+   left-aligned copy, then bordered bands of cards. Colors come from Jobday tokens (.dark). */
+:root{--page:#0B1016;--on-accent:#06131c;--ink-photo:rgba(242,245,248,.84);color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--page);color:var(--text-1);font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:68rem;margin:0 auto;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:720px){.wrap{padding-inline:2rem}}
 .num{font-variant-numeric:tabular-nums}
-.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
-.mut{color:rgba(242,245,248,.66)}
-.eb{font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#29B8FF}
-h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.03em;text-wrap:balance}
-h1{font-size:clamp(44px,6.4vw,84px);line-height:.98}
-h2{font-size:clamp(34px,4.2vw,56px);line-height:1.04}
-h3{font-size:21px;letter-spacing:-.015em;line-height:1.25}
-p{margin:0;text-wrap:pretty}
-/* nav */
-.top{position:sticky;top:0;z-index:20;background:rgba(11,16,22,.82);backdrop-filter:blur(14px);border-bottom:1px solid #1C252F}
-.top .wrap{display:flex;align-items:center;gap:32px;height:68px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.02em;color:#F2F5F8}
-.logo i{width:28px;height:28px;border-radius:8px;background:#0AB0FF;display:grid;place-items:center}
-.logo i::after{content:"";width:12px;height:12px;border:2.5px solid #06131c;border-radius:50%;border-top-color:transparent;transform:rotate(45deg)}
-.links{display:flex;gap:24px;margin-left:auto;font-size:15px;font-weight:700}
-.links a,.logo{white-space:nowrap}
-@media (max-width:1100px){.links{display:none}.top .cta{margin-left:auto}}
-.links a{color:rgba(242,245,248,.7)}.links a:hover{color:#fff}
-.cta{height:44px;padding:0 20px;border-radius:12px;background:#0AB0FF;color:#06131c!important;font-weight:800;font-size:15px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
-.cta:hover{background:#29B8FF}
-.cta.gh{background:transparent;color:#F2F5F8!important;border:1px solid #36434F}.cta.gh:hover{background:#161E27}
-.cta svg{width:18px;height:18px}
-/* device */
-.dev{--s:.7;width:calc(390px*var(--s) + 20px);height:calc(844px*var(--s) + 20px);padding:10px;border-radius:calc(44px*var(--s) + 10px);background:#1A222C;box-shadow:0 0 0 1px #2A3541,0 40px 80px rgba(0,0,0,.55);flex:none;position:relative}
-.dev .scr{width:calc(390px*var(--s));height:calc(844px*var(--s));border-radius:calc(44px*var(--s));overflow:hidden;position:relative;background:#0E141B}
-.dev iframe{position:absolute;top:0;left:0;width:390px;height:844px;border:0;transform:scale(var(--s));transform-origin:0 0;transition:opacity .35s;pointer-events:none}
-.dev iframe.hide{opacity:0;pointer-events:none}
-/* hero */
-.hero{padding:88px 0 0;overflow:hidden}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:56px;justify-items:center;text-align:center}
-.hero p.lead{font-size:20px;max-width:620px;margin:22px auto 0;color:rgba(242,245,248,.7)}
-.hbtn{display:flex;gap:12px;justify-content:center;margin-top:34px;flex-wrap:wrap}
-.stage{display:flex;align-items:flex-start;justify-content:center;gap:0;position:relative;height:640px;width:100%}
-.stage::before{content:"";position:absolute;left:50%;top:80px;width:720px;height:520px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(10,176,255,.18),transparent);pointer-events:none}
-.stage .dev.c{--s:.74;z-index:2}
-.stage .dev.l,.stage .dev.r{--s:.6;margin-top:90px;opacity:.92}
-.stage .dev.l{margin-right:-40px;transform:rotate(-4deg)}
-.stage .dev.r{margin-left:-40px;transform:rotate(4deg)}
-.live{position:absolute;top:-14px;left:50%;transform:translateX(-50%);z-index:3;height:28px;padding:0 12px;border-radius:999px;background:#161E27;border:1px solid #2A3541;font-size:12px;font-weight:800;display:flex;align-items:center;gap:7px;white-space:nowrap;color:rgba(242,245,248,.8)}
-.live::before{content:"";width:7px;height:7px;border-radius:50%;background:#2BC489}
-/* strip */
-.strip{border-top:1px solid #1C252F;border-bottom:1px solid #1C252F;background:#0E141B;position:relative;z-index:3}
-.strip .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-top:30px;padding-bottom:30px}
-.strip b{display:block;font-size:16px;font-weight:800}.strip span{font-size:14.5px;color:rgba(242,245,248,.6)}
-/* sections */
-section.s{padding:128px 0}
-.head{max-width:720px;display:flex;flex-direction:column;gap:18px;margin-bottom:64px}
-.head p{font-size:19px;color:rgba(242,245,248,.68)}
-/* day flow */
-.flow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:72px;align-items:center}
-.steps{display:flex;flex-direction:column;gap:4px;counter-reset:st}
-.step{display:grid;grid-template-columns:76px minmax(0,1fr);gap:16px;padding:18px 20px;border-radius:16px;border:1px solid transparent;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer;transition:background .2s}
-.step:hover{background:#121A22}
-.step.on{background:#161E27;border-color:#28333F}
-.step .t{font-size:15px;font-weight:800;color:rgba(242,245,248,.45);padding-top:2px}
-.step.on .t{color:#29B8FF}
-.step h3{font-size:19px}
-.step p{font-size:15.5px;color:rgba(242,245,248,.62);margin-top:4px;display:none}
-.step.on p{display:block}
-.step{position:relative;overflow:hidden}.step .bar{position:absolute;left:20px;right:20px;bottom:0;height:2px;background:#28333F;display:none}.step.on .bar{display:block}.step .bar i{display:block;height:100%;width:0;background:#29B8FF}.step.on .bar i{animation:fill var(--dur,4.5s) linear forwards}.steps.paused .step.on .bar i{animation-play-state:paused}@keyframes fill{to{width:100%}}
-figure{margin:0;display:flex;flex-direction:column;gap:14px;align-items:center}figcaption{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,245,248,.55)}.vis figure:nth-of-type(2){margin-top:64px}.sw.pairsw{display:none;margin:0 !important}.vis .dev:nth-child(2){margin-top:0}.vcol{flex-direction:column;align-items:center;gap:24px}.vcol .sw{margin-top:0}
-/* feature rows */
-.feat{display:grid;grid-template-columns:auto minmax(0,1fr);gap:88px;align-items:center}
-.feat.rev{grid-template-columns:minmax(0,1fr) auto}
-.feat.rev .vis{order:2}
-.vis{display:flex;gap:24px;align-items:flex-start}
-.vis .dev{--s:.62}
-.vis .dev:nth-child(2){margin-top:64px}
-.pts{display:flex;flex-direction:column;gap:26px;margin-top:40px}
-.pt{display:grid;grid-template-columns:40px minmax(0,1fr);gap:16px}
-.pt i{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#161E27;border:1px solid #28333F}
-.pt i svg{width:19px;height:19px}
-.pt p{font-size:15.5px;color:rgba(242,245,248,.62);margin-top:4px}
-.sw{display:inline-flex;gap:4px;padding:4px;background:#161E27;border:1px solid #28333F;border-radius:12px;margin-top:36px}
-.sw button{height:38px;padding:0 16px;border:0;border-radius:9px;background:none;color:rgba(242,245,248,.6);font:inherit;font-size:14px;font-weight:800;cursor:pointer}
-.sw button.on{background:#28333F;color:#F2F5F8}
-.sw button.on[data-k="pto"]{color:#A98BF0}.sw button.on[data-k="holiday"]{color:#F26B75}
-/* legend swatches */
-.key{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:28px;font-size:14px;font-weight:700;color:rgba(242,245,248,.7)}
-.key span{display:flex;align-items:center;gap:8px}.key i{width:22px;height:10px;border-radius:3px}
-/* closing */
-.end{text-align:center;padding:140px 0 120px;border-top:1px solid #1C252F}
-.end h2{max-width:820px;margin:0 auto}
-.end p{font-size:19px;color:rgba(242,245,248,.66);margin:20px auto 0;max-width:560px}
-footer{border-top:1px solid #1C252F;padding:28px 0;font-size:14px;color:rgba(242,245,248,.45)}
-footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-footer nav{display:flex;gap:22px}footer a{color:rgba(242,245,248,.6)}
-@media (max-width:1080px){
-.stage .dev.l,.stage .dev.r{display:none}
-.feat,.feat.rev{grid-template-columns:minmax(0,1fr);gap:56px}.flow{gap:32px}.flow .dev{--s:.62!important}
-.feat.rev .vis{order:0}
-.vis{justify-self:center}
-.strip .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media (max-width:640px){
-.wrap{padding:0 20px}.links{display:none}.top .cta{margin-left:auto}
-section.s{padding:88px 0}
-.stage{height:560px}.stage .dev.c{--s:.64}
-.vis .dev{--s:.5}
-.flow .dev{--s:.62}
-.step{grid-template-columns:62px minmax(0,1fr);padding:14px}.flow{grid-template-columns:minmax(0,1fr)}.flow .dev{justify-self:center;order:-1}
-.vis.pair{flex-direction:column;align-items:center;gap:20px}.vis.pair .pairsw{display:inline-flex}
-.vis.pair figure:nth-of-type(2){margin-top:0}.vis.pair figcaption{display:none}
-.vis.pair[data-show="0"] figure:nth-of-type(2),.vis.pair[data-show="1"] figure:nth-of-type(1){display:none}
+h1,h2,h3,p{margin:0}
+h2{font-size:clamp(1.75rem,4vw,2.15rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;text-wrap:balance}
+h3{font-size:18px;font-weight:800;letter-spacing:-.015em;line-height:1.3}
+.eyebrow{color:var(--accent);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(11,16,22,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{padding-block:.8rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.1rem;text-decoration:none;letter-spacing:-.01em}
+.brand img{width:2rem;height:2rem;border-radius:9px;display:block}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:2.9rem;padding:.6rem 1.15rem;border-radius:12px;font-weight:800;font-size:15px;text-decoration:none;white-space:nowrap}
+.btn svg{width:1.05rem;height:1.05rem;flex:none}
+.btn-primary{background:#0AB0FF;color:var(--on-accent)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{border:1px solid rgba(242,245,248,.25);color:var(--text-1);background:rgba(11,16,22,.35)}
+.btn-ghost:hover{border-color:rgba(242,245,248,.5)}
+.top .btn{min-height:2.5rem;padding:.45rem .95rem;font-size:14px}
+
+/* hero: photo slideshow behind static copy (who + headline + CTA) */
+.hero{position:relative;isolation:isolate;overflow:hidden;min-height:clamp(36rem,80vh,44rem);background:var(--page);display:flex;border-bottom:1px solid var(--line)}
+.slides{position:absolute;inset:0;z-index:-1}
+.slide{position:absolute;inset:0;margin:0;opacity:0;transition:opacity .9s ease}
+.slide.is-active{opacity:1}
+.slide:not(.is-active) .trade{visibility:hidden}
+.slide img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:var(--pos,50%) 30%}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,16,22,.97) 30%,rgba(11,16,22,.55) 62%,rgba(11,16,22,.35) 100%)}
+.trade{position:absolute;z-index:1;top:1.1rem;right:max(16px,env(safe-area-inset-right,0px));padding:.3rem .7rem;border-radius:999px;background:rgba(11,16,22,.6);border:1px solid rgba(242,245,248,.25);font-size:13px;font-weight:800;color:var(--text-1)}
+.hero-ui{position:relative;z-index:2;width:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:1rem;padding-block:6rem 1.75rem}
+.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;line-height:1.03;letter-spacing:-.035em;max-width:13ch;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.sub{color:var(--ink-photo);font-size:clamp(1rem,1.6vw,1.15rem);max-width:30rem}
+.ctas{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:.5rem}
+.note{color:var(--text-3);font-size:14px}
+.dots{display:flex;align-items:center;gap:.5rem;margin-top:.5rem}
+.dot{width:2rem;height:.3rem;border:0;border-radius:99px;background:rgba(242,245,248,.3);padding:0;cursor:pointer;position:relative;overflow:hidden}
+.dot.is-active::after{content:"";position:absolute;inset:0;background:var(--accent);transform-origin:left;animation:fill 6s linear forwards}
+.hero.paused .dot.is-active::after{animation-play-state:paused}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (min-width:720px){
+  .hero-ui{justify-content:center;padding-block:4rem}
+  .hero{min-height:clamp(34rem,45vw,46rem)}
+  .slide img{left:auto;right:0;top:50%;bottom:auto;transform:translateY(-50%);width:max(calc(100% - 30rem),60%);height:auto;aspect-ratio:16/9;object-position:50% 40%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%),linear-gradient(180deg,transparent 0,#000 10%,#000 90%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 22%),linear-gradient(180deg,transparent 0,#000 10%,#000 90%,transparent 100%);mask-composite:intersect}
+  .slide::after{background:linear-gradient(90deg,rgba(11,16,22,.96) 0%,rgba(11,16,22,.86) 30%,rgba(11,16,22,.35) 52%,rgba(11,16,22,.1) 72%,rgba(11,16,22,.4) 100%),linear-gradient(0deg,rgba(11,16,22,.9) 0%,rgba(11,16,22,0) 30%)}
+  .trade{top:auto;bottom:1.75rem;right:max(2rem,calc((100vw - 68rem)/2 + 2rem))}
+  .who,.hero h1,.sub{max-width:min(30rem,44vw)}
 }
 
-/* Every phone the same size: one scale for all screenshots. */
-:root{--dev-s:.7}.stage{height:800px}
-@media (max-width:640px){:root{--dev-s:.7}.stage{height:660px}}
-.dev,.stage .dev.c,.stage .dev.l,.stage .dev.r,.vis .dev,.flow .dev{--s:var(--dev-s)!important}
+/* bands */
+section.band{padding-block:clamp(3rem,7vw,4.75rem);border-top:1px solid var(--line)}
+section.band:first-of-type{border-top:0}
+.sec-head{max-width:40rem;margin-bottom:2rem;display:grid;gap:.6rem}
+.sec-head p{color:var(--text-2);font-size:18px}
 
-/* coming-soon section: static illustration, not a screenshot */
-.tag-pro{font-size:11px;font-weight:800;letter-spacing:.06em;color:#A98BF0;background:#231C39;padding:3px 8px;border-radius:999px;vertical-align:3px}
-.soon{display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:999px;background:#2C2310;color:#F4A626;border:1px solid #4A3A14;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
-.gviz{width:100%;max-width:560px;display:grid;grid-template-columns:minmax(0,1.2fr) 36px minmax(0,1fr);gap:12px;align-items:center;padding:22px 22px 14px;border-radius:24px;background:var(--surface);border:1px solid var(--line);color:var(--text-1);font-size:13px;line-height:1.3}
-.gcap{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:10px}
-.gsheet,.gplan{min-width:0}
-.gr{display:grid;grid-template-columns:34px 44px 62px minmax(0,1fr);gap:8px;padding:8px 8px;border-bottom:1px solid var(--line);font-weight:600;color:var(--text-2)}
-.gr span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.gr.gh{font-size:11px;font-weight:800;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;background:var(--surface-1);border-radius:8px 8px 0 0}
-.gr.hit{background:var(--accent-soft);color:var(--text-1);border-radius:6px;box-shadow:0 0 0 1.5px var(--accent) inset}
-.garrow{display:grid;place-items:center;color:var(--accent)}.garrow svg{width:26px;height:26px}
-.gst{display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:var(--surface-1);border:1px solid var(--line)}
-.gst.hit{background:var(--accent-soft);border-color:var(--accent)}
-.gst b{font-size:12.5px;font-weight:800;color:var(--accent)}
-.gst strong{display:block;font-size:14px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.gst small{display:block;color:var(--text-2);font-weight:600;font-size:11.5px}
-.gdr{padding:5px 0 5px 28px;font-size:11.5px;font-weight:700;color:var(--text-3)}
-.gnote{grid-column:1/-1;text-align:center;font-size:12px;font-weight:600;color:var(--text-3);padding-top:6px}
-@media (max-width:720px){.gviz{grid-template-columns:minmax(0,1fr);padding:18px 16px 12px}.garrow{transform:rotate(90deg);height:28px}.gr{grid-template-columns:30px 40px 58px minmax(0,1fr);gap:6px}}
+/* pains */
+.pro{font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--pro);background:var(--pro-soft);padding:2px 8px;border-radius:999px;vertical-align:1px;white-space:nowrap}
+
+/* steps with phones */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;counter-reset:s}
+.steps li{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.25rem;min-width:0;counter-increment:s;display:flex;flex-direction:column;gap:.35rem;overflow:hidden}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:14px;margin-bottom:.45rem}
+.steps p{color:var(--text-2);font-size:16px}
+.phone{--s:.6;align-self:center;margin-top:1.25rem;width:calc(390px*var(--s) + 16px);padding:8px;border-radius:calc(40px*var(--s) + 8px);background:#1a222c;border:1px solid rgba(242,245,248,.12);margin-bottom:1.25rem}
+.phone .scr{width:calc(390px*var(--s));height:calc(844px*var(--s));border-radius:calc(40px*var(--s));overflow:hidden;position:relative;background:var(--bg)}
+.phone iframe{position:absolute;top:0;left:0;width:390px;height:844px;border:0;transform:scale(var(--s));transform-origin:0 0;pointer-events:none}
+
+/* pricing */
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
+.col-soon{border-style:dashed;background:transparent}
+.col-soon h3 span{color:var(--text-2);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:.15rem .6rem}
+.col-soon ul{color:var(--text-3)}
+.col{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.25rem;min-width:0}
+.col-main{border-color:var(--accent);background:var(--surface-1)}
+.col h3{display:flex;justify-content:space-between;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.6rem}
+.col h3 span{font-size:15px;color:var(--accent)}
+.col ul{margin:0;padding-left:1.1rem;color:var(--text-2);font-size:16px;display:grid;gap:.3rem}
+
+.final{text-align:center}
+.final h2{max-width:22ch;margin:0 auto}
+.final p{color:var(--text-2);max-width:32rem;margin:.75rem auto 1.6rem;font-size:18px}
+.final .ctas{justify-content:center}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-block:1.75rem 2.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.75rem 1.5rem;color:var(--text-3);font-size:14px}
+footer nav{display:flex;gap:1.25rem;flex-wrap:wrap}
+footer a{text-decoration:none;color:var(--text-2)}
+footer a:hover{color:var(--text-1)}
+
+
+@media (min-width:720px) and (max-width:1023px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1024px){.steps{grid-template-columns:repeat(4,minmax(0,1fr))}.steps li{padding:1rem}.phone{--s:.49}}
+/* phones: keep the page short */
+@media (max-width:719px){
+  .hero{min-height:0}
+  .slide{bottom:auto;height:56.25vw}
+  .slide img{height:100%;object-position:50% 40%}
+  .slide::after{background:linear-gradient(180deg,rgba(11,16,22,0) 55%,rgba(11,16,22,1) 100%)}
+  .hero-ui{padding-top:calc(56.25vw - 1.5rem)}
+  .steps{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:min(80%,17rem);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:16px;margin-inline:-16px;padding-inline:16px;scrollbar-width:none;overscroll-behavior-x:contain}
+  .steps::-webkit-scrollbar{display:none}
+  .steps li{scroll-snap-align:start}
+  .phone{--s:.54}
+  .sec-head{margin-bottom:1.4rem}
+}
+@media (prefers-reduced-motion:reduce){.slide{transition:none}.dot.is-active::after{animation:none}}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:1rem}
+.wcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.25rem;display:flex;flex-direction:column;gap:.75rem;min-width:0}
+.wcard h3{margin:0}.wcard p{margin:0;color:var(--text-2);font-size:16px}
+.wbox{border-radius:22px;padding:14px;background:radial-gradient(120% 140% at 10% 0%,#1d2c3d 0%,#0b1118 62%);border:1px solid var(--line)}
+.wbox iframe{display:block;width:100%;aspect-ratio:364/170;border:0;border-radius:22px;pointer-events:none;background:transparent}
+.who{display:flex;flex-direction:column;gap:.55rem}
+.who-for{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-photo)}
+.who-chips{display:flex;flex-wrap:nowrap;gap:.4rem;max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:4px 4px 6px;margin:-4px}
+.who-chips::-webkit-scrollbar{display:none}
+.who-chips button,.who-chips .chip-static{flex:none;white-space:nowrap}
+.who-note{font-size:15px;font-weight:600;color:var(--ink-photo)}
+.pains{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:1rem}
+.pains li{position:relative;box-sizing:border-box;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.4rem 1.4rem 1.2rem;min-width:0;display:flex;flex-direction:column;gap:1rem;overflow:hidden}
+.pains li::before{content:"\201C";position:absolute;top:-.2rem;right:1rem;font-size:7rem;line-height:1;font-weight:800;color:#F4A626;opacity:.14;pointer-events:none}
+.pains .scene{align-self:flex-start;font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#F4A626;background:rgba(244,166,38,.12);border-radius:999px;padding:.25rem .7rem}
+.pains q{font-size:clamp(1.4rem,2.6vw,1.85rem);font-weight:800;line-height:1.2;letter-spacing:-.02em;quotes:none;text-wrap:balance;position:relative}
+.pains .fix{display:flex;gap:.7rem;align-items:flex-start;margin-top:auto;padding-top:1rem;border-top:1px dashed var(--line);color:var(--text-2);font-size:15.5px;line-height:1.5}
+.pains .fix::before{content:"";flex:none;width:1.35rem;height:1.35rem;margin-top:.1rem;border-radius:50%;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 6.2 5 8.6l4.5-5' stroke='%2306131c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/70% no-repeat}
+.pains .fix b{color:var(--text-1)}
+.pains li{padding:0;gap:0}
+.pains .ph{position:relative;aspect-ratio:16/8;overflow:hidden;background:var(--surface-1)}
+.pains .ph img{display:block;width:100%;height:100%;object-fit:cover}
+.pains .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(22,30,39,.9) 0%,rgba(22,30,39,0) 55%)}
+.pains .ph .scene{position:absolute;z-index:1;left:1rem;bottom:.8rem;background:rgba(11,16,22,.72);border:1px solid rgba(244,166,38,.45)}
+.pains .body{padding:1.1rem 1.4rem 1.2rem;display:flex;flex-direction:column;gap:1rem;flex:1}
+.pains li::before{display:none}
+.pains .fix{flex-direction:column;gap:.6rem;border-top:1px dashed var(--line)}
+.pains .fix::before{display:none}
+.pains .fix .feat{display:flex;align-items:center;gap:.5rem;font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.pains .fix .feat::before{content:"";width:1.2rem;height:1.2rem;border-radius:50%;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 6.2 5 8.6l4.5-5' stroke='%2306131c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/70% no-repeat}
+.pains .fix .mini{display:flex;align-items:center;gap:.7rem;padding:.55rem .8rem;border-radius:12px;background:linear-gradient(160deg,#1A2A3A,#0F1F2E);border:1px solid var(--line);font-weight:800;font-size:15px;font-variant-numeric:tabular-nums;color:var(--text-1)}
+.pains .fix .mini i{font-style:normal;font-weight:700;color:var(--text-2);font-size:13px}
+.pains .fix .mini .dot2{width:1.1rem;height:1.1rem;border-radius:50%;background:var(--accent);flex:none}
+.pains .fix .mini .dot2.ok{background:#2BC489}
+.pains .fix .mini .dot2.warn{background:#F4A626}
+.pains .fix .mini .r{margin-left:auto;color:var(--text-3);font-size:13px}
+
+.pains .ph{aspect-ratio:16/9}
+.pains .ph::after{background:linear-gradient(0deg,rgba(8,12,17,.92) 0%,rgba(8,12,17,.55) 38%,rgba(8,12,17,0) 70%)}
+.pains .ph .scene{left:1rem;top:.9rem;bottom:auto}
+.pains .ph .say{position:absolute;z-index:1;left:1rem;right:1rem;bottom:.9rem;margin:0;font-size:clamp(1.15rem,2.2vw,1.45rem);font-weight:800;line-height:1.2;letter-spacing:-.015em;color:#fff;text-wrap:balance;text-shadow:0 1px 12px rgba(0,0,0,.45)}
+.pains .ph .say::before{content:"\201C";color:var(--accent)}
+.pains .ph .say::after{content:"\201D";color:var(--accent)}
+.pains .body{padding:1rem 1.2rem 1.2rem;gap:.85rem}
+.pains .fix{padding-top:.85rem}
+.pains .fix .note2{color:var(--text-2);font-size:15px;line-height:1.5}
+.hs-band{display:grid;gap:2rem;align-items:center;justify-items:start}
+.hs-copy{display:grid;gap:.75rem;max-width:34rem}
+.hs-copy p{color:var(--text-2);font-size:18px}
+.hs-list{margin:.25rem 0 0;padding:0;list-style:none;display:grid;gap:.6rem}
+.hs-list li{position:relative;padding-left:1.7rem;color:var(--text-2);font-size:16.5px}
+.hs-list li::before{content:"";position:absolute;left:0;top:.35rem;width:1.1rem;height:1.1rem;border-radius:50%;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 6.2 5 8.6l4.5-5' stroke='%2306131c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/70% no-repeat}
+.hs-list b{color:var(--text-1)}
+.hs-copy .hs-note{font-size:15px;color:var(--text-3);margin-top:.25rem}
+.phone.hs-phone{--s:.8;margin:0;justify-self:center}
+@media (min-width:860px){.hs-band{grid-template-columns:1.1fr auto;gap:4rem;justify-items:stretch}.hs-phone{justify-self:end}}
+.who-chips button,.who-chips .chip-static{font:inherit;font-size:15px;font-weight:800;color:var(--text-1);padding:.32rem .75rem;border-radius:999px;background:rgba(11,16,22,.62);border:1.5px solid rgba(242,245,248,.22);opacity:.7;cursor:pointer;transition:background .25s,color .25s,border-color .25s,opacity .25s,box-shadow .25s}
+.who-chips .chip-static{cursor:default;border-style:dashed;opacity:.55}
+.who-chips button.is-on{opacity:1;background:var(--accent);color:var(--on-accent);border-color:var(--accent);box-shadow:0 0 0 4px rgba(41,184,255,.18)}
+.who-chips button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media (min-width:720px){
+  .hero-ui .who{position:absolute;left:2rem;right:2rem;bottom:1.5rem;align-items:flex-start;text-align:left;max-width:none}
+  .who-chips{justify-content:flex-start}
+  .trade{display:none}
+}
+@media (max-width:719px){.hero-ui .who{margin-top:.5rem}.trade{display:none}}
+
+.pains .phone{margin:.4rem auto .2rem;align-self:center}
+.pains .scr{position:relative}
+.pains .hl{position:absolute;z-index:2;border:2.5px solid var(--accent);border-radius:12px;box-shadow:0 0 0 4px rgba(41,184,255,.22),0 0 22px rgba(41,184,255,.35);pointer-events:none;animation:hlp 2.4s ease-in-out infinite}
+@keyframes hlp{50%{box-shadow:0 0 0 7px rgba(41,184,255,.12),0 0 28px rgba(41,184,255,.5)}}
+@media (prefers-reduced-motion:reduce){.pains .hl{animation:none}}
+.slide .say{position:absolute;z-index:1;margin:0;font-weight:800;color:#fff;text-wrap:balance;text-shadow:0 1px 14px rgba(0,0,0,.55);line-height:1.2;letter-spacing:-.015em}
+.slide .say::before{content:"\201C";color:var(--accent)}
+.slide .say::after{content:"\201D";color:var(--accent)}
+.slide:not(.is-active) .say{visibility:hidden}
+@media (min-width:720px){.slide .say{right:max(2rem,calc((100vw - 68rem)/2 + 2rem));bottom:9.6rem;text-align:right;max-width:24rem;font-size:clamp(1.2rem,2vw,1.65rem)}}
+@media (max-width:719px){.slide .say{left:1rem;right:1rem;bottom:.9rem;font-size:1.05rem}}
+.feats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem}
+.feats li{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.25rem;display:grid;gap:.5rem;align-content:start;min-width:0}
+.feats .ico{width:2.6rem;height:2.6rem;border-radius:12px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
+.feats .ico svg{width:1.3rem;height:1.3rem}
+.feats h3{margin-top:.25rem}
+.feats p{color:var(--text-2);font-size:16px;line-height:1.55}
+@media (min-width:640px){.feats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1100px){.feats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.feats .more{border-style:dashed;background:transparent}
+.feats .more a{color:var(--accent);font-weight:800}
 </style>
 </head>
-<body>
+<body class="dark">
 <header class="top"><div class="wrap">
-<a class="logo" href="#"><i></i>Jobday</a>
-<nav class="links"><a href="#day">Your day</a><a href="#week">Week</a><a href="#plan">Planning</a><a href="#worklog">Work log</a><a href="#notes">Notes</a><a href="#reports">Reports</a><a href="#google">Google jobs</a></nav>
-<a class="cta" href="#get">Get the app</a>
+<a class="brand" href="/"><img src="img/app-icon.png" width="32" height="32" alt="">Jobday</a>
+<a class="btn btn-primary" href="#get">Get the app</a>
 </div></header>
 
-<section class="hero"><div class="wrap">
-<div>
-<div class="eb">For hourly and field workers</div>
-<h1 style="margin-top:20px">Your workday,<br>planned from your jobs.</h1>
-<p class="lead">Jobday lays out your day from the sites you work, logs your hours and mileage, and keeps a record of when you were on site. Break reminders are free.</p>
-<div class="hbtn"><a class="cta" href="#get"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8s-1.9-.8-3.1-.8C6.8 7.3 5.3 8.2 4.5 9.6c-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.4.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-3.9zM14.1 5.5c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.6 2.7-1.3z"></path></svg>App Store</a><a class="cta gh" href="#get"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 3.5v17c0 .4.4.6.7.4l14.6-8.5c.3-.2.3-.6 0-.8L4.7 3.1c-.3-.2-.7 0-.7.4z"></path></svg>Google Play</a></div>
+<section class="hero" aria-label="Jobday">
+<div class="slides">
+<figure class="slide is-active" style="--pos:30%;--shift:30%"><img src="img/hvac-truck.webp" srcset="img/hvac-truck-640.webp 640w, img/hvac-truck.webp 1024w" sizes="100vw" width="1024" height="576" alt="HVAC technician in a navy uniform checking his phone beside a service van and an air conditioner unit on a sunny day"><figcaption class="say">I know exactly when to leave, so I'm never late to the next call.</figcaption></figure>
+<figure class="slide" style="--pos:45%"><img src="img/electrician.webp" srcset="img/electrician-640.webp 640w, img/electrician.webp 1024w" sizes="100vw" width="1024" height="576" alt="Electrician in a safety vest checking her phone beside her open work van" loading="lazy"><figcaption class="say">A job moves or a new call comes in, I change the day and see the new times right away.</figcaption></figure>
+<figure class="slide" style="--pos:55%"><img src="img/cleaner.webp" srcset="img/cleaner-640.webp 640w, img/cleaner.webp 1024w" sizes="100vw" width="1024" height="576" alt="Cleaner unloading a caddy of supplies from her car while checking her phone" loading="lazy"><figcaption class="say">One tap and Google Maps is already routing me to the next home.</figcaption></figure>
+<figure class="slide" style="--pos:50%"><img src="img/plumber.webp" srcset="img/plumber-640.webp 640w, img/plumber.webp 1024w" sizes="100vw" width="1024" height="576" alt="Plumber kneeling under a kitchen sink with a wrench, phone on the cabinet floor" loading="lazy"><figcaption class="say">Hands full under the sink, so I just talk. It's saved as my voice report.</figcaption></figure>
+<figure class="slide" style="--pos:40%"><img src="img/appliance.webp" srcset="img/appliance-640.webp 640w, img/appliance.webp 1024w" sizes="100vw" width="1024" height="576" alt="Appliance repair technician crouching beside an open washing machine, checking his phone" loading="lazy"><figcaption class="say">It reminds me to take every break, not only lunch.</figcaption></figure>
+<figure class="slide" style="--pos:35%"><img src="img/handyman.webp" srcset="img/handyman-640.webp 640w, img/handyman.webp 1024w" sizes="100vw" width="1024" height="576" alt="Handyman in a denim work shirt and tool belt checking his phone at a customer's front door" loading="lazy"><figcaption class="say">It counts my drive to the first job and home, so overtime never surprises me.</figcaption></figure>
 </div>
-<div class="stage">
-<div class="dev l"><div class="scr"><iframe loading="lazy" title="Before shift" src="landing/today-states.html?embed&amp;st=before"></iframe></div></div>
-<div class="dev c"><div class="scr"><iframe title="On shift" src="landing/today-states.html?embed&amp;st=during"></iframe></div></div>
-<div class="dev r"><div class="scr"><iframe loading="lazy" title="Week" src="landing/week-timeline.html?embed&amp;wk=0"></iframe></div></div>
+<div class="wrap hero-ui">
+<h1>Your workday, <em>planned from your jobs.</em></h1>
+<div class="ctas" id="get">
+<!-- TODO: real store URLs once the listings are public. -->
+<a class="btn btn-primary" href="#"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8s-1.9-.8-3.1-.8C6.8 7.3 5.3 8.2 4.5 9.6c-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.4.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-3.9zM14.1 5.5c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.6 2.7-1.3z"/></svg>App Store</a>
+<a class="btn btn-ghost" href="#"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg>Google Play</a>
 </div>
-</div></section>
+<div class="who"><span class="who-for">By seasoned pros, for</span>
+<div class="who-chips" role="tablist" aria-label="Trades"><button type="button" data-s="0" class="is-on">HVAC techs</button><button type="button" data-s="1">Electricians</button><button type="button" data-s="2">Cleaners</button><button type="button" data-s="3">Plumbers</button><button type="button" data-s="4">Appliance repair</button><button type="button" data-s="5">Handyman</button><span class="chip-static">Hourly workers on the road</span></div></div>
+</div>
+</section>
 
-<div class="strip"><div class="wrap">
-<div><b>A plan for the day</b><span>your sites in order, drive time, when to leave</span></div>
-<div><b>Arrivals and departures</b><span>logged with location on, or marked by hand</span></div>
-<div><b>Hours and mileage</b><span>per day, editable, GPS original kept</span></div>
-<div><b>Breaks, free</b><span>reminders for rest and meal breaks</span></div>
-</div></div>
+<main class="wrap">
+<section class="band" aria-labelledby="pains-h">
+<div class="sec-head">
+<div class="eyebrow">From the road to the app</div>
+<h2 id="pains-h">Four rough moments, handled.</h2>
+<p>Jobday lays out your day from the sites you work, logs your hours and mileage, and keeps a record of when you were on site. Break reminders are free.</p>
+</div>
+<ul class="pains">
+<li><div class="ph"><img src="img/pain-arrival.webp" srcset="img/pain-arrival-640.webp 640w, img/pain-arrival.webp 1024w" sizes="(min-width:720px) 33rem, 100vw" width="1024" height="576" alt="" loading="lazy"><span class="scene">Friday, 4:50 PM · in the truck</span><p class="say">It logged my arrival at 7:30. I didn't have to remember.</p></div>
+<div class="body"><div class="fix"><span class="feat">Today · arrivals</span>
+<div class="phone" style="--s:.64"><div class="scr"><iframe loading="lazy" title="Today timeline with the arrival at the office" src="landing/today-states.html?embed&amp;st=during"></iframe><span class="hl" style="left:calc(28px*var(--s));top:calc(452px*var(--s));width:calc(334px*var(--s));height:calc(64px*var(--s))"></span></div></div>
+<span class="note2">Arrivals are logged when you get to a site, with location on. <b>Edit a time and the original GPS time stays on record.</b></span></div></div></li>
+<li><div class="ph"><img src="img/pain-drive.webp" srcset="img/pain-drive-640.webp 640w, img/pain-drive.webp 1024w" sizes="(min-width:720px) 33rem, 100vw" width="1024" height="576" alt="" loading="lazy"><span class="scene">Between job 2 and job 3</span><p class="say">Drive time, traffic included, is on my day, so I leave on time.</p></div>
+<div class="body"><div class="fix"><span class="feat">Today · drive and miles</span>
+<div class="phone" style="--s:.64"><div class="scr"><iframe loading="lazy" title="Shift complete card with drive time and breaks" src="landing/today-states.html?embed&amp;st=after"></iframe><span class="hl" style="left:calc(30px*var(--s));top:calc(262px*var(--s));width:calc(222px*var(--s));height:calc(46px*var(--s))"></span></div></div>
+<span class="note2"><b>Drive time with current traffic, and miles, are part of the day,</b> site to site. Jobday works out when to leave.</span></div></div></li>
+<li><div class="ph"><img src="img/pain-break.webp" srcset="img/pain-break-640.webp 640w, img/pain-break.webp 1024w" sizes="(min-width:720px) 33rem, 100vw" width="1024" height="576" alt="" loading="lazy"><span class="scene">2:40 PM · still no lunch</span><p class="say">My phone nudged me, so I took my lunch on time.</p></div>
+<div class="body"><div class="fix"><span class="feat">Break reminders · free</span>
+<div class="phone" style="--s:.64"><div class="scr"><iframe loading="lazy" title="On shift card with the lunch reminder" src="landing/today-states.html?embed&amp;st=during"></iframe><span class="hl" style="left:calc(24px*var(--s));top:calc(274px*var(--s));width:calc(336px*var(--s));height:calc(38px*var(--s))"></span></div></div>
+<span class="note2"><b>A reminder before the window closes,</b> timed to your shift. No Pro needed.</span></div></div></li>
+<li><div class="ph"><img src="img/pain-week.webp" srcset="img/pain-week-640.webp 640w, img/pain-week.webp 1024w" sizes="(min-width:720px) 33rem, 100vw" width="1024" height="576" alt="" loading="lazy"><span class="scene">Friday night · at the kitchen table</span><p class="say">My week added itself up. Friday night is mine again.</p></div>
+<div class="body"><div class="fix"><span class="feat">Planner · hours for every day</span>
+<div class="phone" style="--s:.64"><div class="scr"><iframe loading="lazy" title="Planner month view with hours per day" src="landing/planner-month.html?embed"></iframe><span class="hl" style="left:calc(20px*var(--s));top:calc(290px*var(--s));width:calc(350px*var(--s));height:calc(58px*var(--s))"></span></div></div>
+<span class="note2">Hours add up <b>per day and per week</b> as you go. Fix what's off, then export the week <span class="pro">PRO</span>.</span></div></div></li>
+</ul>
+</section>
 
-<section class="s" id="day"><div class="wrap">
-<div class="head"><div class="eb">A day with Jobday</div><h2>One screen that changes with your day.</h2><p>Today knows where you are in the shift. It shows the next thing you need and steps aside the rest of the time.</p></div>
-<div class="flow">
-<div class="steps" data-sw="day">
-<button class="step on" data-i="0"><span class="t num">6:40 AM</span><span><h3>Morning check</h3><p>Is today’s plan still on? See your sites, the drive with current traffic and an adjusted leave time. Then start your day.</p></span></button>
-<button class="step" data-i="1"><span class="t num">6:53 AM</span><span><h3>Before shift</h3><p>A countdown to departure, drive time to the first site and a jump into Google Maps.</p></span></button>
-<button class="step" data-i="2"><span class="t num">7:32 AM</span><span><h3>Arrived on site</h3><p>With location on, Jobday notices you arrived and offers a quick voice report. Snooze it for 10 minutes if you’re busy.</p></span></button>
-<button class="step" data-i="3"><span class="t num">12:02 PM</span><span><h3>On shift</h3><p>When to leave this site, how far along you are, and the next break with its window. Stepping out for lunch or an errand? Log it so the day still adds up.</p></span></button>
-<button class="step" data-i="4"><span class="t num">4:02 PM</span><span><h3>After shift</h3><p>Hours worked, drive time and breaks in one card. Review the day and fix anything before you confirm it.</p></span></button>
-<button class="step" data-i="5"><span class="t num">7:30 PM</span><span><h3>Day confirmed</h3><p>Paid hours for the day and the week so far, with tomorrow’s plan ready to adjust.</p></span></button>
+<section class="band" aria-labelledby="feat-h">
+<div class="sec-head">
+<div class="eyebrow">Also in the app</div>
+<h2 id="feat-h">Made for a day that keeps changing.</h2>
 </div>
-<div class="dev" style="--s:.78" data-panes="day">
-<div class="scr">
-<iframe title="Morning check" src="landing/today-states.html?embed&amp;st=morning"></iframe>
-<iframe class="hide" loading="lazy" title="Before shift" src="landing/today-states.html?embed&amp;st=before"></iframe>
-<iframe class="hide" loading="lazy" title="Arrived" src="landing/today-states.html?embed&amp;st=arrived"></iframe>
-<iframe class="hide" loading="lazy" title="On shift" src="landing/today-states.html?embed&amp;st=during"></iframe>
-<iframe class="hide" loading="lazy" title="After shift" src="landing/today-states.html?embed&amp;st=after"></iframe>
-<iframe class="hide" loading="lazy" title="Day confirmed" src="landing/today-states.html?embed&amp;st=confirmed"></iframe>
-</div></div>
-</div>
-</div></section>
+<ul class="feats">
+<li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><h3>Google Maps in one tap</h3><p>Open the route to your next site in Google Maps right from the app.</p></li>
+<li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l2-6a2 2 0 012-1.4h8A2 2 0 0118 10l2 6M4 16v3h3v-1.5h10V19h3v-3M4 16h16"/></svg></span><h3>Drive time with traffic</h3><p>Estimated time on the road between sites, with current traffic.</p></li>
+<li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg></span><h3>When to leave, worked out for you</h3><p>Jobday counts back from your arrival time and tells you when to head out, so you are not late.</p></li>
+<li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9a2.8 2.8 0 00-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg></span><h3>Change the day on the go</h3><p>Add a job or move one in the middle of the shift. The times re-lay out around it.</p></li>
+<li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7a3 3 0 006 0V3M9 3v18M17 3c-2 2-2 6 0 8v10"/></svg></span><h3>Breaks, not just lunch</h3><p>Reminders for rest breaks and meal breaks, timed to your shift. Free.</p></li>
+<li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l2.5 2M9 2h6M12 21a8 8 0 100-16 8 8 0 000 16z"/><path d="M4 4l3 2"/></svg></span><h3>See overtime coming <span class="pro">PRO</span></h3><p>Time on the road to the first site and back home is counted, so you see overtime before you hit it.</p></li>
+<li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 00-3 3v5a3 3 0 006 0V6a3 3 0 00-3-3z"/><path d="M6 11a6 6 0 0012 0M12 17v4M9 21h6"/></svg></span><h3>Say it, don't type it</h3><p>Talk through what you did at the site and Jobday saves it as a voice report, with your site photos.</p></li>
+<li class="more"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h5"/></svg></span><h3>Need full written reports?</h3><p>Voice Smart Report turns what you say on a visit into a finished PDF report. <a href="https://reports.aiconspro.com/">Try Voice Smart Report</a></p></li>
+</ul>
+</section>
 
-<section class="s" id="week" style="background:#0E141B;border-top:1px solid #1C252F;border-bottom:1px solid #1C252F"><div class="wrap">
-<div class="feat">
-<div class="vis">
-<figure><figcaption>Timeline</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Week timeline" src="landing/week-timeline.html?embed&amp;wk=0"></iframe></div></div></figure>
-<figure><figcaption>Agenda</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Day details" src="landing/week-timeline.html?embed&amp;wk=0&amp;sel=3"></iframe></div></div></figure>
+<section class="band" aria-labelledby="how-h">
+<div class="sec-head">
+<div class="eyebrow">How it works</div>
+<h2 id="how-h">Plan it. Work it. Check it.</h2>
 </div>
-<div>
-<div class="head" style="margin:0"><div class="eb">Week</div><h2>See the whole week on one clock.</h2><p>Every day laid out from 6 AM to 6 PM. Tap a bar for the route, tap a date to change it.</p></div>
-<div class="pts">
-<div class="pt"><i style="color:#F26B75"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2M9 2h6"></path></svg></i><div><h3>Overtime flagged early</h3><p>A day running past your shift gets a red outline and an “OT” tag, so you can move a stop instead of finding out later.</p></div></div>
-<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></i><div><h3>Six sites in a day still fit</h3><p>Busy days shrink gracefully: name and address, then name, then just the stop number.</p></div></div>
-</div>
-<div class="key"><span><i style="background:#2BC489"></i>Logged</span><span><i style="background:#29B8FF"></i>Planned</span><span><i style="background:#A98BF0"></i>PTO</span><span><i style="background:#F26B75"></i>Holiday</span><span><i style="border:1.5px dashed #F4A626"></i>No plan yet</span></div>
-</div>
-</div>
-</div></section>
+<ol class="steps">
+<li><h3>Add your sites</h3><p>Jobday lays out the day in order, with drive time and when to leave home.</p>
+<div class="phone"><div class="scr"><iframe loading="lazy" title="Morning: when to leave and the drive to the first site" src="landing/today-states.html?embed&amp;st=morning"></iframe></div></div></li>
+<li><h3>Go to work</h3><p>Arrivals, breaks and departures land on today's timeline as the day goes.</p>
+<div class="phone"><div class="scr"><iframe loading="lazy" title="On shift: when to leave this site and the next break" src="landing/today-states.html?embed&amp;st=during"></iframe></div></div></li>
+<li><h3>See the day add up</h3><p>Hours, drive time and breaks in one card when the shift ends.</p>
+<div class="phone"><div class="scr"><iframe loading="lazy" title="After shift: hours, drive time and breaks for the day" src="landing/today-states.html?embed&amp;st=after"></iframe></div></div></li>
+<li><h3>See the whole month</h3><p>Hours for every day in Planner, with days to review marked. Tap a day to edit it.</p>
+<div class="phone"><div class="scr"><iframe loading="lazy" title="Planner, month view: hours per day and the selected day" src="landing/planner-month.html?embed"></iframe></div></div></li>
+</ol>
+</section>
 
-<section class="s" id="plan"><div class="wrap">
-<div class="feat rev">
-<div class="vis">
-<figure><figcaption>Before</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Planning before reorder" src="landing/planning.html"></iframe></div></div></figure>
-<figure><figcaption>After reorder</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Planning after reorder" src="landing/planning.html?order=b"></iframe></div></div></figure>
+<section class="band" aria-labelledby="widget-h">
+<div class="hs-band">
+<div class="hs-copy">
+<div class="eyebrow">iPhone widget</div>
+<h2 id="widget-h">Your day on the Home Screen</h2>
+<p>A medium widget draws the day as a line: your sites as big dots with arrival times, filling in as the day goes. Leave time, drive and arrival sit on top, the status at the bottom.</p>
+<ul class="hs-list"><li><b>When to leave</b> this site and when you arrive at the next</li><li><b>Where you are</b> in the day, without opening the app</li><li><b>A flag</b> if an arrival was not recorded</li></ul>
+<p class="hs-note">Add it to your Home Screen, or keep it one swipe away in Today View.</p>
 </div>
-<div>
-<div class="head" style="margin:0"><div class="eb">Planning</div><h2>Plans change. Reorder in a tap.</h2><p>Swap the order of sites with the arrows next to each arrival time. Jobday rebuilds the day around the new route: arrival times, drive time and when to leave home.</p></div>
-<div class="pts">
-<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v16M4 8l4-4 4 4M16 20V4M12 16l4 4 4-4"></path></svg></i><div><h3>Move sites up or down</h3><p>In this example the office moves to 8:00 AM and the next site shifts to 1:20 PM. Time on site stays, everything else follows.</p></div></div>
-<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 00-14.3-4.6L4 8M4 4v4h4M4 13a8 8 0 0014.3 4.6L20 16M20 20v-4h-4"></path></svg></i><div><h3>Leave time recalculated</h3><p>When the first drive changes, so does your departure: 26 min and 7:20 AM becomes 13 min and 7:35 AM.</p></div></div>
-<div class="pt"><i style="color:#2BC489"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12h16"></path><path d="M4 7h10M4 17h6"></path></svg></i><div><h3>The whole shift on one bar</h3><p>Site time, driving and what’s left of your shift, visible while you plan.</p></div></div>
+<div class="phone hs-phone"><div class="scr"><iframe loading="lazy" title="Jobday widget on the iPhone Home Screen" src="landing/homescreen.html"></iframe></div></div>
 </div>
-</div>
-</div>
-</div></section>
+</section>
 
-<section class="s" id="worklog" style="background:#0E141B;border-top:1px solid #1C252F;border-bottom:1px solid #1C252F"><div class="wrap">
-<div class="feat">
-<div class="vis">
-<figure><figcaption>Review</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Work log" src="work-log.html?embed"></iframe></div></div></figure>
-<figure data-label="Edit &amp; export"><div class="sw" data-sw="wl" style="margin:0"><button class="on" data-i="0">Edit</button><button data-i="1">Export</button></div><div class="dev" data-panes="wl"><div class="scr">
-<iframe loading="lazy" title="Edit day" src="work-log.html?embed&amp;sheet=edit"></iframe>
-<iframe class="hide" loading="lazy" title="Export work log" src="work-log.html?embed&amp;sheet=exp"></iframe>
-</div></div></figure>
+<section class="band" aria-labelledby="price-h">
+<div class="sec-head">
+<div class="eyebrow">Price</div>
+<h2 id="price-h">Free to use. Pro when you want the full record.</h2>
 </div>
-<div>
-<div class="head" style="margin:0"><div class="eb">Work log</div><h2>Review. Fix. Export.</h2><p>Every day the app logged, in one list. Check it, correct what’s off, and export the week without retyping a single hour.</p></div>
-<div class="pts">
-<div class="pt"><i style="color:#2BC489"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></i><div><h3>Review at a glance</h3><p>Paid hours per day and for the week, overtime flagged, and days that still need a look marked in orange.</p></div></div>
-<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"></path></svg></i><div><h3>Edit with a paper trail</h3><p>Adjust in and out times per site. The original GPS time stays on record and the entry is marked as edited.</p></div></div>
-<div class="pt"><i style="color:#F4A626"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l2-6a2 2 0 012-1.4h8A2 2 0 0118 10l2 6M4 16v3h3v-1.5h10V19h3v-3M4 16h16"></path><circle cx="8" cy="13.5" r=".8" fill="currentColor"></circle><circle cx="16" cy="13.5" r=".8" fill="currentColor"></circle></svg></i><div><h3>Mileage between your sites</h3><p>Each day shows the miles driven between your sites, estimated from the route. The same figure goes into the export.</p></div></div>
-<div class="pt"><i style="color:#A98BF0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"></path><path d="M9 12h7M9 16h7M12 9v10"></path></svg></i><div><h3>CSV, ready for Excel <span class="tag-pro">PRO</span></h3><p>One row per site visit: date, site, in, out, breaks, drive miles and hours. Opens cleanly in a spreadsheet. Export is part of Pro.</p></div></div>
+<div class="compare">
+<div class="col"><h3>Free</h3><ul><li>Day plan, arrivals and timeline</li><li>Hours with overtime, PTO</li><li>Break reminders</li><li>History for this week and last</li></ul></div>
+<div class="col col-main"><h3>Pro <span class="num">$4.99/mo or $34.99/yr</span></h3><ul><li>First 30 days free</li><li>Full history and CSV export</li><li>Paid drive time</li><li>Unlimited photos and voice notes</li></ul></div>
+<div class="col col-soon"><h3>Team <span>Coming soon</span></h3><ul><li>For small crews and their dispatcher</li><li>Work orders from Google Calendar and Sheets</li><li>One view of your crew's days</li></ul></div>
 </div>
-</div>
-</div>
-</div></section>
+</section>
 
-<section class="s" id="notes"><div class="wrap">
-<div class="feat rev">
-<div class="vis">
-<div class="dev" style="--s:.7"><div class="scr"><iframe loading="lazy" title="Arrival prompt" src="landing/today-states.html?embed&amp;st=arrived"></iframe></div></div>
-</div>
-<div>
-<div class="head" style="margin:0"><div class="eb">Site notes</div><h2>A note, while you’re still on site.</h2><p>When you arrive, Jobday asks once if you want to record a voice report. Talk for about 30 seconds, or type it, and it’s linked to the site in your Work log.</p></div>
-<div class="pts">
-<div class="pt"><i style="color:#A98BF0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0014 0M12 18v3"></path></svg></i><div><h3>Say it instead of typing it</h3><p>Your voice is turned into text by your phone’s speech recognition. No forms to hunt for, and nothing to retype later.</p></div></div>
-<div class="pt"><i style="color:#F4A626"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l2.5 2M9 2h6M12 21a8 8 0 100-16 8 8 0 000 16z"></path></svg></i><div><h3>Busy? Snooze it</h3><p>Snooze the prompt for 10 minutes, or skip it. Nothing blocks your day.</p></div></div>
-<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></i><div><h3>Site photos</h3><p>Take a photo of the part, the gauge or the gate code. Photos stay with the site and the day.</p></div></div>
-</div>
-</div>
-</div>
-</div></section>
+<section class="band final" aria-labelledby="final-h">
+<h2 id="final-h">Know your day before it starts. Keep the record after.</h2>
+<p>Free to start, on iPhone and Android.</p>
+<div class="ctas"><a class="btn btn-primary" href="#">App Store</a><a class="btn btn-ghost" href="#">Google Play</a></div>
+</section>
+</main>
 
-<section class="s" id="reports" style="background:#0E141B;border-top:1px solid #1C252F;border-bottom:1px solid #1C252F"><div class="wrap">
-<div class="feat">
-<div class="vis">
-<figure><figcaption>Report tab</figcaption><div class="dev"><div class="scr"><iframe loading="lazy" title="Report tab" src="report.html?embed"></iframe></div></div></figure>
-<figure data-label="Open &amp; send"><div class="sw" data-sw="rep" style="margin:0"><button class="on" data-i="0">Transcript</button><button data-i="1">Send</button></div><div class="dev" data-panes="rep"><div class="scr">
-<iframe loading="lazy" title="Transcript" src="report.html?embed&amp;sheet=0-1"></iframe>
-<iframe class="hide" loading="lazy" title="Send report" src="report.html?embed&amp;sheet=0-1&amp;view=exp"></iframe>
-</div></div></figure>
-</div>
-<div>
-<div class="head" style="margin:0"><div class="eb">Report tab</div><h2>Every note, filed by site.</h2><p>The Report tab keeps your reports grouped by site, newest first, each stamped with the date and time it was made.</p></div>
-<div class="pts">
-<div class="pt"><i style="color:#A98BF0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"></path><path d="M9 12h7M9 16h5"></path></svg></i><div><h3>Read it, copy it, share it</h3><p>Open any report to see the transcript. Copy it into a message or a ticket.</p></div></div>
-<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></i><div><h3>Record for the site you’re on</h3><p>Start a new report from the Report tab. It links to the current site in your Work log.</p></div></div>
-<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></i><div><h3>Photos in the report</h3><p>Attach photos to a report. They go into the PDF.</p></div></div>
-<div class="pt"><i style="color:#2BC489"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"></path></svg></i><div><h3>Send as TXT, CSV or PDF</h3><p>Plain text for a message, CSV for a spreadsheet, PDF with photos for the client.</p></div></div>
-</div>
-</div>
-</div>
-</div></section>
-
-<section class="s" id="off"><div class="wrap">
-<div class="feat rev">
-<div class="vis vcol">
-<div class="sw" data-sw="off"><button class="on" data-i="0" data-k="off">Day off</button><button data-i="1" data-k="pto">PTO</button><button data-i="2" data-k="holiday">Holiday</button></div>
-<div class="dev" style="--s:.7" data-panes="off"><div class="scr">
-<iframe loading="lazy" title="Day off" src="landing/today-states.html?embed&amp;st=off&amp;off=off"></iframe>
-<iframe class="hide" loading="lazy" title="PTO" src="landing/today-states.html?embed&amp;st=off&amp;off=pto"></iframe>
-<iframe class="hide" loading="lazy" title="Holiday" src="landing/today-states.html?embed&amp;st=off&amp;off=holiday"></iframe>
-</div></div>
-</div>
-<div>
-<div class="head" style="margin:0"><div class="eb">Days off</div><h2>Off means off.</h2><p>On a day off, Today shows what matters: this week’s paid hours and your next shift, ready to adjust. PTO and holidays show up in your week too.</p></div>
-</div>
-</div>
-</div></section>
-
-<section class="s soonsec" id="google" style="background:#0E141B;border-top:1px solid #1C252F;border-bottom:1px solid #1C252F"><div class="wrap">
-<div class="feat rev">
-<div class="vis">
-<div class="gviz dark" role="img" aria-label="Illustration: a row in a spreadsheet becomes a stop in the day plan">
-<div class="gsheet">
-<div class="gcap">Your sheet</div>
-<div class="gr gh"><span>Day</span><span>Start</span><span>Order</span><span>Site</span></div>
-<div class="gr hit"><span>Tue</span><span class="num">7:30</span><span class="num">SO-1041</span><span>Office</span></div>
-<div class="gr"><span>Tue</span><span class="num">10:00</span><span class="num">SO-1042</span><span>Harbor Yard</span></div>
-<div class="gr"><span>Tue</span><span class="num">1:20</span><span class="num">SO-1043</span><span>Cedar Flats Depot</span></div>
-<div class="gr"><span>Wed</span><span class="num">8:00</span><span class="num">SO-1044</span><span>Millbrook Yard</span></div>
-</div>
-<div class="garrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"></path></svg></div>
-<div class="gplan">
-<div class="gcap">Your day plan</div>
-<div class="gst hit"><b class="num">7:30 AM</b><div><strong>Office</strong><small>Order SO-1041</small></div></div>
-<div class="gdr">Drive 25 min</div>
-<div class="gst"><b class="num">10:00 AM</b><div><strong>Harbor Yard</strong><small>Order SO-1042</small></div></div>
-<div class="gdr">Drive 18 min</div>
-<div class="gst"><b class="num">1:20 PM</b><div><strong>Cedar Flats Depot</strong><small>Order SO-1043</small></div></div>
-</div>
-<div class="gnote">Illustration of the idea, not an app screenshot.</div>
-</div>
-</div>
-<div>
-<div class="soon">Coming soon</div>
-<div class="head" style="margin:18px 0 0"><h2>Jobs from Google Sheets &amp; Calendar.</h2><p>If your jobs already live in a Google Sheet or a Calendar, Jobday is being built to turn them into your day plan. One row or event becomes one stop, with its time, order number, address and notes. Not available yet: this comes after the first release.</p></div>
-<div class="pts">
-<div class="pt"><i style="color:#2BC489"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4zM4 10h16M10 5v14"></path></svg></i><div><h3>No retyping</h3><p>Keep working the way you do today. Your sheet or calendar stays the place where jobs are written down.</p></div></div>
-<div class="pt"><i style="color:#29B8FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 00-14.3-4.6L4 8M4 4v4h4M4 13a8 8 0 0014.3 4.6L20 16M20 20v-4h-4"></path></svg></i><div><h3>Changes get flagged</h3><p>When a job you already planned changes at the source, Jobday points it out instead of silently rewriting your day.</p></div></div>
-</div>
-<div class="hbtn" style="justify-content:flex-start;margin-top:34px"><a class="cta gh" href="https://jobday.pro">For teams <span aria-hidden="true">→</span></a></div>
-<p style="margin-top:16px;font-size:13px;line-height:1.6;color:rgba(242,245,248,.45)">Running a small crew? Team features will live at jobday.pro. Plans may change before release.</p>
-</div>
-</div>
-</div></section>
-
-<section class="end" id="get"><div class="wrap">
-<h2>Know your day before it starts. Keep the record after.</h2>
-<p>Free to start, with break reminders included. Pro is an optional subscription.</p>
-<div class="hbtn"><a class="cta" href="#">Download for iPhone</a><a class="cta gh" href="#">Download for Android</a></div>
-</div></section>
-
-<footer><div class="wrap"><span>© 2026 Jobday · <a href="mailto:support@jobday.app">support@jobday.app</a></span><nav><a href="/privacy">Privacy</a><a href="#">Terms</a><a href="/support">Support</a><a href="https://jobday.pro">For teams</a></nav></div></footer>
+<footer><div class="wrap"><span>Photos are AI-generated illustrations. </span><span>© 2026 AICONS LLC · Jobday · <a href="mailto:support@jobday.app">support@jobday.app</a></span><nav aria-label="Legal"><a href="/privacy">Privacy</a><a href="/support">Support</a><a href="https://jobday.pro">For teams</a></nav></div></footer>
 
 <script>
-document.querySelectorAll('[data-sw]').forEach(g=>{
-const panes=document.querySelector(`[data-panes="${g.dataset.sw}"]`).querySelectorAll('iframe');
-g.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{
-g.querySelectorAll('[data-i]').forEach(x=>x.classList.toggle('on',x===b));
-panes.forEach((f,i)=>f.classList.toggle('hide',i!=b.dataset.i));
-const f=panes[b.dataset.i];if(f.title=='Arrived')f.src=f.src;
-if(g.dataset.sw=='day')arm();
-});
-});
-const dayG=document.querySelector('[data-sw="day"]'),dayB=[...dayG.querySelectorAll('[data-i]')],DUR=4500;
-let tm,left=DUR,t0;
-function arm(ms=DUR){clearTimeout(tm);left=ms;t0=Date.now();const on=dayG.querySelector('.on .bar i');if(ms===DUR&&on){on.style.animation='none';on.offsetWidth;on.style.animation=''}tm=setTimeout(()=>{const i=dayB.findIndex(b=>b.classList.contains('on'));dayB[(i+1)%dayB.length].click()},ms)}
-dayB.forEach(b=>b.insertAdjacentHTML('beforeend','<span class="bar"><i></i></span>'));
-const flowEl=document.querySelector('.flow');
-flowEl.onmouseenter=()=>{clearTimeout(tm);left-=Date.now()-t0;dayG.classList.add('paused')};
-flowEl.onmouseleave=()=>{dayG.classList.remove('paused');arm(Math.max(300,left))};
-arm();
-
-// Phones show one screen of a pair at a time, picked with a switch built
-// from the pair's captions (hidden on wider screens, where both show).
-document.querySelectorAll('.vis:not(.vcol)').forEach(v=>{
-  const figs=[...v.children].filter(c=>c.tagName==='FIGURE');
-  if(figs.length!==2)return;
-  v.classList.add('pair');v.dataset.show='0';
-  const sw=document.createElement('div');sw.className='sw pairsw';
-  figs.forEach((f,i)=>{const b=document.createElement('button');b.type='button';
-    b.textContent=(f.dataset.label||f.querySelector('figcaption')?.textContent||('Screen '+(i+1))).trim();
-    if(i===0)b.classList.add('on');
-    b.onclick=()=>{v.dataset.show=String(i);sw.querySelectorAll('button').forEach((x,j)=>x.classList.toggle('on',j===i));};
-    sw.appendChild(b);});
-  v.prepend(sw);
-});
+(()=>{
+const hero=document.querySelector('.hero'),slides=[...hero.querySelectorAll('.slide')],dots=[...hero.querySelectorAll('.dot')],chips=[...hero.querySelectorAll('.who-chips button')];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;let i=0,t=null,hover=false;
+function show(n){i=(n+slides.length)%slides.length;
+slides.forEach((s,k)=>s.classList.toggle('is-active',k===i));
+chips.forEach(c=>{const on=+c.dataset.s===i;c.classList.toggle('is-on',on);if(on){const box=c.parentElement;box.scrollTo({left:c.offsetLeft-(box.clientWidth-c.offsetWidth)/2,behavior:'smooth'})}});
+dots.forEach((d,k)=>{d.setAttribute('aria-selected',k===i);d.classList.remove('is-active');if(k===i){void d.offsetWidth;d.classList.add('is-active')}});
+next()}
+function next(){clearTimeout(t);if(!reduce&&!hover&&!document.hidden)t=setTimeout(()=>show(i+1),6000)}
+dots.forEach((d,k)=>d.addEventListener('click',()=>show(k)));
+chips.forEach(c=>c.addEventListener('click',()=>show(+c.dataset.s)));
+hero.addEventListener('mouseenter',()=>{hover=true;hero.classList.add('paused');clearTimeout(t)});
+hero.addEventListener('mouseleave',()=>{hover=false;hero.classList.remove('paused');show(i)});
+document.addEventListener('visibilitychange',next);
+next();
+})();
 </script>
 </body>
 </html>

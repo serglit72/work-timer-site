@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobday — Planner · Calendar · Month</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens/colors.css">
+<!-- Static mockup of Planner → Calendar · Month (v2.0.5), after
+     working-timer-presence/docs/design/week_vertical §4 and planner_month.dart.
+     ?embed renders the bare 390x844 screen for the landing page. -->
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:#E7ECF2;padding:24px;display:flex;justify-content:center}
+html.embed body{background:transparent;padding:0;display:block;overflow:hidden}
+.num{font-variant-numeric:tabular-nums}
+.phone{width:390px;height:844px;border-radius:44px;overflow:hidden;background:var(--bg);color:var(--text-1);display:flex;flex-direction:column;font-size:15px;line-height:1.35;position:relative}
+html.embed .phone{border-radius:0}
+.sb{height:50px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font-weight:700;font-size:15px}
+.sb i{width:24px;height:11px;border-radius:3px;background:var(--success);display:block}
+.sc{flex:1;overflow:hidden;padding:2px 16px 12px;display:flex;flex-direction:column;gap:10px}
+.hd{display:flex;align-items:center;justify-content:space-between;padding:0 4px}
+.h1{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.hr{display:flex;gap:8px;align-items:center}
+.probadge{height:28px;padding:0 10px;border-radius:999px;background:var(--pro-soft);color:var(--pro);font-size:11px;font-weight:800;letter-spacing:.06em;display:flex;align-items:center}
+.ib{width:40px;height:40px;border-radius:50%;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;color:var(--text-2)}
+.ib svg{width:19px;height:19px}
+.r2{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mn{display:flex;align-items:center;gap:4px;font-size:15px;font-weight:800;color:var(--text-2);white-space:nowrap}
+.mn b{width:28px;height:28px;border-radius:50%;background:var(--surface);display:grid;place-items:center;color:var(--text-2)}
+.mn b svg{width:14px;height:14px}
+.seg{display:flex;padding:3px;border-radius:10px;background:var(--surface-1);height:30px}
+.seg span{padding:0 9px;display:flex;align-items:center;font-size:12px;font-weight:800;color:var(--text-3);border-radius:8px}
+.seg span.on{background:var(--surface-2);color:var(--text-1)}
+.tog{display:flex;padding:4px;border-radius:14px;background:var(--surface);border:1px solid var(--line);height:44px}
+.tog span{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;font-size:14px;font-weight:800;color:var(--text-2);border-radius:10px}
+.tog span.on{background:var(--surface-1);color:var(--text-1)}
+.tog svg{width:16px;height:16px}
+.wd{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--text-3);text-align:center;margin-bottom:-4px}
+.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.c{height:56px;border-radius:12px;background:var(--surface);border:1px solid var(--line);padding:6px 7px;display:flex;flex-direction:column;position:relative;min-width:0}
+.c .n{font-size:13px;font-weight:800}
+.c .h{font-size:11.5px;font-weight:700;color:var(--text-1);margin-top:2px;white-space:nowrap}
+.c .k{position:absolute;top:5px;right:7px;font-size:11px;font-weight:800;color:var(--success)}
+.c .k svg{width:11px;height:11px;display:block}
+.c .dots{margin-top:auto;display:flex;gap:3px}
+.c .dots i{width:7px;height:7px;border-radius:50%;background:var(--success)}
+.c .dots i.p{background:none;box-shadow:inset 0 0 0 1.5px var(--accent)}
+.c .dots i.w{background:none;box-shadow:inset 0 0 0 1.5px var(--warning)}
+.c.out{background:none;border-color:var(--line);opacity:.45}
+.c.out .n{color:var(--text-3)}
+.c.rev{border-color:rgba(244,166,38,.55)}
+.c.rev .k{color:var(--warning)}
+.c.hol{background:var(--danger-soft);border-color:rgba(242,107,117,.35)}
+.c.hol .k{color:var(--danger)}
+.c.pl{border-style:dashed;border-color:var(--line-strong)}
+.c.pl .h{color:var(--text-2)}
+.c.today{border:1.5px solid var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.c.today .n{color:var(--accent)}
+.c.sel{background:var(--surface-2);border-color:var(--line-strong)}
+.leg{display:flex;justify-content:center;gap:16px;font-size:12.5px;font-weight:700;color:var(--text-3)}
+.leg span{display:flex;align-items:center;gap:6px}
+.leg i{width:8px;height:8px;border-radius:50%}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px 0}
+.ct{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ct b{font-size:17px;font-weight:800;letter-spacing:-.01em}
+.tag{height:22px;padding:0 8px;border-radius:999px;background:var(--success-soft);color:var(--success);font-size:11.5px;font-weight:800;display:inline-flex;align-items:center;gap:4px}
+.tag svg{width:11px;height:11px}
+.st{display:flex;gap:28px;margin-top:10px}
+.st div{display:flex;flex-direction:column}
+.st small{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3)}
+.st span{font-size:17px;font-weight:800}
+.blk{display:flex;align-items:center;gap:10px;padding:10px 0;margin-top:10px;border-top:1px solid var(--line);font-size:14px;font-weight:700}
+.blk i{width:8px;height:8px;border-radius:50%;background:var(--success);flex:none}
+.blk em{font-style:normal;color:var(--text-3);font-weight:600;margin-left:auto;font-size:13px}
+.act{display:flex;align-items:center;justify-content:center;gap:6px;padding:11px 0;border-top:1px solid var(--line);color:var(--accent);font-size:14px;font-weight:800}
+.act svg{width:16px;height:16px}
+.nav{flex:none;height:84px;background:var(--surface);border-top:1px solid var(--line);display:flex;padding:8px 16px 0}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--text-3);font-size:11px;font-weight:700}
+.ni i{width:56px;height:30px;border-radius:15px;display:grid;place-items:center}
+.ni svg{width:23px;height:23px}
+.ni.on{color:var(--text-1)}
+.ni.on i{background:var(--accent-soft);color:var(--accent)}
+</style>
+<script>if(new URLSearchParams(location.search).has('embed'))document.documentElement.classList.add('embed')</script>
+</head>
+<body>
+<div class="phone dark">
+<div class="sb"><span class="num">4:12</span><i></i></div>
+<div class="sc">
+<div class="hd"><div class="h1">Planner</div><div class="hr"><span class="probadge">PRO</span><span class="ib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></span></div></div>
+<div class="r2">
+<div class="mn"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></b>October 2026<b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></b></div>
+<div class="seg"><span>3 days</span><span>5 days</span><span class="on">Month</span></div>
+</div>
+<div class="tog"><span class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Calendar</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>List</span></div>
+<div class="wd"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span></div>
+<div class="grid num" id="grid"></div>
+<div class="leg"><span><i style="background:var(--success)"></i>recorded</span><span><i style="box-shadow:inset 0 0 0 1.5px var(--accent)"></i>planned</span><span><i style="box-shadow:inset 0 0 0 1.5px var(--warning)"></i>to review</span></div>
+<div class="card">
+<div class="ct"><b>Tuesday, Oct 27</b><span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Confirmed</span></div>
+<div class="st num"><div><small>Hours</small><span>8h</span></div><div><small>Mileage</small><span>0.0 mi</span></div></div>
+<div class="blk num"><i></i>WFH · Home<em>8:00 AM – 4:30 PM</em></div>
+<div class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg>Edit day</div>
+</div>
+</div>
+<div class="nav">
+<div class="ni"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/><rect x="8" y="13" width="3" height="3" rx=".5"/></svg></i>Today</div>
+<div class="ni on"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/></svg></i>Planner</div>
+<div class="ni"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg></i>Report</div>
+</div>
+</div>
+<script>
+// [day, hours, kind, dots] kinds: ok=confirmed, rev=to review, hol=holiday, pl=planned, out=other month
+const CHK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>';
+const D=[
+[28,'','out',''],[29,'','out',''],[30,'','out',''],[1,'8h','ok','g'],[2,'8h 15m','ok','gg'],
+[5,'8h','ok','gg'],[6,'7h 52m','ok','g'],[7,'8h','ok','gg'],[8,'8h 15m','ok','g'],[9,'8h','ok','gg'],
+[12,'8h paid','hol',''],[13,'8h','ok','g'],[14,'7h 52m','ok','gg'],[15,'≈ 7h 50m','rev','gw'],[16,'8h','ok','gg'],
+[19,'8h','ok','gg'],[20,'8h 15m','ok','g'],[21,'8h','ok','gg'],[22,'7h 52m','ok','g'],[23,'8h','ok','gg'],
+[26,'8h','ok','g'],[27,'8h','ok sel','g'],[28,'8h 15m','ok','gg'],[29,'8h','ok','g'],[30,'4h 12m','today','gp']];
+document.getElementById('grid').innerHTML=D.map(([n,h,k,d])=>{
+const mark=k.startsWith('ok')?CHK:k=='rev'?'!':k=='hol'?'H':'';
+const dots=[...d].map(x=>`<i class="${x=='p'?'p':x=='w'?'w':''}"></i>`).join('');
+return `<div class="c ${k=='ok sel'?'sel':k=='ok'?'':k}"><span class="n">${n}</span>${mark?`<span class="k">${mark}</span>`:''}${h?`<span class="h">${h}</span>`:''}<span class="dots">${dots}</span></div>`}).join('');
+</script>
+</body>
+</html>
