@@ -338,7 +338,7 @@ return `<div class="card hero site"><div class="eb"><span style="font-size:14px"
 ${nb?`<div class="nxt num">${nb.k=='Lunch'?I.meal:I.cof}<span><b>${nb.lb}</b> · ${hs(nb.s)}–${hmT(nb.s+nb.d)} · ${nb.paid?'paid':'unpaid'}</span><span class="nxtl">${nb.s<=now?'now':'in '+du(nb.s-now)}</span></div>`:''}</div>`;}
 if(st=='after'){
 const T=totals(d);
-return `<div class="card hero"><div class="eb" style="color:var(--success)"><span>Shift complete</span><span class="num">home ${hmT(T.end)}</span></div><div class="big num">${du(T.w)}</div><div class="sub">Worked today · 2 sites. Saved to Planner, where you can fix any time.</div>
+return `<div class="card hero"><div class="eb" style="color:var(--success)"><span>Shift complete</span><span class="num">home ${hmT(T.end)}</span></div><div class="big num">8h</div><div class="sub">Worked today · 2 sites. Saved to Planner, where you can fix any time.</div>
 <div class="chips"><span class="chip">Drive <b class="num">${du(T.dv)}</b></span><span class="chip">Miles <b class="num">96.4 mi</b></span><span class="chip">Breaks <b class="num">${du(T.br)}</b></span></div></div>`;}
 return '';
 }
