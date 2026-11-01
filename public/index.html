@@ -224,7 +224,7 @@ footer a:hover{color:var(--text-1)}
 .feats h3{margin-top:.25rem}
 .feats p{color:var(--text-2);font-size:16px;line-height:1.55}
 @media (min-width:640px){.feats{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (min-width:1100px){.feats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:960px){.feats{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .feats .more{border-style:dashed;background:transparent}
 .feats .more a{color:var(--accent);font-weight:800}
 </style>
@@ -268,18 +268,18 @@ footer a:hover{color:var(--text-1)}
 <div class="body"><div class="fix"><span class="feat">Today · arrivals</span>
 <div class="phone" style="--s:.64"><div class="scr"><iframe loading="lazy" title="Today timeline with the arrival at the office" src="landing/today-states.html?embed&amp;st=during"></iframe><span class="hl" style="left:calc(28px*var(--s));top:calc(452px*var(--s));width:calc(334px*var(--s));height:calc(64px*var(--s))"></span></div></div>
 <span class="note2">Arrivals are logged when you get to a site, with location on. <b>Edit a time and the original GPS time stays on record.</b></span></div></div></li>
-<li><div class="ph"><img src="img/pain-drive.webp" srcset="img/pain-drive-640.webp 640w, img/pain-drive.webp 1024w" sizes="(min-width:720px) 33rem, 100vw" width="1024" height="576" alt="" loading="lazy"><span class="scene">Between job 2 and job 3</span><p class="say">Drive time, traffic included, is on my day, so I leave on time.</p></div>
+<li><div class="ph"><img src="img/pain-drive.webp" srcset="img/pain-drive-640.webp 640w, img/pain-drive.webp 1024w" sizes="(min-width:720px) 33rem, 100vw" width="1024" height="576" alt="" loading="lazy"><span class="scene">Between job 2 and job 3</span><p class="say">Every minute and every mile of the drive is on my day.</p></div>
 <div class="body"><div class="fix"><span class="feat">Today · drive and miles</span>
-<div class="phone" style="--s:.64"><div class="scr"><iframe loading="lazy" title="Shift complete card with drive time and breaks" src="landing/today-states.html?embed&amp;st=after"></iframe><span class="hl" style="left:calc(30px*var(--s));top:calc(262px*var(--s));width:calc(222px*var(--s));height:calc(46px*var(--s))"></span></div></div>
-<span class="note2"><b>Drive time with current traffic, and miles, are part of the day,</b> site to site. Jobday works out when to leave.</span></div></div></li>
+<div class="phone" style="--s:.64"><div class="scr"><iframe loading="lazy" title="Shift complete card with drive time and breaks" src="landing/today-states.html?embed&amp;st=after"></iframe><span class="hl" style="left:calc(30px*var(--s));top:calc(262px*var(--s));width:calc(330px*var(--s));height:calc(46px*var(--s))"></span></div></div>
+<span class="note2"><b>Drive time and miles are part of the day,</b> site to site. Time is worked out with current traffic, so you know when to leave.</span></div></div></li>
 <li><div class="ph"><img src="img/pain-break.webp" srcset="img/pain-break-640.webp 640w, img/pain-break.webp 1024w" sizes="(min-width:720px) 33rem, 100vw" width="1024" height="576" alt="" loading="lazy"><span class="scene">2:40 PM · still no lunch</span><p class="say">My phone nudged me, so I took my lunch on time.</p></div>
 <div class="body"><div class="fix"><span class="feat">Break reminders · free</span>
 <div class="phone" style="--s:.64"><div class="scr"><iframe loading="lazy" title="On shift card with the lunch reminder" src="landing/today-states.html?embed&amp;st=during"></iframe><span class="hl" style="left:calc(24px*var(--s));top:calc(274px*var(--s));width:calc(336px*var(--s));height:calc(38px*var(--s))"></span></div></div>
 <span class="note2"><b>A reminder before the window closes,</b> timed to your shift. No Pro needed.</span></div></div></li>
-<li><div class="ph"><img src="img/pain-week.webp" srcset="img/pain-week-640.webp 640w, img/pain-week.webp 1024w" sizes="(min-width:720px) 33rem, 100vw" width="1024" height="576" alt="" loading="lazy"><span class="scene">Friday night · at the kitchen table</span><p class="say">My week added itself up. Friday night is mine again.</p></div>
-<div class="body"><div class="fix"><span class="feat">Planner · hours for every day</span>
-<div class="phone" style="--s:.64"><div class="scr"><iframe loading="lazy" title="Planner month view with hours per day" src="landing/planner-month.html?embed"></iframe><span class="hl" style="left:calc(20px*var(--s));top:calc(290px*var(--s));width:calc(350px*var(--s));height:calc(58px*var(--s))"></span></div></div>
-<span class="note2">Hours add up <b>per day and per week</b> as you go. Fix what's off, then export the week <span class="pro">PRO</span>.</span></div></div></li>
+<li><div class="ph"><img src="img/pain-week.webp" srcset="img/pain-week-640.webp 640w, img/pain-week.webp 1024w" sizes="(min-width:720px) 33rem, 100vw" width="1024" height="576" alt="" loading="lazy"><span class="scene">Friday night · at the kitchen table</span><p class="say">My week added itself up, and one tap exports it for payroll.</p></div>
+<div class="body"><div class="fix"><span class="feat">Work log · export</span>
+<div class="phone" style="--s:.64"><div class="scr"><iframe loading="lazy" title="Export CSV sheet with the week's rows" src="landing/export.html?embed"></iframe><span class="hl" style="left:calc(14px*var(--s));top:calc(758px*var(--s));width:calc(362px*var(--s));height:calc(58px*var(--s))"></span></div></div>
+<span class="note2">Hours add up <b>per day and per week</b> as you go. Fix what's off, then <b>export the week as a CSV</b> for Excel or payroll, with hours, breaks, drive time, miles and GPS times <span class="pro">PRO</span>.</span></div></div></li>
 </ul>
 </section>
 
@@ -290,12 +290,13 @@ footer a:hover{color:var(--text-1)}
 </div>
 <ul class="feats">
 <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><h3>Google Maps in one tap</h3><p>Open the route to your next site in Google Maps right from the app.</p></li>
-<li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l2-6a2 2 0 012-1.4h8A2 2 0 0118 10l2 6M4 16v3h3v-1.5h10V19h3v-3M4 16h16"/></svg></span><h3>Drive time with traffic</h3><p>Estimated time on the road between sites, with current traffic.</p></li>
+<li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l2-6a2 2 0 012-1.4h8A2 2 0 0118 10l2 6M4 16v3h3v-1.5h10V19h3v-3M4 16h16"/></svg></span><h3>Drive time, traffic and miles</h3><p>Estimated time on the road between sites, with current traffic, plus the miles for every day.</p></li>
 <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg></span><h3>When to leave, worked out for you</h3><p>Jobday counts back from your arrival time and tells you when to head out, so you are not late.</p></li>
 <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9a2.8 2.8 0 00-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg></span><h3>Change the day on the go</h3><p>Add a job or move one in the middle of the shift. The times re-lay out around it.</p></li>
 <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7a3 3 0 006 0V3M9 3v18M17 3c-2 2-2 6 0 8v10"/></svg></span><h3>Breaks, not just lunch</h3><p>Reminders for rest breaks and meal breaks, timed to your shift. Free.</p></li>
 <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l2.5 2M9 2h6M12 21a8 8 0 100-16 8 8 0 000 16z"/><path d="M4 4l3 2"/></svg></span><h3>See overtime coming <span class="pro">PRO</span></h3><p>Time on the road to the first site and back home is counted, so you see overtime before you hit it.</p></li>
 <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 00-3 3v5a3 3 0 006 0V6a3 3 0 00-3-3z"/><path d="M6 11a6 6 0 0012 0M12 17v4M9 21h6"/></svg></span><h3>Say it, don't type it</h3><p>Talk through what you did at the site and Jobday saves it as a voice report, with your site photos.</p></li>
+<li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M8 8l4-4 4 4M5 13v6h14v-6"/></svg></span><h3>Export your hours <span class="pro">PRO</span></h3><p>Send a week, two weeks or any dates as a CSV for Excel: times in and out, breaks, drive minutes, miles and GPS times.</p></li>
 <li class="more"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h5"/></svg></span><h3>Need full written reports?</h3><p>Voice Smart Report turns what you say on a visit into a finished PDF report. <a href="https://reports.aiconspro.com/">Try Voice Smart Report</a></p></li>
 </ul>
 </section>
